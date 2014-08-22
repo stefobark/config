@@ -31,29 +31,31 @@ print_index_form($_SESSION["type"]);
 //close the row
 echo "</div>";
 
-//if we have indexes, echo them.
-if (isset($_SESSION["index"])) {
+//if there are indexes, echo them.
+if (isset($_SESSION["index"][0])) {
     echo "<h3>indexes</h3>";
     open_output();
     print_index($_SESSION["index"]);
     close_output();
 }
 
-echo "
-		<h3>sources:</h3>";
+//if there are sources, echo them.
+if (isset($_SESSION["source"][0])) {
+	echo "<h3>sources:</h3>";
 
-if (isset($_SESSION["index"])) {
-    open_output();
-    print_source($_SESSION['source'], $_SESSION['type']);
-    close_output();
+	if (isset($_SESSION["index"])) {
+		 open_output();
+		 print_source($_SESSION['source'], $_SESSION['type']);
+		 close_output();
+	}
+
+
+
+	//close the row div and make a link to add another source
+	echo "
+		<h5>
+			<a href='plainconfig.php'><span class='glyphicon glyphicon-plus-sign'></span>&nbsp;add another source&nbsp;<span class='glyphicon glyphicon-plus-sign'></span></a>
+		</h5>
+	</div>";
 }
-
-
-
-//close the row div and make a link to add another source
-echo "
-	<h5>
-		<a href='plainconfig.php'><span class='glyphicon glyphicon-plus-sign'></span>&nbsp;add another source&nbsp;<span class='glyphicon glyphicon-plus-sign'></span></a>
-	</h5>
-</div>";
 ?>
