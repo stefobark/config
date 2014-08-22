@@ -13,6 +13,6 @@ go [here](http://stevenjbarker.comoj.com) to see. Otherwise, grab these files an
 I'm new to all this stuff. So, please do tell me if you see a better way of doing things.
 
 ####Thanks :) ####
-Hopefully this is helpful to someone!
+Hopefully this is helps someone!
 
 
