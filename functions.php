@@ -1,6 +1,6 @@
 <?php
 
-//this will take form information and return a concatenation seperated by ## (which will later be exploded)
+//this will take searchd form information and return a concatenation seperated by ## (which will later be exploded)
 function &searchd_to_string(){
 
 	if(isset($_POST['listen'])){
@@ -19,7 +19,7 @@ function &searchd_to_string(){
 	return $f_searchd_string;
 }
 
-//take form info, concatenate separated by ##. because there will be many, if we haven't already,
+//take index form info, concatenate separated by ##. because there will be many, if we haven't already,
 //set session['index'] to array.
 function &index_to_string(){
 
@@ -42,7 +42,7 @@ function &index_to_string(){
 	return $f_index_string;
 }
 
-//form information concatenated, set session['source'] to array
+//source form information concatenated, set session['source'] to array
 function &source_to_string(){
 
 	if(isset($_POST['source_name'])){
@@ -101,6 +101,7 @@ function &source_to_string(){
 	return $f_source_string;
 }
 
+//for use before print_blahblah();
 function open_output(){
 echo <<<HERE
 <div class="row">
@@ -108,6 +109,7 @@ echo <<<HERE
 HERE;
 }
 
+//for use after print_blahblah();
 function close_output(){
 echo <<<HERE
 </div>
@@ -115,6 +117,7 @@ echo <<<HERE
 HERE;
 }
 
+//give this session['type']. it will print a form for that kind of index's options. links to docs.
 function print_index_form($sesh_type){
 $type = $sesh_type;
 echo <<<HERE
@@ -141,6 +144,7 @@ echo <<<HERE
 HERE;
 }
 
+//this will print that big ugly source options form.. and links to docs! reformat this!!
 function print_source_form(){
 echo <<<HERE
 <form role="form" name="host" action="index_options.php" method="post">
@@ -223,6 +227,8 @@ echo <<<HERE
 HERE;
 }
 
+//print all the indexes by giving this function $_SESSION['index']. if mandatory options are missing, tell the user!
+//this way, they can choose to not enter any info, then they'll have a reminder to switch it later on.
 function print_index($all_indexes){
 
 	foreach ($all_indexes as $index){
@@ -251,6 +257,8 @@ function print_index($all_indexes){
 		}
 }
 
+//give this function session['source'] and session['type'] and it will print all source blocks
+//if mandatory options are missing, it will tell you.
 function print_source($sources, $type){
 	
 	//for each of the source strings, split it into an array on '##'
@@ -329,6 +337,8 @@ function print_source($sources, $type){
 		}
 }
 
+//searchd only takes one config block, so its not an array. when this function is run, the old settings are lost.
+//give this function session['searchd']
 function print_searchd($searchd_string){
 
 $searchd_options = explode("##", $searchd_string);
@@ -364,8 +374,8 @@ $searchd_options = explode("##", $searchd_string);
 		echo "}<br />";
 }
 
+//print the form for searchd options, which sends users to review.php
 function print_searchd_form(){
-	//get searchd config options, send them to searchd.php
 	echo <<<HERE
 		<h3>Searchd Options</h3>
 		<p class="help-block">If you've already defined this, redefining will override your old settings.</p>
@@ -392,6 +402,7 @@ function print_searchd_form(){
 HERE;
 }
 
+//html for usual header
 function print_header(){
 echo <<<HERE
 <!DOCTYPE html>
@@ -427,7 +438,7 @@ HERE;
 
 }
 
-//another header for the home page so that users don't have all the options (cause they don't make sense yet)
+//another header for the home page so that users don't have all the options (because they don't make sense yet..)
 function print_home_header(){
 echo <<<HERE
 <!DOCTYPE html>
