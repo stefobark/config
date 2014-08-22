@@ -21,15 +21,17 @@ if (isset($_POST["source_name"])) {
     $_SESSION["source"][] = $source_string;
 }
 
-
+//print_index_form does some formatting, so open a container and a row and drop it down 75px)
 echo "
 <div class='container'>
 	<div class='row' style='margin-top:75px'>";
 
 print_index_form($_SESSION["type"]);
 
+//close the row
 echo "</div>";
 
+//if we have indexes, echo them.
 if (isset($_SESSION["index"])) {
     echo "<h3>indexes</h3>";
     open_output();
