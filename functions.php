@@ -369,6 +369,7 @@ function print_searchd_form(){
 	//get searchd config options, send them to searchd.php
 	echo <<<HERE
 		<h3>Searchd Options</h3>
+		<p class="help-block">If you've already defined this, redefining will override your old settings.</p>
 		<form role='form' name='index' action='review.php' method='post'>
 			<div class='form-group'>
 				<label for='listen'><a href='http://sphinxsearch.com/docs/current.html#conf-listen'>Where (and how) to listen (mandatory)</a></label><br />
