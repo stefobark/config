@@ -1,5 +1,6 @@
 <?php
 
+//this will take form information and return a concatenation seperated by ## (which will later be exploded)
 function &searchd_to_string(){
 
 	if(isset($_POST['listen'])){
@@ -14,14 +15,11 @@ function &searchd_to_string(){
 	if(isset($_POST['pid'])){
 		$f_searchd_string .= $_POST['pid'] . "##";
 	}
-
-	if(isset($_POST["listen"])){
-		$_SESSION["searchd"] = $f_searchd_string;
-	}
 	
 	return $f_searchd_string;
 }
 
+//take form info, concatenate separated by ##. because there will be many, if we haven't already, set session['index'] to array
 function &index_to_string(){
 
 	if(isset($_POST["index_name"])){
@@ -39,12 +37,11 @@ function &index_to_string(){
 	if(!isset($_SESSION['index'])){
 		$_SESSION['index'] = array();
 		} 
-
-	$_SESSION['index'][] = $f_index_string;
 	
 	return $f_index_string;
 }
 
+//form information concatenated, set session['source'] to array
 function &source_to_string(){
 
 	if(isset($_POST['source_name'])){
@@ -95,6 +92,7 @@ function &source_to_string(){
 	if(isset($f_source_string)){
 	$f_source_string .= $_SESSION['type'];
 	}
+	
 	//if the session source is not set, say 'its and array'.
 	if(!isset($_SESSION["source"])){
 	$_SESSION["source"] = array();
