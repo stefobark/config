@@ -19,7 +19,7 @@ if (!$_POST["index"]) {
 		</div>
 	</div>
 	<div class="row">
-			<div class="col-md-4"></div>
+			<div class="col-md-5"></div>
 				<div class="col-md-3">
 					<h4>Choose your index type:</h4>
 					<form name="type" action="index.php" method="post">
