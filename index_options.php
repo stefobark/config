@@ -5,8 +5,13 @@ error_reporting(-1);
 session_start();
 require_once('functions.php');
 print_header();
-$source_string =& source_to_string();
 
+//if we have 'source' form info concatenate and insert into a session variable
+if(isset($_POST['source_name'])){
+$source_string =& source_to_string();
+}
+
+//if we haven't already declared this to be an array, do it.
 if (!isset($_SESSION["index"])) {
     $_SESSION["index"] = array();
 }
