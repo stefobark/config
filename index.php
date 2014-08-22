@@ -43,23 +43,23 @@ HERE;
                 echo <<<HERE
 			<div class="container" style='margin-top:100px!important'>
 				<div class="row">
-						<div class="col-md-4"></div>
-						<div class="col-md-3">
-							<h4>Choose your source type:</h4>
-							<form name="type" action="plainconfig.php" method="post">
-								<input type="checkbox" name="type" value="mysql">MySQL<br>
-								<input type="checkbox" name="type" value="pssql">PostgreSQL<br>
-								<input type="checkbox" name="type" value="mssql">MSSQL<br>
-								<input type="checkbox" name="type" value="xmlpipe2">XML<br>
-								<input type="checkbox" name="type" value="tsvpipe">TSV<br>
-								<input type="checkbox" name="type" value="odbc">ODBC<br>
-								<input type="submit" value="Submit">
-							</form>
-							<h5><a href="http://sphinxsearch.com/docs/current.html#confgroup-source">learn more</a></h5>
-						</div>
+					<div class="col-md-4"></div>
+					<div class="col-md-3">
+						<h4>Choose your source type:</h4>
+						<form name="type" action="plainconfig.php" method="post">
+							<input type="checkbox" name="type" value="mysql">MySQL<br>
+							<input type="checkbox" name="type" value="pssql">PostgreSQL<br>
+							<input type="checkbox" name="type" value="mssql">MSSQL<br>
+							<input type="checkbox" name="type" value="xmlpipe2">XML<br>
+							<input type="checkbox" name="type" value="tsvpipe">TSV<br>
+							<input type="checkbox" name="type" value="odbc">ODBC<br>
+							<input type="submit" value="Submit">
+						</form>
+						<h5><a href="http://sphinxsearch.com/docs/current.html#confgroup-source">learn more</a></h5>
 					</div>
 				</div>
 			</div>
+		</div>
 HERE;
                 $_SESSION["index_type"] = $_POST["index"];
                 break;
