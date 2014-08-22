@@ -21,6 +21,8 @@ if (!$_POST["index"]) {
 	<div class="row">
 			<div class="col-md-5"></div>
 				<div class="col-md-3">
+					<!-- this doesn't really need to be a form. could pass info with a link. 
+					should not let them choose more than one option!-->
 					<h4>Choose your index type:</h4>
 					<form name="type" action="index.php" method="post">
 						<input type="checkbox" name="index" value="plain">Plain<br />
