@@ -19,20 +19,21 @@ function &searchd_to_string(){
 	return $f_searchd_string;
 }
 
-//take form info, concatenate separated by ##. because there will be many, if we haven't already, set session['index'] to array
+//take form info, concatenate separated by ##. because there will be many, if we haven't already,
+//set session['index'] to array.
 function &index_to_string(){
 
 	if(isset($_POST["index_name"])){
 		$f_index_string = $_POST["index_name"] . "##";
-		} else { echo "form input didn't work"; }
+		}
 
 	if(isset($_POST["index_source_name"])){
 		$f_index_string .= $_POST["index_source_name"] . "##";
-		} else { echo "form input didn't work"; }
+		} 
 
 	if(isset($_POST["index_path"])){
 		$f_index_string .= $_POST["index_path"] . "##";
-		} else { echo "form input didn't work";}
+		} 
 
 	if(!isset($_SESSION['index'])){
 		$_SESSION['index'] = array();
