@@ -14,6 +14,7 @@ if (!$_POST["index"]) {
 					are available at this point. There will be more soon. Look at the helper-text
 					to see examples of input. Follow links to the 
 					Sphinx docs to learn more about each of the options.
+				</p>
 			</div>
 		</div>
 	</div>
