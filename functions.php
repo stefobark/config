@@ -1,18 +1,3 @@
-Skip to content
- This repository
-Explore
-Gist
-Blog
-Help
-Steven Barker stefobark
- 
-1  Unwatch 
-  Star 0
- Fork 0stefobark/config
- branch: master  config / functions.php
-Steven Barker stefobark just now Update and rename functions.php~ to functions.php
-1 contributor
-479 lines (439 sloc)  18.059 kb RawBlameHistory  
 <?php
 
 //this will take searchd form information and return a concatenation seperated by ## (which will later be exploded)
@@ -143,7 +128,7 @@ function print_index_form($sesh_type)
     $type = $sesh_type;
     echo <<<HERE
 <div class="col-md-4">
-	<h3>make a $type index</h3>
+	<h3>make an index</h3>
 	<form role='form' name='index' action='searchd_options.php' method='post'>
 		<div class='form-group'>
 				<label for='index_name'><a href='http://sphinxsearch.com/docs/current.html#confgroup-index'>Name this Index (mandatory)</a></label><br />
