@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once('functions.php');
-print_header();
+print_home_header();
 if (!$_POST["index"]) {
     echo <<<HERE
 <div class="container" style='margin-top:100px!important'>
