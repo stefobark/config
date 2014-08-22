@@ -1,124 +1,136 @@
 <?php
 
-function &searchd_to_string(){
-
-	if(isset($_POST['listen'])){
-		$f_searchd_string = $_POST['listen'] . "##";
-	}
-	if(isset($_POST['log'])){
-		$f_searchd_string .= $_POST['log'] . "##";
-	}
-	if(isset($_POST['query_log'])){
-		$f_searchd_string .= $_POST['query_log'] . "##";
-	}
-	if(isset($_POST['pid'])){
-		$f_searchd_string .= $_POST['pid'] . "##";
-	}
-
-	if(isset($_POST["listen"])){
-		$_SESSION["searchd"] = $f_searchd_string;
-	}
-	
-	return $f_searchd_string;
+function &searchd_to_string()
+{
+    
+    if (isset($_POST['listen'])) {
+        $f_searchd_string = $_POST['listen'] . "##";
+    }
+    if (isset($_POST['log'])) {
+        $f_searchd_string .= $_POST['log'] . "##";
+    }
+    if (isset($_POST['query_log'])) {
+        $f_searchd_string .= $_POST['query_log'] . "##";
+    }
+    if (isset($_POST['pid'])) {
+        $f_searchd_string .= $_POST['pid'] . "##";
+    }
+    
+    if (isset($_POST["listen"])) {
+        $_SESSION["searchd"] = $f_searchd_string;
+    }
+    
+    return $f_searchd_string;
 }
 
-function &index_to_string(){
-
-	if(isset($_POST["index_name"])){
-		$f_index_string = $_POST["index_name"] . "##";
-		} else { echo "form input didn't work"; }
-
-	if(isset($_POST["index_source_name"])){
-		$f_index_string .= $_POST["index_source_name"] . "##";
-		} else { echo "form input didn't work"; }
-
-	if(isset($_POST["index_path"])){
-		$f_index_string .= $_POST["index_path"] . "##";
-		} else { echo "form input didn't work";}
-
-	if(!isset($_SESSION['index'])){
-		$_SESSION['index'] = array();
-		} 
-
-	$_SESSION['index'][] = $f_index_string;
-	
-	return $f_index_string;
+function &index_to_string()
+{
+    
+    if (isset($_POST["index_name"])) {
+        $f_index_string = $_POST["index_name"] . "##";
+    } else {
+        echo "form input didn't work";
+    }
+    
+    if (isset($_POST["index_source_name"])) {
+        $f_index_string .= $_POST["index_source_name"] . "##";
+    } else {
+        echo "form input didn't work";
+    }
+    
+    if (isset($_POST["index_path"])) {
+        $f_index_string .= $_POST["index_path"] . "##";
+    } else {
+        echo "form input didn't work";
+    }
+    
+    if (!isset($_SESSION['index'])) {
+        $_SESSION['index'] = array();
+    }
+    
+    $_SESSION['index'][] = $f_index_string;
+    
+    return $f_index_string;
 }
 
-function &source_to_string(){
-
-	if(isset($_POST['source_name'])){
-		$f_source_string = $_POST['source_name'] . "##";
-	}
-	if(isset($_POST['sql_host'])){
-		$f_source_string .= $_POST['sql_host'] ."##";
-	}
-	if(isset($_POST['sql_port'])){
-		$f_source_string .= $_POST['sql_port'] ."##";
-	}
-	if(isset($_POST['sql_user'])){
-		$f_source_string .= $_POST['sql_user'] ."##";
-	}
-	if(isset($_POST['sql_pass'])){
-		$f_source_string .= $_POST['sql_pass'] ."##";
-	}
-	if(isset($_POST['sql_db'])){
-		$f_source_string .= $_POST['sql_db'] ."##";
-	}
-	if(isset($_POST['sql_sock'])){
-		$f_source_string .= $_POST['sql_sock'] ."##";
-	}
-	if(isset($_POST['mysql_connect_flags'])){
-		$f_source_string .= $_POST['mysql_connect_flags'] ."##";
-	}
-	if(isset($_POST['mysql_ssl_cert'])){
-		$f_source_string .=  $_POST['mysql_ssl_cert'] ."##";
-	}
-	if(isset($_POST['mysql_ssl_key'])){
-		$f_source_string .= $_POST['mysql_ssl_key'] ."##";
-	}
-	if(isset($_POST['mysql_ssl_ca'])){
-		$f_source_string .= $_POST['mysql_ssl_ca'] ."##";
-	}
-	if(isset($_POST['attributes'])){
-		$f_source_string .= $_POST['attributes'] ."##";
-	}
-	if(isset($_POST['sql_query'])){
-		$f_source_string .= $_POST['sql_query'] ."##";
-	}
-	if(isset($_POST['sql_joined_field'])){
-		$f_source_string .= $_POST['sql_joined_field'] ."##";
-	}
-	if(isset($_POST['sql_query_range'])){
-		$f_source_string .= $_POST['sql_query_range'];
-	}
-	if(isset($f_source_string)){
-	$f_source_string .= $_SESSION['type'];
-	}
-	//if the session source is not set, say 'its and array'.
-	if(!isset($_SESSION["source"])){
-	$_SESSION["source"] = array();
-	}	
-	return $f_source_string;
+function &source_to_string()
+{
+    
+    if (isset($_POST['source_name'])) {
+        $f_source_string = $_POST['source_name'] . "##";
+    }
+    if (isset($_POST['sql_host'])) {
+        $f_source_string .= $_POST['sql_host'] . "##";
+    }
+    if (isset($_POST['sql_port'])) {
+        $f_source_string .= $_POST['sql_port'] . "##";
+    }
+    if (isset($_POST['sql_user'])) {
+        $f_source_string .= $_POST['sql_user'] . "##";
+    }
+    if (isset($_POST['sql_pass'])) {
+        $f_source_string .= $_POST['sql_pass'] . "##";
+    }
+    if (isset($_POST['sql_db'])) {
+        $f_source_string .= $_POST['sql_db'] . "##";
+    }
+    if (isset($_POST['sql_sock'])) {
+        $f_source_string .= $_POST['sql_sock'] . "##";
+    }
+    if (isset($_POST['mysql_connect_flags'])) {
+        $f_source_string .= $_POST['mysql_connect_flags'] . "##";
+    }
+    if (isset($_POST['mysql_ssl_cert'])) {
+        $f_source_string .= $_POST['mysql_ssl_cert'] . "##";
+    }
+    if (isset($_POST['mysql_ssl_key'])) {
+        $f_source_string .= $_POST['mysql_ssl_key'] . "##";
+    }
+    if (isset($_POST['mysql_ssl_ca'])) {
+        $f_source_string .= $_POST['mysql_ssl_ca'] . "##";
+    }
+    if (isset($_POST['attributes'])) {
+        $f_source_string .= $_POST['attributes'] . "##";
+    }
+    if (isset($_POST['sql_query'])) {
+        $f_source_string .= $_POST['sql_query'] . "##";
+    }
+    if (isset($_POST['sql_joined_field'])) {
+        $f_source_string .= $_POST['sql_joined_field'] . "##";
+    }
+    if (isset($_POST['sql_query_range'])) {
+        $f_source_string .= $_POST['sql_query_range'];
+    }
+    if (isset($f_source_string)) {
+        $f_source_string .= $_SESSION['type'];
+    }
+    //if the session source is not set, say 'its and array'.
+    if (!isset($_SESSION["source"])) {
+        $_SESSION["source"] = array();
+    }
+    return $f_source_string;
 }
 
-function open_output(){
-echo <<<HERE
+function open_output()
+{
+    echo <<<HERE
 <div class="row">
 <div class="col-md-4">
 HERE;
 }
 
-function close_output(){
-echo <<<HERE
+function close_output()
+{
+    echo <<<HERE
 </div>
 </div>
 HERE;
 }
 
-function print_index_form($sesh_type){
-$type = $sesh_type;
-echo <<<HERE
+function print_index_form($sesh_type)
+{
+    $type = $sesh_type;
+    echo <<<HERE
 <div class="col-md-4">
 	<h3>make a $type index</h3>
 	<form role='form' name='index' action='searchd_options.php' method='post'>
@@ -142,8 +154,9 @@ echo <<<HERE
 HERE;
 }
 
-function print_source_form(){
-echo <<<HERE
+function print_source_form()
+{
+    echo <<<HERE
 <form role="form" name="host" action="index_options.php" method="post">
 		<div class="col-md-12 text-center">
 			<div class="form-group">
@@ -224,150 +237,141 @@ echo <<<HERE
 HERE;
 }
 
-function print_index($all_indexes){
-
-	foreach ($all_indexes as $index){
-		$an_index = explode("##", $index);
-
-		if($an_index[0] != ''){
-			echo "index " . $an_index[0] . "<br />{ <br />";
-			} 
-			else {
-				echo "<strong>you need a source name!</strong><br />";
-			}
-
-		if($an_index[1] != ''){
-			echo "source = " . $an_index[1] . "<br />";
-			} 
-			else {
-				echo "<strong>you need a source name!</strong><br />";
-			}
-		if($an_index[2] != ''){
-			echo "path = " . $an_index[2] . "<br />}<br />";
-		} 
-			else {
-				echo "<strong>you need a data directory path!</strong><br /> }";
-			}
-		echo "<br />";
-		}
+function print_index($all_indexes)
+{
+    
+    foreach ($all_indexes as $index) {
+        $an_index = explode("##", $index);
+        
+        if ($an_index[0] != '') {
+            echo "index " . $an_index[0] . "<br />{ <br />";
+        } else {
+            echo "<strong>you need a source name!</strong><br />";
+        }
+        
+        if ($an_index[1] != '') {
+            echo "source = " . $an_index[1] . "<br />";
+        } else {
+            echo "<strong>you need a source name!</strong><br />";
+        }
+        if ($an_index[2] != '') {
+            echo "path = " . $an_index[2] . "<br />}<br />";
+        } else {
+            echo "<strong>you need a data directory path!</strong><br /> }";
+        }
+        echo "<br />";
+    }
 }
 
-function print_source($sources, $type){
-	
-	//for each of the source strings, split it into an array on '##'
-	foreach($sources as $row){
-			$options = explode("##", $row);
-			echo "source " . $options[0] . "<br /> { <br />";
-			
-			echo "type = " . $type . "<br />";
-			
-			if($options[1] != ''){
-				echo "sql_host = " . $options[1] . "<br />";
-			} 
-			else {
-				echo "<strong>you need sql_host!</strong><br />";
-			}
-			if($options[2] != ''){
-				echo "sql_port = " . $options[2] . "<br />";
-			}
-			else {
-				echo "<strong>you need sql_port!</strong><br />";
-			}
-			if($options[3] != ''){
-				echo "sql_user = " . $options[3] . "<br />";
-			}
-			else {
-				echo "<strong>you need sql_user!</strong><br />";
-			}
-			if($options[4] != ''){
-				echo "sql_pass = " . $options[4] . "<br />";
-			}
-			if($options[5] != ''){
-				echo "sql_db = " . $options[5] . "<br />";
-			}
-			else {
-				echo "<strong>you need db name!</strong><br />";
-			}
-			if($options[6] != ''){
-				echo "sql_sock = " . $options[6] . "<br />";
-			}
-			if($options[7] != ''){
-				echo "mysql_connect_flags = " . $options[7] . "<br />";
-			}
-			if($options[8] != ''){
-				echo "mysql_ssl_cert = " . $options[8] . "<br />";
-			}
-			if($options[9] != ''){
-				echo "mysql_ssl_key = " . $options[9] . "<br />";
-			}
-			if($options[10] != ''){
-				echo "mysql_ssl_ca = " . $options[10] . "<br />";
-			}
-			if($options[12] != ''){
-				echo "sql_query = " . $options[12] . "<br />";
-			}
-			else {
-				echo "<strong>you need the main query!</strong><br />";
-			}
-			if($options[14] != ''){
-			echo "sql_query_range = " . $options[14] . "<br />";
-			}
-			if($options[13] != ''){
-				echo "sql_joined_field = " . $options[13] . "<br />";
-			}
-			
-			if($options[11] != ''){
-			//now, inside this loop, take the attributes string and split it by ','
-			$final_attributes = explode(",", $options[11]);
-			foreach($final_attributes as $attr){
-				echo $attr . "<br />";
-						}
-					//end if
-					}
-			//end config block
-			echo  "} <br /><br />";
-		//end foreach
-		}
+function print_source($sources, $type)
+{
+    
+    //for each of the source strings, split it into an array on '##'
+    foreach ($sources as $row) {
+        $options = explode("##", $row);
+        echo "source " . $options[0] . "<br /> { <br />";
+        
+        echo "type = " . $type . "<br />";
+        
+        if ($options[1] != '') {
+            echo "sql_host = " . $options[1] . "<br />";
+        } else {
+            echo "<strong>you need sql_host!</strong><br />";
+        }
+        if ($options[2] != '') {
+            echo "sql_port = " . $options[2] . "<br />";
+        } else {
+            echo "<strong>you need sql_port!</strong><br />";
+        }
+        if ($options[3] != '') {
+            echo "sql_user = " . $options[3] . "<br />";
+        } else {
+            echo "<strong>you need sql_user!</strong><br />";
+        }
+        if ($options[4] != '') {
+            echo "sql_pass = " . $options[4] . "<br />";
+        }
+        if ($options[5] != '') {
+            echo "sql_db = " . $options[5] . "<br />";
+        } else {
+            echo "<strong>you need db name!</strong><br />";
+        }
+        if ($options[6] != '') {
+            echo "sql_sock = " . $options[6] . "<br />";
+        }
+        if ($options[7] != '') {
+            echo "mysql_connect_flags = " . $options[7] . "<br />";
+        }
+        if ($options[8] != '') {
+            echo "mysql_ssl_cert = " . $options[8] . "<br />";
+        }
+        if ($options[9] != '') {
+            echo "mysql_ssl_key = " . $options[9] . "<br />";
+        }
+        if ($options[10] != '') {
+            echo "mysql_ssl_ca = " . $options[10] . "<br />";
+        }
+        if ($options[12] != '') {
+            echo "sql_query = " . $options[12] . "<br />";
+        } else {
+            echo "<strong>you need the main query!</strong><br />";
+        }
+        if ($options[14] != '') {
+            echo "sql_query_range = " . $options[14] . "<br />";
+        }
+        if ($options[13] != '') {
+            echo "sql_joined_field = " . $options[13] . "<br />";
+        }
+        
+        if ($options[11] != '') {
+            //now, inside this loop, take the attributes string and split it by ','
+            $final_attributes = explode(",", $options[11]);
+            foreach ($final_attributes as $attr) {
+                echo $attr . "<br />";
+            }
+            //end if
+        }
+        //end config block
+        echo "} <br /><br />";
+        //end foreach
+    }
 }
 
-function print_searchd($searchd_string){
-
-$searchd_options = explode("##", $searchd_string);
-		echo "searchd<br /> { <br />";
-		if($searchd_options[0] != ''){
-			$final_listen = explode(",", $searchd_options[0]);
-			foreach($final_listen as $list)
-			{
-				echo "listen = " . $list . "<br />";
-			}
-		} 
-		else {
-			echo "<strong>you need to tell sphinx where and how to listen!</strong><br />";
-		}
-		if($searchd_options[1] != ''){
-			echo "log = " . $searchd_options[1] . "<br />";
-		} 
-		else {
-			echo "<strong>you need to tell sphinx where to put searchd log files!</strong><br />";
-		}
-		if($searchd_options[2] != ''){
-			echo "query_log = " . $searchd_options[2] . "<br />";
-		} 
-		else {
-			echo "<strong>you need to tell sphinx where and how to listen!</strong><br />";
-		}
-		if($searchd_options[3] != ''){
-			echo "pid_file = " . $searchd_options[3] . "<br />";
-		} 
-		else {
-			echo "<strong>you need to tell sphinx where to put the PID file!</strong><br />";
-		}
-		echo "}<br />";
+function print_searchd($searchd_string)
+{
+    
+    $searchd_options = explode("##", $searchd_string);
+    echo "searchd<br /> { <br />";
+    if ($searchd_options[0] != '') {
+        $final_listen = explode(",", $searchd_options[0]);
+        foreach ($final_listen as $list) {
+            echo "listen = " . $list . "<br />";
+        }
+    } else {
+        echo "<strong>you need to tell sphinx where and how to listen!</strong><br />";
+    }
+    if ($searchd_options[1] != '') {
+        echo "log = " . $searchd_options[1] . "<br />";
+    } else {
+        echo "<strong>you need to tell sphinx where to put searchd log files!</strong><br />";
+    }
+    if ($searchd_options[2] != '') {
+        echo "query_log = " . $searchd_options[2] . "<br />";
+    } else {
+        echo "<strong>you need to tell sphinx where and how to listen!</strong><br />";
+    }
+    if ($searchd_options[3] != '') {
+        echo "pid_file = " . $searchd_options[3] . "<br />";
+    } else {
+        echo "<strong>you need to tell sphinx where to put the PID file!</strong><br />";
+    }
+    echo "}<br />";
 }
 
-function print_searchd_form(){
-	//get searchd config options, send them to searchd.php
-	echo <<<HERE
+function print_searchd_form()
+{
+    //get searchd config options, send them to searchd.php
+    echo <<<HERE
 		<h3>Searchd Options</h3>
 		<form role='form' name='index' action='review.php' method='post'>
 			<div class='form-group'>
@@ -392,8 +396,9 @@ function print_searchd_form(){
 HERE;
 }
 
-function print_header(){
-echo <<<HERE
+function print_header()
+{
+    echo <<<HERE
 <!DOCTYPE html>
 <html lang='en'>
 <head>
@@ -424,6 +429,5 @@ echo <<<HERE
    </div>
  </div>
 HERE;
-
+    
 }
- 
