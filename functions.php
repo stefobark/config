@@ -1,3 +1,18 @@
+Skip to content
+ This repository
+Explore
+Gist
+Blog
+Help
+Steven Barker stefobark
+ 
+1  Unwatch 
+  Star 0
+ Fork 0stefobark/config
+ branch: master  config / functions.php
+Steven Barker stefobark just now Update and rename functions.php~ to functions.php
+1 contributor
+479 lines (439 sloc)  18.059 kb RawBlameHistory  
 <?php
 
 //this will take searchd form information and return a concatenation seperated by ## (which will later be exploded)
@@ -411,7 +426,12 @@ function print_header()
 <link href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet'>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
-
+<style>
+.navbar-default {
+    background-color: #FFF;
+    border-color: #E7E7E7;
+}
+</style>
 
 </head>
 
@@ -459,7 +479,12 @@ function print_home_header()
 <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
 
 </head>
-
+<style>
+.navbar-default {
+    background-color: #FFF;
+    border-color: #E7E7E7;
+}
+</style>
 <body>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation" style="height:75px">
    <div class="container">
