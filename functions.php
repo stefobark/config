@@ -229,22 +229,22 @@ function print_index($all_indexes)
         $an_index = explode("##", $index);
         
         if ($an_index[0] != '') {
-            echo "index " . $an_index[0] . "<br />{ <br />";
+            echo "index " . $an_index[0] . "\n<br />{ \n<br />";
         } else {
             echo "<strong>you need a source name!</strong><br />";
         }
         
         if ($an_index[1] != '') {
-            echo "source = " . $an_index[1] . "<br />";
+            echo "source = " . $an_index[1] . "\n<br />";
         } else {
-            echo "<strong>you need a source name!</strong><br />";
+            echo "<strong>you need a source name!</strong>\n<br />";
         }
         if ($an_index[2] != '') {
-            echo "path = " . $an_index[2] . "<br />}<br />";
+            echo "path = " . $an_index[2] . "\n<br />}\n<br />";
         } else {
-            echo "<strong>you need a data directory path!</strong><br />";
+            echo "<strong>you need a data directory path!</strong>\n<br />";
         }
-        echo "<br />";
+        echo "\n<br />";
     }
 }
 
@@ -256,70 +256,70 @@ function print_source($sources, $type)
     //for each of the source strings, split it into an array on '##'
     foreach ($sources as $row) {
         $options = explode("##", $row);
-        echo "source " . $options[0] . "<br /> { <br />";
+        echo "source " . $options[0] . "\n<br /> { \n<br />";
         
-        echo "type = " . $type . "<br />";
+        echo "type = " . $type . "\n<br />";
         
         if ($options[1] != '') {
-            echo "sql_host = " . $options[1] . "<br />";
+            echo "sql_host = " . $options[1] . "\n<br />";
         } else {
-            echo "<strong>you need sql_host!</strong><br />";
+            echo "<strong>you need sql_host!</strong>\n<br />";
         }
         if ($options[2] != '') {
-            echo "sql_port = " . $options[2] . "<br />";
+            echo "sql_port = " . $options[2] . "\n<br />";
         } else {
-            echo "<strong>you need sql_port!</strong><br />";
+            echo "<strong>you need sql_port!</strong>\n<br />";
         }
         if ($options[3] != '') {
-            echo "sql_user = " . $options[3] . "<br />";
+            echo "sql_user = " . $options[3] . "\n<br />";
         } else {
-            echo "<strong>you need sql_user!</strong><br />";
+            echo "<strong>you need sql_user!</strong>\n<br />";
         }
         if ($options[4] != '') {
-            echo "sql_pass = " . $options[4] . "<br />";
+            echo "sql_pass = " . $options[4] . "\n<br />";
         }
         if ($options[5] != '') {
-            echo "sql_db = " . $options[5] . "<br />";
+            echo "sql_db = " . $options[5] . "\n<br />";
         } else {
-            echo "<strong>you need db name!</strong><br />";
+            echo "<strong>you need db name!</strong>\n<br />";
         }
         if ($options[6] != '') {
-            echo "sql_sock = " . $options[6] . "<br />";
+            echo "sql_sock = " . $options[6] . "\n<br />";
         }
         if ($options[7] != '') {
-            echo "mysql_connect_flags = " . $options[7] . "<br />";
+            echo "mysql_connect_flags = " . $options[7] . "\n<br />";
         }
         if ($options[8] != '') {
-            echo "mysql_ssl_cert = " . $options[8] . "<br />";
+            echo "mysql_ssl_cert = " . $options[8] . "\n<br />";
         }
         if ($options[9] != '') {
-            echo "mysql_ssl_key = " . $options[9] . "<br />";
+            echo "mysql_ssl_key = " . $options[9] . "\n<br />";
         }
         if ($options[10] != '') {
-            echo "mysql_ssl_ca = " . $options[10] . "<br />";
+            echo "mysql_ssl_ca = " . $options[10] . "\n<br />";
         }
         if ($options[12] != '') {
-            echo "sql_query = " . $options[12] . "<br />";
+            echo "sql_query = " . $options[12] . "\n<br />";
         } else {
-            echo "<strong>you need the main query!</strong><br />";
+            echo "<strong>you need the main query!</strong>\n<br />";
         }
         if ($options[14] != '') {
-            echo "sql_query_range = " . $options[14] . "<br />";
+            echo "sql_query_range = " . $options[14] . "\n<br />";
         }
         if ($options[13] != '') {
-            echo "sql_joined_field = " . $options[13] . "<br />";
+            echo "sql_joined_field = " . $options[13] . "\n<br />";
         }
         
         if ($options[11] != '') {
             //now, inside this loop, take the attributes string and split it by ','
             $final_attributes = explode(",", $options[11]);
             foreach ($final_attributes as $attr) {
-                echo $attr . "<br />";
+                echo $attr . "\n<br />";
             }
             //end if
         }
         //end config block
-        echo "} <br /><br />";
+        echo "} \n<br />\n<br />";
         //end foreach
     }
 }
@@ -330,31 +330,31 @@ function print_searchd($searchd_string)
 {
     
     $searchd_options = explode("##", $searchd_string);
-    echo "searchd<br /> { <br />";
+    echo "searchd<br /> { \n<br />";
     if ($searchd_options[0] != '') {
         $final_listen = explode(",", $searchd_options[0]);
         foreach ($final_listen as $list) {
-            echo "listen = " . $list . "<br />";
+            echo "listen = " . $list . "\n<br />";
         }
     } else {
-        echo "<strong>you need to tell sphinx where and how to listen!</strong><br />";
+        echo "<strong>you need to tell sphinx where and how to listen!</strong>\n<br />";
     }
     if ($searchd_options[1] != '') {
-        echo "log = " . $searchd_options[1] . "<br />";
+        echo "log = " . $searchd_options[1] . "\n<br />";
     } else {
-        echo "<strong>you need to tell sphinx where to put searchd log files!</strong><br />";
+        echo "<strong>you need to tell sphinx where to put searchd log files!</strong>\n<br />";
     }
     if ($searchd_options[2] != '') {
-        echo "query_log = " . $searchd_options[2] . "<br />";
+        echo "query_log = " . $searchd_options[2] . "\n<br />";
     } else {
-        echo "<strong>you need to tell sphinx where and how to listen!</strong><br />";
+        echo "<strong>you need to tell sphinx where and how to listen!</strong>\n<br />";
     }
     if ($searchd_options[3] != '') {
-        echo "pid_file = " . $searchd_options[3] . "<br />";
+        echo "pid_file = " . $searchd_options[3] . "\n<br />";
     } else {
-        echo "<strong>you need to tell sphinx where to put the PID file!</strong><br />";
+        echo "<strong>you need to tell sphinx where to put the PID file!</strong>\n<br />";
     }
-    echo "}<br />";
+    echo "}\n<br />";
 }
 
 
