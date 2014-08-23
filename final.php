@@ -3,7 +3,6 @@ require_once('functions.php');
 session_start();
 print_final_header();
 
-
 echo "
 		<div class='container' style='margin-top:75px'>
 			<div class='row'>
