@@ -26,7 +26,19 @@ echo "
 <div class='container'>
 	<div class='row' style='margin-top:75px'>";
 
+//did they come here from the 'add mysql index' dropdown? if so, set the session variable 'type' to mysql
+if(isset($_GET["type"])){
+$_SESSION["type"] = $_GET["type"];
+}
+
+//have they alrady told us what type of index to build? if so, print the index options form
+if(isset($_SESSION["type"])){
 print_index_form($_SESSION["type"]);
+}
+else {
+echo "<p class='help-block' style='margin-top:75px'><strong>no form input for index type.. maybe the session died?</strong></p>
+		<p class='help-block'><a href='index.php'>go back</a></p>";
+}
 
 //close the row
 echo "</div>";
