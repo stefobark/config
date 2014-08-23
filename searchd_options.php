@@ -9,7 +9,9 @@ print_header();
 if(isset($_POST["index_name"])){
 $index_string =& index_to_string(); 
 }
-	
+
+$_SESSION['index'][] = $index_string;
+
 //haven't finished indexer options... cause none of them are mandatory.. we'll just go with defaults for now.
 echo <<<HERE
 <div class='container' style='margin-top:75px'>
