@@ -24,9 +24,9 @@ $_SESSION["type"] = $_POST["type"];
 //style what comes next
 echo <<<HERE
 <div class='container' style='margin-top:100px'>
-<div class='col-md-12 text-center'>
-	<h3 class="title">Source Options</h3>
-	<div class="row" style="margin-top:50px!important">
+	<div class='row'>
+		<div class='col-md-6' style="margin-top:50px!important">
+			<h3 class="title">Source Options</h3>
 HERE;
 
 //now check what type of source we're building
