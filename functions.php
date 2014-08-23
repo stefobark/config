@@ -155,15 +155,10 @@ function print_source_form()
 {
     echo <<<HERE
 <form role="form" name="host" action="index_options.php" method="post">
-		<div class="col-md-12 text-center">
 			<div class="form-group">
 				<label for="source_name"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-host">Source Name (mandatory)</a></label><br />
 				<input type="text" name="source_name" placeholder="src1"></textarea>
 			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 text-center">
 			<div class="form-group">
 				<label for="sql_host"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-host">Host (mandatory)</a></label><br />
 				<input type="text" name="sql_host" placeholder="localhost or 127.0.0.1">
@@ -185,8 +180,6 @@ function print_source_form()
 				<label for="sql_db"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-db">Database Name (mandatory)</a></label><br />
 				<input type="text" name="sql_db" placeholder="db_name">
 			</div>
-		</div>
-		<div class="col-md-6 text-center">
 			<div class="form-group">	
 				<label for="sql_sock"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-sock">UNIX Socket Name</a></label><br />
 				<input type="text" name="sql_sock" placeholder="/tmp/mysql.sock">
@@ -207,25 +200,21 @@ function print_source_form()
 				<label for="mysql_ssl_ca"><a href="http://sphinxsearch.com/docs/current.html#conf-mysql-ssl">CA Certificate</a></label><br />
 				<input type="text" name="mysql_ssl_ca" placeholder="/etc/ssl/client-cacert.pem">
 			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-12 text-center">
 			<div class="form-group">
 				<label for="sql_query"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-query">Main Query (mandatory)</a></label><br />
-				<textarea name="sql_query" placeholder="SELECT id, group_id, UNIX_TIMESTAMP(date_added) AS date_added, title, content FROM documents" style="width:800px!important"></textarea>
+				<textarea name="sql_query" placeholder="SELECT id, group_id, UNIX_TIMESTAMP(date_added) AS date_added, title, content FROM documents" style="width:400px!important"></textarea>
 			</div>
 			<div class="form-group">
 				<label for="attributes"><a href="http://sphinxsearch.com/docs/current.html#attributes">Attributes</a> <br /></label><br />
-				<textarea name="attributes" rows="4" placeholder="Comma separated! Like this: sql_attr_uint=something, sql_attr_json=something, etc..." style="width:800px!important"></textarea>
+				<textarea name="attributes" rows="4" placeholder="Comma separated! Like this: sql_attr_uint=something, sql_attr_json=something, etc..." style="width:400px!important"></textarea>
 			</div>
 			<div class="form-group">
 				<label for="sql_joined_field"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-joined-field">Joined Field(s)</a></label><br />
-				<textarea name="sql_joined_field" type="text" placeholder="tagstext from query; SELECT docid, CONCAT('tag',tagid) FROM tags ORDER BY docid ASC" style="width:800px!important"></textarea>
+				<textarea name="sql_joined_field" type="text" placeholder="tagstext from query; SELECT docid, CONCAT('tag',tagid) FROM tags ORDER BY docid ASC" style="width:400px!important"></textarea>
 			</div>
 			<div class="form-group">
 				<label for="sql_query_range"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-query-range">Ranged Query</a></label><br />
-				<textarea type="text" name="sql_query_range" placeholder="SELECT MIN(id),MAX(id) FROM documents" style="width:800px!important"></textarea>
+				<textarea type="text" name="sql_query_range" placeholder="SELECT MIN(id),MAX(id) FROM documents" style="width:400px!important"></textarea>
 			</div>
 			<div class="form-group">
 				<input type="submit" value="Submit">
@@ -439,7 +428,7 @@ function print_header()
 					  <li><a href="index_options.php?type=mysql">Add MySQL Index</a></li>
 					  <li><a href="plainconfig.php?type=mysql">Add MySQL Source</a></li>
 				 </ul>
-				<li><a href="searchd_options.php">Add MySQL Source</a></li>
+				<li><a href="searchd_options.php">(re)Set Searchd Options</a></li>
 				
 				
 				<li><a href="final.php">Config (what you have so far)</a></li>
