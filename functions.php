@@ -93,9 +93,6 @@ function &source_to_string()
     if (isset($_POST['sql_query_range'])) {
         $f_source_string .= $_POST['sql_query_range'];
     }
-    if (isset($f_source_string)) {
-        $f_source_string .= $_SESSION['type'];
-    }
     
     //if the session source is not set, say 'its and array'.
     if (!isset($_SESSION["source"])) {
@@ -245,7 +242,7 @@ function print_index($all_indexes)
         if ($an_index[2] != '') {
             echo "path = " . $an_index[2] . "<br />}<br />";
         } else {
-            echo "<strong>you need a data directory path!</strong><br /> }";
+            echo "<strong>you need a data directory path!</strong><br />";
         }
         echo "<br />";
     }
@@ -359,6 +356,7 @@ function print_searchd($searchd_string)
     }
     echo "}<br />";
 }
+
 
 //print the form for searchd options, which sends users to review.php
 function print_searchd_form()
