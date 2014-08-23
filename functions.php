@@ -434,12 +434,14 @@ function print_header()
 					  MySQL 
 					  <span class="caret"></span>
 				 </a>
+				 <!--if they click these links, it will send them to index or source and specify 'MySQL' type-->
 				 <ul class="dropdown-menu" role="menu">
-					  <li><a href="index_options.php">Add MySQL Index</a></li>
+					  <li><a href="index_options.php?type=mysql">Add MySQL Index</a></li>
+					  <li><a href="plainconfig.php?type=mysql">Add MySQL Source</a></li>
 				 </ul>
-			
-				<li><a href="plainconfig.php">Source Options</a></li>
-				<li><a href="searchd_options.php">Searchd Options</a></li>
+				<li><a href="searchd_options.php">Add MySQL Source</a></li>
+				
+				
 				<li><a href="final.php">Config (what you have so far)</a></li>
 				<li><a href="about.php">About</a></li>
 			 </ul>
