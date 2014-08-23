@@ -29,10 +29,8 @@ print_searchd($_SESSION['searchd']);
 echo "</div>";
 close_output();
 
-echo "
-			<img src='1guysphinx.png' id='copy-button' class='text-center'><br />
+echo "<img src='1guysphinx.png' id='copy-button' class='text-center'><br />
 			<button id='copy-button'>copy to clipboard</button><br />
-			<p class='help-block'>need to fix formatting!! preserve html formatting somehow<p>
 		</div>
 	</div>";
 
