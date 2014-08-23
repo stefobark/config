@@ -11,15 +11,15 @@ $_SESSION["source"] = array();
 }
 
 
-//if they just jumped here from the navbar link, they may have not set the type.. so, do that.
-if(!isset($_SESSION["type"])){
-$_SESSION["type"] = "mysql";
+//did they come here from the 'add mysql index' dropdown? if so, set the session variable 'type' to mysql
+if(isset($_GET["type"])){
+$_SESSION["type"] = $_GET["type"];
 }
 
 //if they did set the type, by clicking 'mysql', take that and stuff it into this session variable
 if(isset($_POST["type"])){
 $_SESSION["type"] = $_POST["type"];
-}
+} else { echo "<strong>no form input</strong>"; }
 
 //style what comes next
 echo <<<HERE
