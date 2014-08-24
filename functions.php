@@ -37,6 +37,46 @@ function &index_to_string()
         $f_index_string .= $_POST["index_path"] . "##";
     }
     
+    if (isset($_POST["docinfo"])) {
+        $f_index_string .= $_POST["docinfo"] . "##";
+    }
+    
+    if (isset($_POST["morphology"])) {
+        $f_index_string .= $_POST["morphology"] . "##";
+    }
+    
+    if (isset($_POST["index_sp"])) {
+        $f_index_string .= $_POST["index_sp"] . "##";
+    }
+    
+    if (isset($_POST["index_zones"])) {
+        $f_index_string .= $_POST["index_zones"] . "##";
+    }
+    
+    if (isset($_POST["html_strip"])) {
+        $f_index_string .= $_POST["html_strip"] . "##";
+    }
+    
+    if (isset($_POST["min_stemming_len"])) {
+        $f_index_string .= $_POST["min_stemming_len"] . "##";
+    }
+    
+    if (isset($_POST["stopwords"])) {
+        $f_index_string .= $_POST["stopwords"] . "##";
+    }
+    
+    if (isset($_POST["wordforms"])) {
+        $f_index_string .= $_POST["wordforms"] . "##";
+    }
+    
+    if (isset($_POST["embedded_limit"])) {
+        $f_index_string .= $_POST["embedded_limit"] . "##";
+    }
+    
+    if (isset($_POST["exceptions"])) {
+        $f_index_string .= $_POST["exceptions"] . "##";
+    }
+    
     if (!isset($_SESSION['index'])) {
         $_SESSION['index'] = array();
     }
@@ -126,6 +166,7 @@ function print_index_form($sesh_type)
     echo <<<HERE
 <div class="col-md-4">
 	<h3>make an index</h3>
+	<h4 style="margin-top:50px">Required options:</h4>
 	<form role='form' name='index' action='searchd_options.php' method='post'>
 		<div class='form-group'>
 				<label for='index_name'><a href='http://sphinxsearch.com/docs/current.html#confgroup-index'>Name this Index (mandatory)</a></label><br />
@@ -139,6 +180,51 @@ function print_index_form($sesh_type)
 				<label for='index_path'><a href='http://sphinxsearch.com/docs/current.html#conf-path'>Set index data directory (mandatory)</a></label><br />
 				<input type='text' name='index_path' placeholder='/var/data/test'>
 		</div>
+	<h4 style="margin-top:50px">All other options</h4>
+		<div class='form-group'>
+				<label for='docinfo'><a href='http://sphinxsearch.com/docs/current.html#conf-docinfo'>How to store Attributes</a></label><br />
+				<input type='text' name='docinfo' placeholder='none, extern, or inline'>
+		</div>
+		<div class='form-group'>
+				<label for='morphology'><a href='http://sphinxsearch.com/docs/current.html#conf-morphology'>Morphology Preprocessors</a></label><br />
+				<textarea type='text' name='morphology' placeholder='Comma separated list. Like this: stem_en, libstemmer_sv' style="width:400px!important"></textarea>
+		</div>
+		<div class='form-group'>
+				<label for='index_sp'><a href='http://sphinxsearch.com/docs/current.html#conf-index-sp'>Index Sentence and Paragraph Boundaries</a></label><br />
+				<input type='text' name='index_sp' placeholder='1 or 0. 0 is default.'>
+		</div>
+		<div class='form-group'>
+				<label for='html_strip'><a href='http://sphinxsearch.com/docs/current.html#conf-html-strip'>HTML Stripper (other options need this..)</a></label><br />
+				<input type='text' name='html_strip' placeholder='1 or 0. 0 is default.'>
+		</div>
+		<div class='form-group'>
+				<label for='index_zones'><a href='http://sphinxsearch.com/docs/current.html#conf-index-zones'>Index HTML/XML zones (tags)</a></label><br />
+				<textarea type='text' name='index_zones' placeholder='A comma separated list of in-field HTML/XML zones to index. Like this: h*, th, title. Requires html_strip = 1!' style="width:400px!important"></textarea>
+		</div>
+		<div class='form-group'>
+				<label for='min_stemming_len'><a href='http://sphinxsearch.com/docs/current.html#conf-min-stemming-len'>Minimum Stemming Length</a></label><br />
+				<input type='text' name='min_stemming_len' placeholder='4'">
+		</div>
+		<div class='form-group'>
+				<label for='stopwords'><a href='http://sphinxsearch.com/docs/current.html#conf-stopwords'>Stopwords Files</a></label><br />
+				<textarea type='text' name='stopwords' placeholder='"/usr/local/sphinx/data/stopwords.txt" or "stopwords-ru.txt stopwords-en.txt"' style="width:400px!important"></textarea>
+		</div>
+		<div class='form-group'>
+				<label for='wordforms'><a href='http://sphinxsearch.com/docs/current.html#conf-wordforms'>Wordforms Dictionary</a></label><br />
+				<input type='text' name='wordforms' placeholder='/usr/local/sphinx/data/wordforms.txt' style='width:400px!important'">
+		</div>
+		<div class='form-group'>
+				<label for='embedded_limit'><a href='http://sphinxsearch.com/docs/current.html#conf-embedded-limit'>Embedded File Size Limit</a></label><br />
+				<input type='text' name='embedded_limit' placeholder='32K'">
+		</div>
+		<div class='form-group'>
+				<label for='exceptions'><a href='http://sphinxsearch.com/docs/current.html#conf-exceptions'>Exceptions File Path</a></label><br />
+				<input type='text' name='exceptions' placeholder='/usr/local/sphinx/data/exceptions.txt' style='width:400px!important'">
+		</div>
+		
+		
+		
+		
 		<div class='form-group'>
 			<input type='submit' value='Submit'>
 		</div>
@@ -152,6 +238,7 @@ function print_source_form()
 {
     echo <<<HERE
 <form role="form" name="host" action="index_options.php" method="post">
+			<h4>Common/Mandatory Options</h4>
 			<div class="form-group">
 				<label for="source_name"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-host">Source Name (mandatory)</a></label><br />
 				<input type="text" name="source_name" placeholder="src1"></textarea>
@@ -172,30 +259,9 @@ function print_source_form()
 				<label for="sql_pass"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-pass">Password</a></label><br />
 				<input type="text" name="sql_pass" placeholder="password">
 			</div>
-		
 			<div class="form-group">	
 				<label for="sql_db"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-db">Database Name (mandatory)</a></label><br />
 				<input type="text" name="sql_db" placeholder="db_name">
-			</div>
-			<div class="form-group">	
-				<label for="sql_sock"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-sock">UNIX Socket Name</a></label><br />
-				<input type="text" name="sql_sock" placeholder="/tmp/mysql.sock">
-			</div>
-			<div class="form-group">	
-				<label for="mysql_connect_flags"><a href="http://sphinxsearch.com/docs/current.html#conf-mysql-connect-flags">MySQL Connect Flags</a></label><br />
-				<input type="text" name="mysql_connect_flags" placeholder="32 # enables compression"> 
-			</div>
-			<div class="form-group">	
-				<label for="mysql_ssl_cert"><a href="http://sphinxsearch.com/docs/current.html#conf-mysql-ssl">MySQL Client Certificate</a></label><br />
-				<input type="text" name="mysql_ssl_cert" placeholder="/etc/ssl/client-cert.pem">
-			</div>
-			<div class="form-group">	
-				<label for="mysql_ssl_key"><a href="http://sphinxsearch.com/docs/current.html#conf-mysql-ssl">MySQL Client Key</a></label><br />
-				<input type="text" name="mysql_ssl_key" placeholder="/etc/ssl/client-key.pem"> 
-			</div>
-			<div class="form-group">
-				<label for="mysql_ssl_ca"><a href="http://sphinxsearch.com/docs/current.html#conf-mysql-ssl">CA Certificate</a></label><br />
-				<input type="text" name="mysql_ssl_ca" placeholder="/etc/ssl/client-cacert.pem">
 			</div>
 			<div class="form-group">
 				<label for="sql_query"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-query">Main Query (mandatory)</a></label><br />
@@ -205,6 +271,39 @@ function print_source_form()
 				<label for="attributes"><a href="http://sphinxsearch.com/docs/current.html#attributes">Attributes</a> <br /></label><br />
 				<textarea name="attributes" rows="4" placeholder="Comma separated! Like this: sql_attr_uint=something, sql_attr_json=something, etc..." style="width:400px!important"></textarea>
 			</div>
+		</div>
+	</div>
+	<div class='row'>
+		<div class='col-md-4' style='margin-top:75px'>
+			<h4>All other Options</h4>
+			<div class="form-group">	
+				<label for="sql_sock"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-sock">UNIX Socket Name</a></label><br />
+				<input type="text" name="sql_sock" placeholder="/tmp/mysql.sock">
+			</div>
+HERE;
+
+//if it's a mysql source, print these:
+if($_SESSION['type'] == 'mysql'){
+echo <<<HERE
+				<div class="form-group">	
+					<label for="mysql_connect_flags"><a href="http://sphinxsearch.com/docs/current.html#conf-mysql-connect-flags">MySQL Connect Flags</a></label><br />
+					<input type="text" name="mysql_connect_flags" placeholder="32 # enables compression"> 
+				</div>
+				<div class="form-group">	
+					<label for="mysql_ssl_cert"><a href="http://sphinxsearch.com/docs/current.html#conf-mysql-ssl">MySQL Client Certificate</a></label><br />
+					<input type="text" name="mysql_ssl_cert" placeholder="/etc/ssl/client-cert.pem">
+				</div>
+				<div class="form-group">	
+					<label for="mysql_ssl_key"><a href="http://sphinxsearch.com/docs/current.html#conf-mysql-ssl">MySQL Client Key</a></label><br />
+					<input type="text" name="mysql_ssl_key" placeholder="/etc/ssl/client-key.pem"> 
+				</div>
+				<div class="form-group">
+					<label for="mysql_ssl_ca"><a href="http://sphinxsearch.com/docs/current.html#conf-mysql-ssl">CA Certificate</a></label><br />
+					<input type="text" name="mysql_ssl_ca" placeholder="/etc/ssl/client-cacert.pem">
+				</div>
+HERE;
+}
+echo <<<HERE
 			<div class="form-group">
 				<label for="sql_joined_field"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-joined-field">Joined Field(s)</a></label><br />
 				<textarea name="sql_joined_field" type="text" placeholder="tagstext from query; SELECT docid, CONCAT('tag',tagid) FROM tags ORDER BY docid ASC" style="width:400px!important"></textarea>
@@ -240,11 +339,52 @@ function print_index($all_indexes)
             echo "<strong>you need a source name!</strong>\n<br />";
         }
         if ($an_index[2] != '') {
-            echo "path = " . $an_index[2] . "\n<br />}\n<br />";
+            echo "path = " . $an_index[2] . "\n<br />";
         } else {
             echo "<strong>you need a data directory path!</strong>\n<br />";
         }
-        echo "\n<br />";
+        
+        if ($an_index[3] != '') {
+            echo "docinfo = " . $an_index[3] . "\n<br />";
+        }
+        
+        if ($an_index[4] != '') {
+            echo "morphology = " . $an_index[4] . "\n<br />";
+        }
+        
+        if ($an_index[5] != '') {
+            echo "index_sp = " . $an_index[5] . "\n<br />";
+        }
+        
+         if ($an_index[7] != '') {
+            echo "html_strip = " . $an_index[7] . "\n<br />";
+        }
+        
+        if ($an_index[6] != '') {
+            echo "index_zones = " . $an_index[6] . "\n<br />";
+        }
+        
+        if ($an_index[8] != '') {
+            echo "min_stemming_len = " . $an_index[8] . "\n<br />";
+        }
+        
+        if ($an_index[9] != '') {
+            echo "stopwords = " . $an_index[9] . "\n<br />";
+        }
+        
+        if ($an_index[10] != '') {
+            echo "wordforms = " . $an_index[10] . "\n<br />";
+        }
+        
+        if ($an_index[11] != '') {
+            echo "embedded_limit = " . $an_index[11] . "\n<br />";
+        }
+        
+        if ($an_index[12] != '') {
+            echo "exceptions = " . $an_index[12] . "\n<br />";
+        }
+        
+        echo "}\n<br />\n<br />";
     }
 }
 
@@ -411,7 +551,7 @@ function print_header()
 <div class="navbar navbar-default navbar-fixed-top" role="navigation" style="height:75px">
    <div class="container">
      <div class="navbar-header">
-       <a class="navbar-brand" href="#"><img src='http://stevenjbarker.comoj.com/1guysphinx.png'>&nbsp;&nbsp;sphinx.conf.maker</a>
+       <a class="navbar-brand" href="#"><img src='http://stevenjbarker.comoj.com/1guysphinx.png'>&nbsp;&nbsp;sphinx.conf maker</a>
      </div>
      <div class="navbar-collapse">
        <ul class="nav navbar-nav navbar-right" style="margin-top:15px;">
@@ -465,7 +605,7 @@ function print_final_header()
 <div class="navbar navbar-default navbar-fixed-top" role="navigation" style="height:75px">
    <div class="container">
      <div class="navbar-header">
-       <a class="navbar-brand" href="#"><img src='http://stevenjbarker.comoj.com/1guysphinx.png'>&nbsp;&nbsp;sphinx.conf.maker</a>
+       <a class="navbar-brand" href="#"><img src='http://stevenjbarker.comoj.com/1guysphinx.png'>&nbsp;&nbsp;sphinx.conf maker</a>
      </div>
      <div class="navbar-collapse">
        <ul class="nav navbar-nav navbar-right" style="margin-top:15px;">
@@ -517,7 +657,7 @@ function print_home_header()
 <div class="navbar navbar-default navbar-fixed-top" role="navigation" style="height:75px">
    <div class="container">
      <div class="navbar-header">
-       <a class="navbar-brand" href="#"><img src='http://stevenjbarker.comoj.com/1guysphinx.png'>&nbsp;&nbsp;sphinx.conf.maker</a>
+       <a class="navbar-brand" href="#"><img src='http://stevenjbarker.comoj.com/1guysphinx.png'>&nbsp;&nbsp;sphinx.conf maker</a>
      </div>
      <div class="navbar-collapse collapse">
        <ul class="nav navbar-nav navbar-right" style="margin-top:15px;">
