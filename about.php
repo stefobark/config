@@ -26,18 +26,17 @@ echo <<<HERE
 		
 			<p class="help-block" style="text-indent:15px">
 				It's not real pretty, but I'm writing this to tie together the basic 
-				flow. There are very many configuration options, so I'm starting with the mandatory ones.
+				flow. There are many configuration options, so I'm starting with the mandatory ones.
 				Right now, the user can go through and add <em>multiple sources, multiple indexes, and define searchd 
 				settings</em>. Then, they'll have some formatted text to
 				copy and paste into some .conf file.
 			</p>
 		
 			<p class="help-block" style="text-indent:15px">
-				At this point (right now, it's some mid-August day in 2014), I've only finished 
+				At this point (right now, it's some mid-August day in 2014), I've only finished mandatory options for
 				plain ol' MySQL datasources. So, you can define an index with a MySQL datasource and then setup searchd.
 				I haven't finished <em>indexer options</em>, so you'll get default settings if you use what this little 
-				configuration file maker produces. In the future, I'll set up
-				easy copying for easy pasting and/or the ability to download a file. For now, hopefully this makes 
+				configuration file maker produces (and don't add to indexer settings later). Hopefully this makes 
 				getting started with Sphinx a tad bit easier.
 			</p>
 		</div>
@@ -48,8 +47,9 @@ echo <<<HERE
 		
 			<h4 class="text-center">No Way!</h4>
 			
-			<p class="help-block" style="text-indent:15px">You don't want to enter all of your sensitive connection info? That's fine. Just put in some placeholder.. Or, don't put anything into the field, just add it later.
-			Or! Go grab the files and run it on your own machine!</p>
+			<p class="help-block" style="text-indent:15px">You don't want to enter all of your sensitive connection info? That's fine. Just put in 
+			some placeholder.. Or, don't put anything into the field, just add it later.
+			Or! Go grab <a href='https://github.com/stefobark/config'>these files</a> and run it on your own machine!</p>
 		</div>
 	</div>
 	<div class="row">
@@ -59,7 +59,7 @@ echo <<<HERE
 			<h4 class="text-center">Can I help?</h4>
 		
 			<p class="help-block" style="text-indent:15px">
-				Good question! You can indeed help me build this. Go check out the git repo. 
+				Good question! You can indeed help me build this. Go check out the <a href='https://github.com/stefobark/config'>github repo</a>. 
 				Tell me what I'm doing wrong and tell me what I be could doing better. I will appreciate it.
 			</p>
 		</div>
