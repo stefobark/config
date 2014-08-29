@@ -2,72 +2,83 @@
 ini_set('display_startup_errors', 1);
 ini_set('display_errors', 1);
 error_reporting(-1);
-session_start();
 require_once('functions.php');
+session_start();
 print_header();
 
-//if we have 'source' form info concatenate and insert into a session variable
-if(isset($_POST['source_name'])){
-$source_string =& source_to_string();
-}
 
 //if we haven't already declared this to be an array, do it.
 if (!isset($_SESSION["index"])) {
     $_SESSION["index"] = array();
 }
 
-//if post stuff was sent, and concatenated onto this string, turn that source string into an element of a session array
-if (isset($_POST["source_name"])) {
-    $_SESSION["source"][] = $source_string;
+//if we have 'source' form info concatenate, insert into a session variable 
+if(isset($_POST['source_name'])){
+	$source_string =& source_to_string();
+   $_SESSION["source"][] = $source_string;
 }
 
 //print_index_form does some formatting, so open a container and a row and drop it down 75px)
 echo "
-<div class='container'>
-	<div class='row' style='margin-top:75px'>";
+<div class='container' style='margin-top:75px'>
+<div class='row'>";
 
-//did they come here from the 'add mysql index' dropdown? if so, set the session variable 'type' to mysql
-if(isset($_GET["type"])){
-$_SESSION["type"] = $_GET["type"];
+//did they come here from the 'add ... index' dropdown? if so, set the session variable 'type'
+if(isset($_GET["index_type"])){
+$_SESSION["index_type"] = $_GET["index_type"];
 }
 
 //have they alrady told us what type of index to build? if so, print the index options form
-if(isset($_SESSION["type"])){
-print_index_form($_SESSION["type"]);
+if(isset($_SESSION["index_type"])){
+
+print_index_form($_SESSION["index_type"]);
 }
 else {
 echo "<p class='help-block' style='margin-top:75px'><strong>no form input for index type.. maybe the session died?</strong></p>
 		<p class='help-block'><a href='index.php'>go back</a></p>";
 }
 
-//close the row
-echo "</div>";
+echo "<div class='col-md-4' style='background-color:#EFF8FB'>";
 
-//if there are indexes, echo them.
-if (isset($_SESSION["index"][0])) {
-    echo "<h3>indexes</h3>";
-    open_output();
-    print_index($_SESSION["index"]);
-    close_output();
-}
+if(!empty($_SESSION['index'])){
 
-//if there are sources, echo them.
-if (isset($_SESSION["source"][0])) {
-	echo "<h3>sources:</h3>";
+echo "<h3>Index(es):</h3>";
 
-	if (isset($_SESSION["index"])) {
-		 open_output();
-		 print_source($_SESSION['source'], $_SESSION['type']);
-		 close_output();
-	}
+	print_index($_SESSION['index']);
 
 
-
-	//close the row div and make a link to add another source
 	echo "
-		<h5>
-			<a href='plainconfig.php'><span class='glyphicon glyphicon-plus-sign'></span>&nbsp;add another source&nbsp;<span class='glyphicon glyphicon-plus-sign'></span></a>
-		</h5>
-	</div>";
+			<h5>
+				<a href='index_options.php'>
+					<span class='glyphicon glyphicon-plus-sign'></span>
+					&nbsp;add another index&nbsp;
+					<span class='glyphicon glyphicon-plus-sign'></span>
+				</a>
+			</h5>";
 }
+
+echo "</div>
+		<div class='col-md-4' style='background-color:#FBFBEF'>";
+
+if(isset($_SESSION['source'])){
+echo "
+			<h3>Source(s):</h3>
+			";
+
+print_source($_SESSION['source']);
+
+echo <<<HERE
+		<h5>
+			<a href='source.php'>
+				<span class='glyphicon glyphicon-plus-sign'></span>
+				&nbsp;add another source&nbsp;
+				<span class='glyphicon glyphicon-plus-sign'></span>
+			</a>
+		</h5>
+HERE;
+}
+
+echo "</div>
+		</div>";
+	
 ?>
