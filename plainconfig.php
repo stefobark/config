@@ -11,54 +11,94 @@ $_SESSION["source"] = array();
 }
 
 
-//did they come here from the 'add mysql index' dropdown? if so, set the session variable 'type' to mysql
-if(isset($_GET["type"])){
-$_SESSION["type"] = $_GET["type"];
+//did they come here from the dropdown? if so, set the session variable 'type' to mysql
+if(isset($_GET["source_type"])){
+$_SESSION["source_type"] = $_GET["source_type"];
+} else {
+$_SESSION["source_type"] = $_POST["source_type"];
 }
 
-//if they did set the type, by clicking 'mysql', take that and stuff it into this session variable
-if(isset($_POST["type"])){
-$_SESSION["type"] = $_POST["type"];
-} else { echo "<strong>no form input</strong>"; }
 
 //style what comes next
 echo <<<HERE
-<div class='container' style='margin-top:100px'>
-	<div class='row'>
-		<div class='col-md-12'>
-		<h3 class="title">Source Options</h3>
-	</div>
-	<div class='row'>
-		<div class='col-md-6' style="margin-top:50px!important">
-			
+<div class='container'>
+	<div class='row' style="margin-top:75px!important">
+		<div class='col-md-4' style="background-color:#FAFAFA!important">
+			<h3 class="title">Source Options</h3>
+			<p class='help-block'>If you chose to make a scripted configuration, go ahead and do your
+			magic in these fields below. Use environment variables, do things with PHP, etc..</p>
+
 HERE;
 
 //now check what type of source we're building
-switch ($_SESSION["type"]) 
+switch ($_SESSION["source_type"]) 
 {
 	case "mysql":
 		
-print_source_form();
+		print_source_form($_SESSION["source_type"]);
 
 		break;
-	case "pssql":
-		echo "Tell Sphinx how to connect to PostgreSQL";
+		
+	case "pgsql":
+	
+		print_source_form($_SESSION["source_type"]);
+		
 		break;
 	case "mssql":
-		echo "Tell Sphinx how to connect to Evil Microsoft";
+		
+		print_source_form($_SESSION["source_type"]);
+		
 		break;
 	case "xmlpipe2":
-		echo "Tell Sphinx how to get your XML data";
+	
+		print_source_form($_SESSION["source_type"]);
+		
 		break;
 	case "tsvpipe":
-		echo "Tell Sphinx how to get your TSV data";
+	
+		print_source_form($_SESSION["source_type"]);
+		
 		break;
 	case "odbc":
-		echo "Tell Sphinx how to set up this ODBC connection";
+	
+		print_source_form($_SESSION["source_type"]);
+		
 		break;
 }
+
+echo "</div>
+		<div class='col-md-4' style='background-color:#EFF8FB'>";
+
+if(!empty($_SESSION['index'])){
+
+echo "<h3>Index(es):</h3>";
+
+	print_index($_SESSION['index']);
+
+
+	echo "
+			<h5>
+				<a href='index_options.php'>
+					<span class='glyphicon glyphicon-plus-sign'></span>
+					&nbsp;add another index&nbsp;
+					<span class='glyphicon glyphicon-plus-sign'></span>
+				</a>
+			</h5>";
+}
+
+echo "</div>
+		<div class='col-md-4' style='background-color:#FBFBEF'>";
+
+if(isset($_SESSION['source'])){
+echo "
+			<h3>Source(s):</h3>
+			";
+
+print_source($_SESSION['source']);
+}
+
 echo <<<HERE
-		</div>
+		
 	</div>
 </div>
 </div>
