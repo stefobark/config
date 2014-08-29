@@ -7,7 +7,7 @@ require_once('functions.php');
 print_header();
 
 if(isset($_POST["index_name"])){
-$index_string =& index_to_string(); 
+$index_string =& index_to_string($_SESSION['index_type']); 
 }
 
 $_SESSION['index'][] = $index_string;
@@ -16,16 +16,21 @@ $_SESSION['index'][] = $index_string;
 echo <<<HERE
 <div class='container' style='margin-top:75px'>
 <div class='row'>
+<div class='col-md-4' style="background-color:#FAFAFA">
+
 HERE;
+
 
 print_searchd_form();
 
 
-echo "</div><h3>Your Indexes</h3>";
+echo "</div>
+		<div class='col-md-4'>
+		<h3>Your Indexes</h3>";
 
-open_output();
+
 print_index($_SESSION['index']);
-close_output();
+
 
 echo "
 		<h5>
@@ -36,13 +41,12 @@ echo "
 			</a>
 		</h5>";
 			
-echo "
-			<h3>Your Sources:</h3>
+echo "</div>
+		<div class='col-md-4'>
+		<h3>Your Sources:</h3>
 			";
-			
-open_output();
-print_source($_SESSION['source'], $_SESSION['type']);
-close_output();
+
+print_source($_SESSION['source']);
 
 echo <<<HERE
 		<h5>
