@@ -21,7 +21,7 @@ echo "<div class='container' style='margin-top:100px!important'>";
 					<div class='col-md-5'></div>
 					<div class='col-md-1'>
 						<a href='final.php'>
-							<img src='1guysphinx.png' style='margin-top:20px'>
+							<img src='bluesphinx.png' style='margin-top:20px'>
 					</div>
 				</div>
 				<div class='row'>
@@ -33,20 +33,21 @@ echo "<div class='container' style='margin-top:100px!important'>";
 						</a>
 					</div>
 				</div>
-			</div>";	
+			</div>
+			<div class='col-md-2'></div>
+			<div class='col-md-3'>";	
 
 echo "
 			<h3>searchd:</h3>";
-open_output();
+
 print_searchd($searchd_string);
-close_output();
-	//end row, start row, print header
-	echo "
+
+	echo "</div>
+			<div class='col-md-3'>
 			<h3>indexes</h3>";
 			
-open_output();
 print_index($_SESSION['index']);
-close_output();
+
 
 //add link back to build another index, start row, add header
 echo "
@@ -55,12 +56,12 @@ echo "
 				&nbsp;add another index&nbsp;
 				<span class='glyphicon glyphicon-plus-sign'></span>
 			</a>
+		</div>
+		<div class='col-md-3'>
 		<h3>sources:</h3>
 			";
-			
-open_output();
-print_source($_SESSION['source'], $_SESSION['type']);
-close_output();
+
+print_source($_SESSION['source'], $_SESSION['source_type']);
 
 //make a link to add another source
 echo "
