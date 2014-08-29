@@ -28,16 +28,8 @@ echo <<<HERE
 				It's not real pretty, but I'm writing this to tie together the basic 
 				flow. There are many configuration options, so I'm starting with the mandatory ones.
 				Right now, the user can go through and add <em>multiple sources, multiple indexes, and define searchd 
-				settings</em>. Then, they'll have some formatted text to
+				settings</em> for 'plain' indexes. Then, they'll have some formatted text to
 				copy and paste into some .conf file.
-			</p>
-		
-			<p class="help-block" style="text-indent:15px">
-				At this point (right now, it's some mid-August day in 2014), I've only finished mandatory options for
-				plain ol' MySQL datasources. So, you can define an index with a MySQL datasource and then setup searchd.
-				I haven't finished <em>indexer options</em>, so you'll get default settings if you use what this little 
-				configuration file maker produces (and don't add to indexer settings later). Hopefully this makes 
-				getting started with Sphinx a tad bit easier.
 			</p>
 		</div>
 	</div>
