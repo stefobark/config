@@ -14,7 +14,7 @@ if (!isset($_SESSION["index"])) {
 
 //if we have 'source' form info concatenate, insert into a session variable 
 if(isset($_POST['source_name'])){
-	$source_string =& source_to_string();
+	$source_string = source_to_string();
    $_SESSION["source"][] = $source_string;
 }
 
@@ -64,6 +64,10 @@ if(isset($_SESSION['source'])){
 echo "
 			<h3>Source(s):</h3>
 			";
+
+//foreach($_SESSION['source'] as $echoo){
+//echo $echoo;
+//}
 
 print_source($_SESSION['source']);
 
