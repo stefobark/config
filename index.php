@@ -54,7 +54,7 @@ HERE;
 					<h2>Scripted Config?</h2>
 					<div class='btn-group btn-group-justified'>
 							<a href='index.php?scripted=/usr/bin/php'><button type='button' class='btn btn-info'>PHP</button></a>
-							<a href='index.php?scripted=/bin/bash'><button type='button' class='btn btn-info'>BASH</button></a><br />
+							<a href='index.php?scripted=/bin/bash'><button type='button' class='btn btn-info'>BASH</button></a><br /><br />
 							<a href='source.php'><button type='button' class='btn btn-warning'>Or, not. Just build it.</button></a>
 						</p>
 					</div>
