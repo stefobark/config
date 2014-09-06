@@ -12,9 +12,9 @@ $_SESSION["source"] = array();
 
 
 //did they come here from the dropdown? if so, set the session variable 'type' to mysql
-if(isset($_GET["source_type"])){
+if(!empty($_GET["source_type"])){
 $_SESSION["source_type"] = $_GET["source_type"];
-} else {
+} else if(isset($_POST["source_type"])){
 $_SESSION["source_type"] = $_POST["source_type"];
 }
 
@@ -30,41 +30,8 @@ echo <<<HERE
 
 HERE;
 
-//now check what type of source we're building
-switch ($_SESSION["source_type"]) 
-{
-	case "mysql":
-		
-		print_source_form($_SESSION["source_type"]);
+print_source_form($_SESSION["source_type"]);
 
-		break;
-		
-	case "pgsql":
-	
-		print_source_form($_SESSION["source_type"]);
-		
-		break;
-	case "mssql":
-		
-		print_source_form($_SESSION["source_type"]);
-		
-		break;
-	case "xmlpipe2":
-	
-		print_source_form($_SESSION["source_type"]);
-		
-		break;
-	case "tsvpipe":
-	
-		print_source_form($_SESSION["source_type"]);
-		
-		break;
-	case "odbc":
-	
-		print_source_form($_SESSION["source_type"]);
-		
-		break;
-}
 
 echo "</div>
 		<div class='col-md-4' style='background-color:#EFF8FB'>";
@@ -89,7 +56,7 @@ echo "<h3>Index(es):</h3>";
 echo "</div>
 		<div class='col-md-4' style='background-color:#FBFBEF'>";
 
-if(isset($_SESSION['source'])){
+if(!empty($_SESSION['source'])){
 echo "
 			<h3>Source(s):</h3>
 			";
