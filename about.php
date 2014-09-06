@@ -28,9 +28,16 @@ echo <<<HERE
 				It's not real pretty, but I'm writing this to tie together the basic 
 				flow. There are many configuration options, so I'm starting with the mandatory ones.
 				Right now, the user can go through and add <em>multiple sources, multiple indexes, and define searchd 
-				settings</em> for 'plain' indexes. Then, they'll have some formatted text to
+				settings</em> for various kinds of 'plain' indexes. Then, they'll have some formatted text to
 				copy and paste into some .conf file.
 			</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-6">
+		<h4 class="text-center">What I've been up to recently...</h4>
+			<p class='help-block' style="text-indent:15px">I'm adding more descriptions to the options (from documentation). Also, started adding xmlpipe2 stuff. And, letting people know they can make scripted configs.</p>
 		</div>
 	</div>
 	<div class="row">
