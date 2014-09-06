@@ -77,9 +77,17 @@ function index_to_string($index_type)
         $f_index_string .= $_POST["exceptions"] . "##";
     }
     
+    if (isset($_POST[" html_index_attrs"])) {
+        $f_index_string .= $_POST[" html_index_attrs"] . "##";
+    }
+    
+    
     if (!isset($_SESSION['index'])) {
         $_SESSION['index'] = array();
     }
+    
+    
+   
     
     $f_index_string .= $index_type . "##";
     
@@ -273,26 +281,35 @@ function print_index_form($index_type)
 					<label for='index_path'><a href='http://sphinxsearch.com/docs/current.html#conf-path'>Set index data directory (mandatory)</a></label><br />
 					<input type='text' name='index_path' placeholder='/var/data/test'>
 			</div>
-		<h4 style="margin-top:50px">All other options</h4>
 			<div class='form-group'>
 					<label for='docinfo'><a href='http://sphinxsearch.com/docs/current.html#conf-docinfo'>How to store Attributes</a></label><br />
+					<p class='help-block'>This defines how attributes will be stored on disk and RAM. "none" means that there will be no attributes. Sphinx will use 'none' if you don't set any attributes. "inline" means that attributes will be stored in the .spd file, along with the document ID lists. "extern" means that the docinfo (attributes) will be stored separately (externally) from document ID lists, in a special .spa file. </p>
 					<input type='text' name='docinfo' placeholder='none, extern, or inline'>
 			</div>
 			<div class='form-group'>
 					<label for='morphology'><a href='http://sphinxsearch.com/docs/current.html#conf-morphology'>Morphology Preprocessors</a></label><br />
+					<p class='help-block'> These can used, while indexing, to replace different forms of the same word with their normalized form. For instance, The English stemmer will normalize both "dogs" and "dog" to "dog", making search results for both searches the same. Sphinx supports lemmatizers, stemmers, and phonetic algorithms. </p>
 					<textarea type='text' name='morphology' placeholder='Comma separated list. Like this: stem_en, libstemmer_sv' style="width:300px!important"></textarea>
 			</div>
 			<div class='form-group'>
 					<label for='index_sp'><a href='http://sphinxsearch.com/docs/current.html#conf-index-sp'>Index Sentence and Paragraph Boundaries</a></label><br />
+					<p class='help-block'>This directive enables sentence and paragraph boundary indexing. It's required for the SENTENCE and PARAGRAPH operators to work. Sentence boundary detection is based on plain text analysis, so you only need to set index_sp = 1 to enable it. Paragraph detection is however based on HTML markup, and happens in the HTML stripper. So to index paragraph locations you also need to enable the stripper by specifying html_strip = 1. Both types of boundaries are detected based on a few built-in rules which you can learn more about by following the link on this section's title. </p>
 					<input type='text' name='index_sp' placeholder='1 or 0. 0 is default.'>
 			</div>
 			<div class='form-group'>
 					<label for='html_strip'><a href='http://sphinxsearch.com/docs/current.html#conf-html-strip'>HTML Stripper (other options need this..)</a></label><br />
+					<p class='help-block'>Whether to strip HTML markup from incoming full-text data. HTML tags are removed, their contents are left intact by default. You can choose to keep and index attributes of the tags (e.g., HREF attribute in an A tag, or ALT in an IMG one) with the next option ('html_index_attrs').</p> 
 					<input type='text' name='html_strip' placeholder='1 or 0. 0 is default.'>
 			</div>
 			<div class='form-group'>
+					<label for='html_index_attrs'><a href='http://sphinxsearch.com/docs/current.html#conf-html-index-attrs'>HTML/XML tags to index</a></label><br />
+					<p class='help-block'>Specifies HTML markup attributes whose contents should be retained and indexed even though other HTML markup is stripped. The format is per-tag enumeration of indexable attributes, as shown in the example below. </p>
+					<textarea type='text' name='html_index_attrs' placeholder='A comma separated list of in-field HTML/XML tags to index. Like this: h*, th, title. Requires html_strip = 1!' style="width:300px!important"></textarea>
+			</div>
+			<div class='form-group'>
 					<label for='index_zones'><a href='http://sphinxsearch.com/docs/current.html#conf-index-zones'>Index HTML/XML zones (tags)</a></label><br />
-					<textarea type='text' name='index_zones' placeholder='A comma separated list of in-field HTML/XML zones to index. Like this: h*, th, title. Requires html_strip = 1!' style="width:300px!important"></textarea>
+					<p class='help-block'>Zones can be formally defined as follows. Everything between an opening and a matching closing tag is called a span, and the aggregate of all spans sharing the same tag name is a zone. For instance, everything between the occurrences of H1 and /H1 in the document field belongs to the H1 zone. In short, use this to enable the ZONE search operator!</p>
+					<textarea type='text' name='index_zones' placeholder='A comma separated list of in-field HTML/XML tags to index. Like this: h*, th, title. Requires html_strip = 1!' style="width:300px!important"></textarea>
 			</div>
 			<div class='form-group'>
 					<label for='min_stemming_len'><a href='http://sphinxsearch.com/docs/current.html#conf-min-stemming-len'>Minimum Stemming Length</a></label><br />
@@ -438,6 +455,10 @@ HERE;
 				<textarea type="text" name="sql_query_range" placeholder="SELECT MIN(id),MAX(id) FROM documents" style="width:300px!important"></textarea>
 			</div>
 
+			
+HERE;
+    }
+echo <<<HERE
 			<div class="form-group">
 				<label for="attributes"><a href="http://sphinxsearch.com/docs/current.html#attributes">Attributes</a> <br /></label><br />
 				<p class='help-block'>**Note that for xml and tsv source types, you'll have to explicitly declare the full text field (with: "xmlpipe_attr_field" or "tsvpipe_attr_field") in addition to its attributes.</p>
@@ -447,7 +468,7 @@ HERE;
 				<textarea name="attributes" rows="4" placeholder="for sql type: sql_attr_uint=something, for xml type: xmlpipe_field_string, for tsv type: tsvpipe_attr_json" style="width:300px!important"></textarea>
 			</div>
 HERE;
-    }
+
     if ($source_type == 'xmlpipe2') {
         echo ' 
 				<div class="form-group">	
@@ -516,6 +537,10 @@ function print_index($all_indexes)
         
         if ($an_index[7] != '') {
             echo "html_strip = " . $an_index[7] . "\n<br />";
+        }
+        
+        if ($an_index[13] != '') {
+            echo "html_index_attrs = " . $an_index[13] . "\n<br />";
         }
         
         if ($an_index[6] != '') {
