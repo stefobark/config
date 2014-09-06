@@ -1,7 +1,7 @@
 <?php
 
 //this will take searchd form information and return a concatenation seperated by ## (which will later be exploded)
-function &searchd_to_string()
+function searchd_to_string()
 {
     
     if (isset($_POST['listen'])) {
@@ -22,7 +22,7 @@ function &searchd_to_string()
 
 //take index form info, concatenate separated by ##. because there will be many, if we haven't already,
 //set session['index'] to array.
-function &index_to_string($index_type)
+function index_to_string($index_type)
 {
     
     if (isset($_POST["index_name"])) {
@@ -87,89 +87,140 @@ function &index_to_string($index_type)
 }
 
 //source form information concatenated, set session['source'] to array
-function &source_to_string()
+function source_to_string()
 {
-#1    
+    #0   
     if (!empty($_POST['source_name'])) {
         $f_source_string = $_POST['source_name'] . "##";
-    } else { $f_source_string = "*##"; }
-#2    
+    } else {
+        $f_source_string = "*##";
+    }
+    #1    
     if (!empty($_POST['sql_host'])) {
         $f_source_string .= $_POST['sql_host'] . "##";
-    } else { $f_source_string .= "*##"; }
-#3    
+    } else {
+        $f_source_string .= "*##";
+    }
+    #2    
     if (!empty($_POST['sql_port'])) {
         $f_source_string .= $_POST['sql_port'] . "##";
-    } else { $f_source_string .= "*##"; }
-#4    
+    } else {
+        $f_source_string .= "*##";
+    }
+    #3    
     if (!empty($_POST['sql_user'])) {
         $f_source_string .= $_POST['sql_user'] . "##";
-    } else { $f_source_string .= "*##"; }
-#5    
+    } else {
+        $f_source_string .= "*##";
+    }
+    #4    
     if (!empty($_POST['sql_pass'])) {
         $f_source_string .= $_POST['sql_pass'] . "##";
-    } else { $f_source_string .= "*##"; }
-#6    
+    } else {
+        $f_source_string .= "*##";
+    }
+    #5    
     if (!empty($_POST['sql_db'])) {
         $f_source_string .= $_POST['sql_db'] . "##";
-    } else { $f_source_string .= "*##"; }
-#7    
+    } else {
+        $f_source_string .= "*##";
+    }
+    #6    
     if (!empty($_POST['sql_sock'])) {
         $f_source_string .= $_POST['sql_sock'] . "##";
-    } else { $f_source_string .= "*##"; } 
-#8    
+    } else {
+        $f_source_string .= "*##";
+    }
+    #7    
     if (!empty($_POST['mysql_connect_flags'])) {
         $f_source_string .= $_POST['mysql_connect_flags'] . "##";
-    } else { $f_source_string .= "*##"; }
-#9    
+    } else {
+        $f_source_string .= "*##";
+    }
+    #8    
     if (!empty($_POST['mysql_ssl_cert'])) {
         $f_source_string .= $_POST['mysql_ssl_cert'] . "##";
-    } else { $f_source_string .= "*##"; } 
-#10    
+    } else {
+        $f_source_string .= "*##";
+    }
+    #9   
     if (!empty($_POST['mysql_ssl_key'])) {
         $f_source_string .= $_POST['mysql_ssl_key'] . "##";
-    } else { $f_source_string .= "*##"; }
-#11    
+    } else {
+        $f_source_string .= "*##";
+    }
+    #10    
     if (!empty($_POST['mysql_ssl_ca'])) {
         $f_source_string .= $_POST['mysql_ssl_ca'] . "##";
-    } else { $f_source_string .= "*##"; }
-#12    
+    } else {
+        $f_source_string .= "*##";
+    }
+    #11    
     if (!empty($_POST['attributes'])) {
         $f_source_string .= $_POST['attributes'] . "##";
-    } else { $f_source_string .= "*##"; }
-#13    
+    } else {
+        $f_source_string .= "*##";
+    }
+    #12    
     if (!empty($_POST['sql_query'])) {
         $f_source_string .= $_POST['sql_query'] . "##";
-    } else { $f_source_string .= "*##"; }
-#14    
+    } else {
+        $f_source_string .= "*##";
+    }
+    #13    
     if (!empty($_POST['sql_joined_field'])) {
         $f_source_string .= $_POST['sql_joined_field'] . "##";
-    } else { $f_source_string .= "*##"; }
-#15    
+    } else {
+        $f_source_string .= "*##";
+    }
+    #14    
     if (!empty($_POST['sql_query_range'])) {
         $f_source_string .= $_POST['sql_query_range'] . "##";
-    } else { $f_source_string .= "*##"; }
-#16    
+    } else {
+        $f_source_string .= "*##";
+    }
+    #15    
     if (!empty($_POST['mssql_winauth'])) {
         $f_source_string .= $_POST['mssql_winauth'] . "##";
-    } else { $f_source_string .= "*##"; }
-#17    
+    } else {
+        $f_source_string .= "*##";
+    }
+    #16    
     if (!empty($_POST['sql_column_buffers'])) {
         $f_source_string .= $_POST['sql_column_buffers'] . "##";
-    } else { $f_source_string .= "*##"; }
-#18    
-     if (!empty($_POST['odbc_dsn'])) {
+    } else {
+        $f_source_string .= "*##";
+    }
+    #17    
+    if (!empty($_POST['odbc_dsn'])) {
         $f_source_string .= $_POST['odbc_dsn'] . "##";
-    } else { $f_source_string .= "*##"; }
-#19    
-     if (!empty($_POST['source_type'])) {
+    } else {
+        $f_source_string .= "*##";
+    }
+    #18    
+    if (!empty($_POST['source_type'])) {
         $f_source_string .= $_POST['source_type'] . "##";
-    } else { $f_source_string .= "*##"; }
+    } else {
+        $f_source_string .= "*##";
+    }
+    #19    
+    if (!empty($_POST['xmlpipe_command'])) {
+        $f_source_string .= $_POST['xmlpipe_command'] . "##";
+    } else {
+        $f_source_string .= "*##";
+    }
+    #20    
+    if (!empty($_POST['xmlpipe_fixup_utf8'])) {
+        $f_source_string .= $_POST['xmlpipe_fixup_utf8'] . "##";
+    } else {
+        $f_source_string .= "*##";
+    }
     
-    //if the session source is not set, say 'its and array'.
+    
+    //if session source is not set, say 'its and array'.
     if (!isset($_SESSION["source"])) {
         $_SESSION["source"] = array();
-    } 
+    }
     
     return $f_source_string;
 }
@@ -195,8 +246,8 @@ HERE;
 //give this session['index_type']. it will print a form for that kind of index's options. links to docs.
 function print_index_form($index_type)
 {
-if($index_type == 'plain'){
-    echo <<<HERE
+    if ($index_type == 'plain') {
+        echo <<<HERE
 	<div class="col-md-4" style="background-color:#FAFAFA">
 		<h3>make an index</h3>
 		<p class='help-block'>If you chose to make a scripted configuration, go ahead and do your
@@ -229,7 +280,7 @@ if($index_type == 'plain'){
 			</div>
 			<div class='form-group'>
 					<label for='morphology'><a href='http://sphinxsearch.com/docs/current.html#conf-morphology'>Morphology Preprocessors</a></label><br />
-					<textarea type='text' name='morphology' placeholder='Comma separated list. Like this: stem_en, libstemmer_sv' style="width:350px!important"></textarea>
+					<textarea type='text' name='morphology' placeholder='Comma separated list. Like this: stem_en, libstemmer_sv' style="width:300px!important"></textarea>
 			</div>
 			<div class='form-group'>
 					<label for='index_sp'><a href='http://sphinxsearch.com/docs/current.html#conf-index-sp'>Index Sentence and Paragraph Boundaries</a></label><br />
@@ -241,7 +292,7 @@ if($index_type == 'plain'){
 			</div>
 			<div class='form-group'>
 					<label for='index_zones'><a href='http://sphinxsearch.com/docs/current.html#conf-index-zones'>Index HTML/XML zones (tags)</a></label><br />
-					<textarea type='text' name='index_zones' placeholder='A comma separated list of in-field HTML/XML zones to index. Like this: h*, th, title. Requires html_strip = 1!' style="width:350px!important"></textarea>
+					<textarea type='text' name='index_zones' placeholder='A comma separated list of in-field HTML/XML zones to index. Like this: h*, th, title. Requires html_strip = 1!' style="width:300px!important"></textarea>
 			</div>
 			<div class='form-group'>
 					<label for='min_stemming_len'><a href='http://sphinxsearch.com/docs/current.html#conf-min-stemming-len'>Minimum Stemming Length</a></label><br />
@@ -249,11 +300,11 @@ if($index_type == 'plain'){
 			</div>
 			<div class='form-group'>
 					<label for='stopwords'><a href='http://sphinxsearch.com/docs/current.html#conf-stopwords'>Stopwords Files</a></label><br />
-					<textarea type='text' name='stopwords' placeholder='"/usr/local/sphinx/data/stopwords.txt" or "stopwords-ru.txt stopwords-en.txt"' style="width:350px!important"></textarea>
+					<textarea type='text' name='stopwords' placeholder='"/usr/local/sphinx/data/stopwords.txt" or "stopwords-ru.txt stopwords-en.txt"' style="width:300px!important"></textarea>
 			</div>
 			<div class='form-group'>
 					<label for='wordforms'><a href='http://sphinxsearch.com/docs/current.html#conf-wordforms'>Wordforms Dictionary</a></label><br />
-					<input type='text' name='wordforms' placeholder='/usr/local/sphinx/data/wordforms.txt' style="width:350px!important">
+					<input type='text' name='wordforms' placeholder='/usr/local/sphinx/data/wordforms.txt' style="width:300px!important">
 			</div>
 			<div class='form-group'>
 					<label for='embedded_limit'><a href='http://sphinxsearch.com/docs/current.html#conf-embedded-limit'>Embedded File Size Limit</a></label><br />
@@ -261,7 +312,7 @@ if($index_type == 'plain'){
 			</div>
 			<div class='form-group'>
 					<label for='exceptions'><a href='http://sphinxsearch.com/docs/current.html#conf-exceptions'>Exceptions File Path</a></label><br />
-					<input type='text' name='exceptions' placeholder='/usr/local/sphinx/data/exceptions.txt' style="width:350px!important">
+					<input type='text' name='exceptions' placeholder='/usr/local/sphinx/data/exceptions.txt' style="width:300px!important">
 			</div>
 		
 			<div class='form-group'>
@@ -270,127 +321,154 @@ if($index_type == 'plain'){
 		</form>
 	</div>
 HERE;
-	}
+    }
 }
 
 //this will print that big ugly source options form.. and links to docs! reformat this!!
 function print_source_form($source_type)
 {
+    
     echo <<<HERE
 <form role="form" name="host" action="index_options.php" method="post">
-			<div class='form-group'>
-					<input type='hidden' name='source_type' value="$source_type">
-			</div>
-			<div class="form-group">
-				<label for="source_name"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-host">Source Name (mandatory)</a></label><br />
-				<p class='help-block'>Inherit options from other sources! Just add
-					a ':' followed by the name of the source to inherit from.</p>
-				<input type="text" name="source_name" placeholder="src1"></textarea>
-				
-			</div>
-			<div class="form-group">
-				<label for="sql_host"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-host">Host (mandatory)</a></label><br />
-				<input type="text" name="sql_host" placeholder="localhost or 127.0.0.1">
-			</div>
-			<div class="form-group">
-				<label for="sql_port"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-port">Port (mandatory)</a></label><br />
-				<input type="text" name="sql_port" placeholder="3306">
-			</div>
-			<div class="form-group">
-				<label for="sql_user"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-root">User (mandatory)</a></label><br />
-				<input type="text" name="sql_user" placeholder="root">
+	<div class='form-group'>
+		<input type='hidden' name='source_type' value="$source_type">
+	</div>
+	<div class="form-group">
+		<label for="source_name"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-host">Source Name (mandatory)</a></label><br />
+		<p class='help-block'>Inherit options from other sources! Just add
+			a ':' followed by the name of the source to inherit from.</p>
+		<input type="text" name="source_name" placeholder="src1"></textarea>
+	</div>
+HERE;
+    
+    if ($source_type !== 'xmlpipe2') {
+        echo <<<HERE
+	<div class="form-group">
+		<label for="sql_host"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-host">Host (mandatory)</a></label><br />
+		<input type="text" name="sql_host" placeholder="localhost or 127.0.0.1">
+	</div>
+	<div class="form-group">
+		<label for="sql_port"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-port">Port (mandatory)</a></label><br />
+		<input type="text" name="sql_port" placeholder="3306">
+	</div>
+	<div class="form-group">
+		<label for="sql_user"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-root">User (mandatory)</a></label><br />
+		<input type="text" name="sql_user" placeholder="root">
+	</div>
+	<div class="form-group">	
+		<label for="sql_pass"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-pass">Password</a></label><br />
+		<input type="text" name="sql_pass" placeholder="password">
+	</div>
+	<div class="form-group">	
+		<label for="sql_db"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-db">Database Name (mandatory)</a></label><br />
+		<input type="text" name="sql_db" placeholder="db_name">
+	</div>
+	<div class="form-group">
+		<label for="sql_query"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-query">Main Query (mandatory)</a></label><br />
+		<textarea name="sql_query" placeholder="SELECT id, group_id, UNIX_TIMESTAMP(date_added) AS date_added, title, content FROM documents"  style="width:300px!important"></textarea>
+		</div>
+HERE;
+        
+        //if it's an odbc, print these:
+        if ($source_type == 'odbc') {
+            echo <<<HERE
+		<div class="form-group">	
+			<label for="odbc_dsn"><a href="http://sphinxsearch.com/docs/current.html#conf-odbc-dsn">ODBC DSN</a></label><br />
+			<input type="text" name="odbc_dsn" placeholder="1 # use currently logged on user credentials"> 
+		</div>
+		<div class="form-group">	
+			<label for="sql_column_buffers"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-column-buffers">SQL Column Buffers</a></label><br />
+			<input type="text" name="sql_column_buffers" placeholder="content=12M, comments=1M"> 
+		</div>
+HERE;
+        }
+        
+        //if it's a mssqlsource, print these:
+        if ($source_type == 'mssql') {
+            echo <<<HERE
+			<div class="form-group">	
+				<label for="mssql_winauth"><a href="http://sphinxsearch.com/docs/current.html#conf-mssql-winauth">Windows Authorization</a></label><br />
+				<input type="text" name="mssql_winauth" placeholder="1 # use currently logged on user credentials"> 
 			</div>
 			<div class="form-group">	
-				<label for="sql_pass"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-pass">Password</a></label><br />
-				<input type="text" name="sql_pass" placeholder="password">
+				<label for="sql_column_buffers"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-column-buffers">SQL Column Buffers</a></label><br />
+				<input type="text" name="sql_column_buffers" placeholder="content=12M, comments=1M"> 
 			</div>
-			<div class="form-group">	
-				<label for="sql_db"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-db">Database Name (mandatory)</a></label><br />
-				<input type="text" name="sql_db" placeholder="db_name">
-			</div>
-			<div class="form-group">
-				<label for="sql_query"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-query">Main Query (mandatory)</a></label><br />
-				<textarea name="sql_query" placeholder="SELECT id, group_id, UNIX_TIMESTAMP(date_added) AS date_added, title, content FROM documents"  style="width:350px!important"></textarea>
-			</div>
-			<div class="form-group">
-				<label for="attributes"><a href="http://sphinxsearch.com/docs/current.html#attributes">Attributes</a> <br /></label><br />
-				<textarea name="attributes" rows="4" placeholder="Comma separated! Like this: sql_attr_uint=something, sql_attr_json=something, etc..." style="width:350px!important"></textarea>
-			</div>
-HERE;
-
-//if it's an odbc, print these:
-if($_SESSION['source_type'] == 'odbc'){
-	echo <<<HERE
-	<div class="form-group">	
-						<label for="odbc_dsn"><a href="http://sphinxsearch.com/docs/current.html#conf-odbc-dsn">ODBC DSN</a></label><br />
-						<input type="text" name="odbc_dsn" placeholder="1 # use currently logged on user credentials"> 
-					</div>
-	<div class="form-group">	
-						<label for="sql_column_buffers"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-column-buffers">SQL Column Buffers</a></label><br />
-						<input type="text" name="sql_column_buffers" placeholder="content=12M, comments=1M"> 
-					</div>
-HERE;
-	}
-
-//if it's a mssqlsource, print these:
-if($_SESSION['source_type'] == 'mssql'){
-	echo <<<HERE
-	<div class="form-group">	
-						<label for="mssql_winauth"><a href="http://sphinxsearch.com/docs/current.html#conf-mssql-winauth">Windows Authorization</a></label><br />
-						<input type="text" name="mssql_winauth" placeholder="1 # use currently logged on user credentials"> 
-					</div>
-	<div class="form-group">	
-						<label for="sql_column_buffers"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-column-buffers">SQL Column Buffers</a></label><br />
-						<input type="text" name="sql_column_buffers" placeholder="content=12M, comments=1M"> 
-					</div>
 				
 HERE;
-	}
-
-echo <<<HERE
+        }
+        
+        echo <<<HERE
 			<div class="form-group">	
 				<label for="sql_sock"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-sock">UNIX Socket Name</a></label><br />
 				<input type="text" name="sql_sock" placeholder="/tmp/mysql.sock">
 			</div>
 HERE;
-
-//if it's a mysql source, print these:
-if($_SESSION['source_type'] == 'mysql'){
-echo <<<HERE
-				<div class="form-group">	
-					<label for="mysql_connect_flags"><a href="http://sphinxsearch.com/docs/current.html#conf-mysql-connect-flags">MySQL Connect Flags</a></label><br />
-					<input type="text" name="mysql_connect_flags" placeholder="32 # enables compression"> 
-				</div>
-				<div class="form-group">	
-					<label for="mysql_ssl_cert"><a href="http://sphinxsearch.com/docs/current.html#conf-mysql-ssl">MySQL Client Certificate</a></label><br />
-					<input type="text" name="mysql_ssl_cert" placeholder="/etc/ssl/client-cert.pem">
-				</div>
-				<div class="form-group">	
-					<label for="mysql_ssl_key"><a href="http://sphinxsearch.com/docs/current.html#conf-mysql-ssl">MySQL Client Key</a></label><br />
-					<input type="text" name="mysql_ssl_key" placeholder="/etc/ssl/client-key.pem"> 
-				</div>
-				<div class="form-group">
-					<label for="mysql_ssl_ca"><a href="http://sphinxsearch.com/docs/current.html#conf-mysql-ssl">CA Certificate</a></label><br />
-					<input type="text" name="mysql_ssl_ca" placeholder="/etc/ssl/client-cacert.pem">
-				</div>
+        
+        //if it's a mysql source, print these:
+        if ($source_type == 'mysql') {
+            echo <<<HERE
+			<div class="form-group">	
+				<label for="mysql_connect_flags"><a href="http://sphinxsearch.com/docs/current.html#conf-mysql-connect-flags">MySQL Connect Flags</a></label><br />
+				<input type="text" name="mysql_connect_flags" placeholder="32 # enables compression"> 
+			</div>
+			<div class="form-group">	
+				<label for="mysql_ssl_cert"><a href="http://sphinxsearch.com/docs/current.html#conf-mysql-ssl">MySQL Client Certificate</a></label><br />
+				<input type="text" name="mysql_ssl_cert" placeholder="/etc/ssl/client-cert.pem">
+			</div>
+			<div class="form-group">	
+				<label for="mysql_ssl_key"><a href="http://sphinxsearch.com/docs/current.html#conf-mysql-ssl">MySQL Client Key</a></label><br />
+				<input type="text" name="mysql_ssl_key" placeholder="/etc/ssl/client-key.pem"> 
+			</div>
+			<div class="form-group">
+				<label for="mysql_ssl_ca"><a href="http://sphinxsearch.com/docs/current.html#conf-mysql-ssl">CA Certificate</a></label><br />
+				<input type="text" name="mysql_ssl_ca" placeholder="/etc/ssl/client-cacert.pem">
+			</div>
 HERE;
-
-}
-
-echo <<<HERE
+            
+        }
+        
+        echo <<<HERE
 			<div class="form-group">
 				<label for="sql_joined_field"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-joined-field">Joined Field(s)</a></label><br />
-				<textarea name="sql_joined_field" type="text" placeholder="tagstext from query; SELECT docid, CONCAT('tag',tagid) FROM tags ORDER BY docid ASC" style="width:350px!important"></textarea>
+				<textarea name="sql_joined_field" type="text" placeholder="tagstext from query; SELECT docid, CONCAT('tag',tagid) FROM tags ORDER BY docid ASC" style="width:300px!important"></textarea>
 			</div>
 			<div class="form-group">
 				<label for="sql_query_range"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-query-range">Ranged Query</a></label><br />
-				<textarea type="text" name="sql_query_range" placeholder="SELECT MIN(id),MAX(id) FROM documents" style="width:350px!important"></textarea>
+				<textarea type="text" name="sql_query_range" placeholder="SELECT MIN(id),MAX(id) FROM documents" style="width:300px!important"></textarea>
 			</div>
+
 			<div class="form-group">
-				<input type="submit" value="Submit">
+				<label for="attributes"><a href="http://sphinxsearch.com/docs/current.html#attributes">Attributes</a> <br /></label><br />
+				<p class='help-block'>**Note that for xml and tsv source types, you'll have to explicitly declare the full text field (with: "xmlpipe_attr_field" or "tsvpipe_attr_field") in addition to its attributes.</p>
+				<p class='help-block'>Also, be aware that you can configure xmlpipe within the stream itself. Take a look at
+				<a href='http://sphinxsearch.com/docs/current.html#ex-xmlpipe2-document'>this nice example</a>.</p>
+				<p class='help-block'>And, be sure that the first column of tsvpipe is a unique document id-- and remember to separate each field/attribute with a comma.</p> 
+				<textarea name="attributes" rows="4" placeholder="for sql type: sql_attr_uint=something, for xml type: xmlpipe_field_string, for tsv type: tsvpipe_attr_json" style="width:300px!important"></textarea>
 			</div>
-		</form>
 HERE;
+    }
+    if ($source_type == 'xmlpipe2') {
+        echo ' 
+				<div class="form-group">	
+					<label for="xmlpipe_command"><a href="http://sphinxsearch.com/docs/current.html#conf-xmlpipe-command">xml_command</a></label><br />
+					<input type="text" name="xmlpipe_command" placeholder="cat /home/sphinx/test.xml"> 
+				</div>
+				<div class="form-group">	
+					<label for="xmlpipe_fixup_utf8"><a href="http://sphinxsearch.com/docs/current.html#conf-xmlpipe-fixup-utf8">xml_fixup_utf8</a></label><br />
+					<p class="help-block">Perform Sphinx-side UTF-8 validation and filtering to prevent XML parser from choking on non-UTF-8 documents. </p>
+					<input type="text" name="xmlpipe_fixup_utf8" placeholder="1"> 
+				</div>
+	';
+    }
+    
+    echo <<<HERE
+		<div class="form-group">
+			<input type="submit" value="Submit">
+		</div>
+	</form>
+HERE;
+    
 }
 
 //print all the indexes by giving this function $_SESSION['index']. if mandatory options are missing, tell the user!
@@ -436,7 +514,7 @@ function print_index($all_indexes)
             echo "index_sp = " . $an_index[5] . "\n<br />";
         }
         
-         if ($an_index[7] != '') {
+        if ($an_index[7] != '') {
             echo "html_strip = " . $an_index[7] . "\n<br />";
         }
         
@@ -468,7 +546,7 @@ function print_index($all_indexes)
     }
 }
 
-//give this function session['source'] and session['type'] and it will print all source blocks
+//give this function session['source'] array and it will print all source blocks
 //if mandatory options are missing, it will tell you.
 function print_source($sources)
 {
@@ -476,98 +554,108 @@ function print_source($sources)
     //for each of the source strings, split it into an array on '##'
     foreach ($sources as $row) {
         $options = explode("##", $row);
-   
+        
         echo "source " . $options[0] . "\n<br /> { \n<br />";
         
         echo "type = " . $options[18] . "\n<br />";
         
-        if($options[1] !== '*'){
-            echo "sql_host = " . $options[1] . "\n<br />";
+        if ($options[18] == 'xmlpipe2') {
+            if ($options[19] !== '*') {
+                echo "xmlpipe_command = " . $options[19] . "\n<br />";
+            } else {
+                echo "<strong>you need to tell Sphinx where that xml is!</strong>\n<br />";
             }
-        else {
-            echo "<strong>you need sql_host!</strong>\n<br />";
+            if ($options[20] !== '*') {
+                echo "xmlpipe_fixup_utf8 = " . $options[20] . "\n<br />";
+            }
         }
-       
-        if($options[2] !== '*'){
-            echo "sql_port = " . $options[2] . "\n<br />";
+        
+        if ($options[18] == 'mysql' || $options[18] == 'pgsql' || $options[18] == 'mssql' || $options[18] == 'odbc') {
+            if ($options[1] !== '*') {
+                echo "sql_host = " . $options[1] . "\n<br />";
+            } else {
+                echo "<strong>you need sql_host!</strong>\n<br />";
             }
-        else {
-            echo "<strong>you need sql_port!</strong>\n<br />";
+            
+            if ($options[2] !== '*') {
+                echo "sql_port = " . $options[2] . "\n<br />";
+            } else {
+                echo "<strong>you need sql_port!</strong>\n<br />";
+            }
+            
+            if ($options[3] !== '*') {
+                echo "sql_user = " . $options[3] . "\n<br />";
+            } else {
+                echo "<strong>you need sql_user!</strong>\n<br />";
+            }
+            
+            if ($options[4] !== '*') {
+                echo "sql_pass = " . $options[4] . "\n<br />";
+            } else {
+                echo "sql_pass = \n<br />";
+            }
+            
+            if ($options[5] !== '*') {
+                echo "sql_db = " . $options[5] . "\n<br />";
+            } else {
+                echo "<strong>you need db name!</strong>\n<br />";
+            }
+            
+            if ($options[6] !== '*') {
+                echo "sql_sock = " . $options[6] . "\n<br />";
+            }
+            
+            if ($options[7] !== '*') {
+                echo "mysql_connect_flags = " . $options[7] . "\n<br />";
+            }
+            
+            if ($options[8] !== '*') {
+                echo "mysql_ssl_cert = " . $options[8] . "\n<br />";
+            }
+            
+            if ($options[9] !== '*') {
+                echo "mysql_ssl_key = " . $options[9] . "\n<br />";
+            }
+            
+            if ($options[10] !== '*') {
+                echo "mysql_ssl_ca = " . $options[10] . "\n<br />";
+            }
+            
+            if ($options[12] !== '*') {
+                echo "sql_query = " . $options[12] . "\n<br />";
+            } else {
+                echo "<strong>you need the main query!</strong>\n<br />";
+            }
+            
+            if ($options[14] !== '*') {
+                echo "sql_query_range = " . $options[14] . "\n<br />";
+            }
+            
+            if ($options[13] !== '*') {
+                echo "sql_joined_field = " . $options[13] . "\n<br />";
+            }
+            
+            if ($options[15] !== '*') {
+                echo "mssql_winauth = " . $options[15] . "\n<br />";
+            }
+            
+            if ($options[16] !== '*') {
+                echo "sql_column_buffers = " . $options[16] . "\n<br />";
+            }
+            
+            if ($options[17] !== '*') {
+                echo "odbc_dsn = " . $options[17] . "\n<br />";
+            }
         }
-       
-        if($options[3] !== '*'){
-            echo "sql_user = " . $options[3] . "\n<br />";
-            }
-        else {
-            echo "<strong>you need sql_user!</strong>\n<br />";
-        }
-    
-        if($options[4] !== '*'){
-            echo "sql_pass = " . $options[4] . "\n<br />";
-            }
         
-        if($options[5] !== '*'){
-            echo "sql_db = " . $options[5] . "\n<br />";
-            }
-        else {
-            echo "<strong>you need db name!</strong>\n<br />";
-        }
-
-        if($options[6] !== '*'){
-            echo "sql_sock = " . $options[6] . "\n<br />";
-            }
-           
-        if($options[7] !== '*'){
-            echo "mysql_connect_flags = " . $options[7] . "\n<br />";
-            }
-        
-        if($options[8] !== '*'){
-            echo "mysql_ssl_cert = " . $options[8] . "\n<br />";
-            }
-   
-        		if($options[9] !== '*'){
-            echo "mysql_ssl_key = " . $options[9] . "\n<br />";
-            }
-     
-        if($options[10] !== '*'){
-            echo "mysql_ssl_ca = " . $options[10] . "\n<br />";
-            }
-    
-        if($options[12] !== '*'){
-            echo "sql_query = " . $options[12] . "\n<br />";
-            }
-        else {
-            echo "<strong>you need the main query!</strong>\n<br />";
-            }
-       
-        if($options[14] !== '*'){
-            echo "sql_query_range = " . $options[14] . "\n<br />";
-            }
-
-        if($options[13] !== '*'){
-            echo "sql_joined_field = " . $options[13] . "\n<br />";
-            }
-      
-        if($options[15] !== '*'){
-            echo "mssql_winauth = " . $options[15] . "\n<br />";
-            }
-        
-        if($options[16] !== '*'){
-            echo "sql_column_buffers = " . $options[16] . "\n<br />";
-            }
-        
-        if($options[17] !== '*'){
-            echo "odbc_dsn = " . $options[17] . "\n<br />";
-            }
-     
-        if($options[11] !== '*') {
+        if ($options[11] !== '*') {
             //now, inside this loop, take the attributes string and split it by ','
             $final_attributes = explode(",", $options[11]);
             foreach ($final_attributes as $attr) {
                 echo $attr . "\n<br />";
-            	}
+            }
             //end if
-           }
+        }
         //end config block
         echo "} \n<br />\n<br />";
         //end foreach
@@ -617,7 +705,7 @@ function print_searchd_form()
 		<form role='form' name='index' action='review.php' method='post'>
 			<div class='form-group'>
 				<label for='listen'><a href='http://sphinxsearch.com/docs/current.html#conf-listen'>Where (and how) to listen (mandatory)</a></label><br />
-				<textarea style="width:350px!important" name='listen' placeholder='separate them with a comma! localhost:9306:mysql41, 127.0.0.1:9306:mysqli41, 9306, etc...'></textarea>
+				<textarea style="width:300px!important" name='listen' placeholder='separate them with a comma! localhost:9306:mysql41, 127.0.0.1:9306:mysqli41, 9306, etc...'></textarea>
 			</div>
 			<div class='form-group'>
 				<label for='log'><a href='http://sphinxsearch.com/docs/current.html#conf-log'>Where to log searchd runtime events (mandatory)</a></label><br />
