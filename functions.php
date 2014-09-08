@@ -24,61 +24,61 @@ function searchd_to_string()
 //set session['index'] to array.
 function index_to_string($index_type)
 {
-    
+    #0
     if (isset($_POST["index_name"])) {
         $f_index_string = $_POST["index_name"] . "##";
     }
-    
+    #1
     if (isset($_POST["index_source_name"])) {
         $f_index_string .= $_POST["index_source_name"] . "##";
     }
-    
+    #2
     if (isset($_POST["index_path"])) {
         $f_index_string .= $_POST["index_path"] . "##";
     }
-    
+    #3
     if (isset($_POST["docinfo"])) {
         $f_index_string .= $_POST["docinfo"] . "##";
     }
-    
+    #4
     if (isset($_POST["morphology"])) {
         $f_index_string .= $_POST["morphology"] . "##";
     }
-    
+    #5
     if (isset($_POST["index_sp"])) {
         $f_index_string .= $_POST["index_sp"] . "##";
     }
-    
+    #6
     if (isset($_POST["index_zones"])) {
         $f_index_string .= $_POST["index_zones"] . "##";
     }
-    
+    #7
     if (isset($_POST["html_strip"])) {
         $f_index_string .= $_POST["html_strip"] . "##";
     }
-    
+    #8
     if (isset($_POST["min_stemming_len"])) {
         $f_index_string .= $_POST["min_stemming_len"] . "##";
     }
-    
+    #9
     if (isset($_POST["stopwords"])) {
         $f_index_string .= $_POST["stopwords"] . "##";
     }
-    
+    #10
     if (isset($_POST["wordforms"])) {
         $f_index_string .= $_POST["wordforms"] . "##";
     }
-    
+    #11
     if (isset($_POST["embedded_limit"])) {
         $f_index_string .= $_POST["embedded_limit"] . "##";
     }
-    
+    #12
     if (isset($_POST["exceptions"])) {
         $f_index_string .= $_POST["exceptions"] . "##";
     }
-    
-    if (isset($_POST[" html_index_attrs"])) {
-        $f_index_string .= $_POST[" html_index_attrs"] . "##";
+    #13
+    if (isset($_POST["html_index_attrs"])) {
+        $f_index_string .= $_POST["html_index_attrs"] . "##";
     }
     
     
@@ -539,7 +539,7 @@ function print_index($all_indexes)
             echo "html_strip = " . $an_index[7] . "\n<br />";
         }
         
-        if ($an_index[13] != '') {
+        if ($an_index[14] != '') {
             echo "html_index_attrs = " . $an_index[13] . "\n<br />";
         }
         
