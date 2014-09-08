@@ -77,6 +77,10 @@ function index_to_string($index_type)
         $f_index_string .= $_POST["exceptions"] . "##";
     }
     #13
+    if (isset($index_type)) {
+        $f_index_string .= $_SESSION['index_type'] . "##";
+    }
+    #14
     if (isset($_POST["html_index_attrs"])) {
         $f_index_string .= $_POST["html_index_attrs"] . "##";
     }
@@ -540,7 +544,7 @@ function print_index($all_indexes)
         }
         
         if ($an_index[14] != '') {
-            echo "html_index_attrs = " . $an_index[13] . "\n<br />";
+            echo "html_index_attrs = " . $an_index[14] . "\n<br />";
         }
         
         if ($an_index[6] != '') {
