@@ -25,8 +25,7 @@ echo <<<HERE
 	<div class='row' style="margin-top:75px!important">
 		<div class='col-md-4' style="background-color:#FAFAFA!important">
 			<h3 class="title">Source Options</h3>
-			<p class='help-block'>If you chose to make a scripted configuration, go ahead and do your
-			magic in these fields below. Use environment variables, do things with PHP, etc..</p>
+			<p class='help-block'>If you chose to make a scripted configuration, you can now use your environment variables.</p>
 
 HERE;
 
