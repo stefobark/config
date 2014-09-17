@@ -49,23 +49,62 @@ HERE;
 		echo <<<HERE
 		<div class="container" style='margin-top:100px!important'>
 			<div class="row">
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
-					<h2>Scripted Config?</h2>
-					<div class='btn-group btn-group-justified'>
-							<a href='index.php?scripted=/usr/bin/php'><button type='button' class='btn btn-info'>PHP</button></a>
-							<a href='index.php?scripted=/bin/bash'><button type='button' class='btn btn-info'>BASH</button></a><br /><br />
-							<a href='source.php'><button type='button' class='btn btn-warning'>Or, not. Just build it.</button></a>
+				<div class="col-md-6">
+					<h2>Environment Variables?</h2><br />
+					<div class='btn-group btn-group-justified text-center'>
+							<a href="index.php?scripted=/bin/bash"><button type='button' class='btn btn-info'>BASH</button></a>
+							<a href='index.php?scripted=no'><button type='button' class='btn btn-warning'>Or, just build a regular configuration.</button></a>
 						</p>
 					</div>
 				</div>
 			</div>
+			<div class="row">
+				
+				<div class="col-md-1"><span class='glyphicon glyphicon-exclamation-sign' style='font-size:50px!important'></span>
+				</div>
+				<div class="col-md-8"><br />
+					You can pass the parameters through the environment variables right when you run indexer or searchd. <br />
+					<br />
+					Like this:
+					<br />
+				</div>
+			</div>
+			<div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-11"><br />
+					<code>
+					shodan@dev1:~/trunk/src$ cat test.conf<br />
+					#!/bin/bash<br />
+					echo hello > 1.txt<br />
+					echo \$SHARD shard >> 1.txt<br />
+					 
+					shodan@dev1:~/trunk/src$ SHARD=123 ./searchd -c test.conf<br />
+					...<br />
+					using config file 'test.conf'...<br />
+					FATAL: 'searchd' config section not found in 'test.conf'<br />
+					 
+					shodan@dev1:~/trunk/src$ cat 1.txt<br />
+					hello<br />
+					123 shard
+					</code><br />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-1">
+				<span class='glyphicon glyphicon-eye-open' style='font-size:50px!important'></span>
+				</div>
+				<div class="col-md-8"><br />
+					As you can see, our script got executed alright, and was able to access the SHARD variable that we passed to searchd. In PHP, we would need to use:
+
+					 &lt;?php print getenv("SHARD"); ?&gt;
+
+					instead, but you get the idea.
 		</div>
 HERE;
 		}
 	} 
 else if($_SESSION['index_type'] == 'plain'){
-	$_SESSION['scripted'] = "#!" . $_GET['scripted'];
+	$_SESSION['scripted'] = "#!" . $_GET['scripted'] . "<br />\n printf " . '"';
 	$script = $_SESSION['scripted'];
 	$choice = $_SESSION['index_type'];
 	echo <<<HERE
@@ -74,7 +113,7 @@ else if($_SESSION['index_type'] == 'plain'){
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
 	<h2>Perfect.</h2>
-	<p class='help-block'>Let's build this scripted $choice index</p>
+	<p class='help-block'>Let's build this $choice index</p>
 	<a href='source.php'><button type='button' class='btn btn-success'>Go!</button></a>
 HERE;
 }
