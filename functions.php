@@ -1,24 +1,9 @@
 <?php
 
-//this will take searchd form information and return a concatenation seperated by ## (which will later be exploded)
-function searchd_to_string()
-{
-    
-    if (isset($_POST['listen'])) {
-        $f_searchd_string = $_POST['listen'] . "##";
-    }
-    if (isset($_POST['log'])) {
-        $f_searchd_string .= $_POST['log'] . "##";
-    }
-    if (isset($_POST['query_log'])) {
-        $f_searchd_string .= $_POST['query_log'] . "##";
-    }
-    if (isset($_POST['pid'])) {
-        $f_searchd_string .= $_POST['pid'] . "##";
-    }
-    
-    return $f_searchd_string;
-}
+//----------------------------|
+//------ INDEX SETTINGS ------|
+//----------------------------|
+
 
 //take index form info, concatenate separated by ##. because there will be many, if we haven't already,
 //set session['index'] to array.
@@ -90,15 +75,187 @@ function index_to_string($index_type)
         $_SESSION['index'] = array();
     }
     
-    
-   
-    
     $f_index_string .= $index_type . "##";
     
     return $f_index_string;
 }
 
-//source form information concatenated, set session['source'] to array
+//give this session['index_type']. it will print a form for that kind of index's options. links to docs.
+function print_index_form($index_type)
+{
+    if ($index_type == 'plain') {
+        echo <<<HERE
+	<div class="col-md-4" style="background-color:#FAFAFA">
+		<h3>make an index</h3>
+		<p class='help-block'>If you chose to make a scripted configuration, use environment variables.</p>
+		<h4 style="margin-top:50px">Required options:</h4>
+		<form role='form' name='index' action='searchd_options.php' method='post'>
+			<div class='form-group'>
+					<label for='index_name'><a href='http://sphinxsearch.com/docs/current.html#confgroup-index'>
+					Name this Index (mandatory)</a></label><br />
+					<p class='help-block'>Inherit options from other indexes! Just add
+					a ':' followed by the name of the index to inherit from.</p>
+					<input type='text' name='index_name' placeholder='test_index'>
+					
+			</div>
+			<div class='form-group'>
+					<input type='hidden' name='index_type' value="$index_type">
+			</div>
+			<div class='form-group'>
+					<label for='index_source_name'><a href='http://sphinxsearch.com/docs/current.html#conf-sql-host'>Choose Source Name (mandatory)</a></label><br />
+					<input type='text' name='index_source_name' placeholder='src1'>
+			</div>
+			<div class='form-group'>
+					<label for='index_path'><a href='http://sphinxsearch.com/docs/current.html#conf-path'>Set index data directory (mandatory)</a></label><br />
+					<input type='text' name='index_path' placeholder='/var/data/test'>
+			</div>
+			<div class='form-group'>
+					<label for='docinfo'><a href='http://sphinxsearch.com/docs/current.html#conf-docinfo'>How to store Attributes</a></label><br />
+					<p class='help-block'>This defines how attributes will be stored on disk and RAM. "none" means that there will be no attributes. Sphinx will use 'none' if you don't set any attributes. "inline" means that attributes will be stored in the .spd file, along with the document ID lists. "extern" means that the docinfo (attributes) will be stored separately (externally) from document ID lists, in a special .spa file. </p>
+					<input type='text' name='docinfo' placeholder='none, extern, or inline'>
+			</div>
+			<div class='form-group'>
+					<label for='morphology'><a href='http://sphinxsearch.com/docs/current.html#conf-morphology'>Morphology Preprocessors</a></label><br />
+					<p class='help-block'> These can used, while indexing, to replace different forms of the same word with their normalized form. For instance, The English stemmer will normalize both "dogs" and "dog" to "dog", making search results for both searches the same. Sphinx supports lemmatizers, stemmers, and phonetic algorithms. </p>
+					<textarea type='text' name='morphology' placeholder='Comma separated list. Like this: stem_en, libstemmer_sv' style="width:300px!important"></textarea>
+			</div>
+			<div class='form-group'>
+					<label for='index_sp'><a href='http://sphinxsearch.com/docs/current.html#conf-index-sp'>Index Sentence and Paragraph Boundaries</a></label><br />
+					<p class='help-block'>This directive enables sentence and paragraph boundary indexing. It's required for the SENTENCE and PARAGRAPH operators to work. Sentence boundary detection is based on plain text analysis, so you only need to set index_sp = 1 to enable it. Paragraph detection is however based on HTML markup, and happens in the HTML stripper. So to index paragraph locations you also need to enable the stripper by specifying html_strip = 1. Both types of boundaries are detected based on a few built-in rules which you can learn more about by following the link on this section's title. </p>
+					<input type='text' name='index_sp' placeholder='1 or 0. 0 is default.'>
+			</div>
+			<div class='form-group'>
+					<label for='html_strip'><a href='http://sphinxsearch.com/docs/current.html#conf-html-strip'>HTML Stripper (other options need this..)</a></label><br />
+					<p class='help-block'>Whether to strip HTML markup from incoming full-text data. HTML tags are removed, their contents are left intact by default. You can choose to keep and index attributes of the tags (e.g., HREF attribute in an A tag, or ALT in an IMG one) with the next option ('html_index_attrs').</p> 
+					<input type='text' name='html_strip' placeholder='1 or 0. 0 is default.'>
+			</div>
+			<div class='form-group'>
+					<label for='html_index_attrs'><a href='http://sphinxsearch.com/docs/current.html#conf-html-index-attrs'>HTML/XML tags to index</a></label><br />
+					<p class='help-block'>Specifies HTML markup attributes whose contents should be retained and indexed even though other HTML markup is stripped. The format is per-tag enumeration of indexable attributes, as shown in the example below. </p>
+					<textarea type='text' name='html_index_attrs' placeholder='A comma separated list of in-field HTML/XML tags to index. Like this: h*, th, title. Requires html_strip = 1!' style="width:300px!important"></textarea>
+			</div>
+			<div class='form-group'>
+					<label for='index_zones'><a href='http://sphinxsearch.com/docs/current.html#conf-index-zones'>Index HTML/XML zones (tags)</a></label><br />
+					<p class='help-block'>Zones can be formally defined as follows. Everything between an opening and a matching closing tag is called a span, and the aggregate of all spans sharing the same tag name is a zone. For instance, everything between the occurrences of H1 and /H1 in the document field belongs to the H1 zone. In short, use this to enable the ZONE search operator!</p>
+					<textarea type='text' name='index_zones' placeholder='A comma separated list of in-field HTML/XML tags to index. Like this: h*, th, title. Requires html_strip = 1!' style="width:300px!important"></textarea>
+			</div>
+			<div class='form-group'>
+					<label for='min_stemming_len'><a href='http://sphinxsearch.com/docs/current.html#conf-min-stemming-len'>Minimum Stemming Length</a></label><br />
+					<input type='text' name='min_stemming_len' placeholder='4'">
+			</div>
+			<div class='form-group'>
+					<label for='stopwords'><a href='http://sphinxsearch.com/docs/current.html#conf-stopwords'>Stopwords Files</a></label><br />
+					<textarea type='text' name='stopwords' placeholder='"/usr/local/sphinx/data/stopwords.txt" or "stopwords-ru.txt stopwords-en.txt"' style="width:300px!important"></textarea>
+			</div>
+			<div class='form-group'>
+					<label for='wordforms'><a href='http://sphinxsearch.com/docs/current.html#conf-wordforms'>Wordforms Dictionary</a></label><br />
+					<input type='text' name='wordforms' placeholder='/usr/local/sphinx/data/wordforms.txt' style="width:300px!important">
+			</div>
+			<div class='form-group'>
+					<label for='embedded_limit'><a href='http://sphinxsearch.com/docs/current.html#conf-embedded-limit'>Embedded File Size Limit</a></label><br />
+					<input type='text' name='embedded_limit' placeholder='32K'">
+			</div>
+			<div class='form-group'>
+					<label for='exceptions'><a href='http://sphinxsearch.com/docs/current.html#conf-exceptions'>Exceptions File Path</a></label><br />
+					<input type='text' name='exceptions' placeholder='/usr/local/sphinx/data/exceptions.txt' style="width:300px!important">
+			</div>
+		
+			<div class='form-group'>
+				<input type='submit' value='Submit'>
+			</div>
+		</form>
+	</div>
+HERE;
+    }
+}
+
+//print all the indexes by giving this function $_SESSION['index']. if mandatory options are missing, tell the user!
+//this way, they can choose to not enter any info, then they'll have a reminder to switch it later on.
+function print_index($all_indexes)
+{
+    
+    foreach ($all_indexes as $index) {
+        $an_index = explode("##", $index);
+        
+        if ($an_index[0] != '') {
+            echo "index " . $an_index[0] . "\n<br />{ \n<br />";
+        } else {
+            echo "<strong>you need a source name!</strong><br />";
+        }
+        
+        if ($an_index[13] != '') {
+            echo "type = " . $an_index[13] . "\n<br />";
+        } else {
+            echo "<strong>you need an index type!</strong><br />";
+        }
+        
+        if ($an_index[1] != '') {
+            echo "source = " . $an_index[1] . "\n<br />";
+        } else {
+            echo "<strong>you need a source name!</strong>\n<br />";
+        }
+        if ($an_index[2] != '') {
+            echo "path = " . $an_index[2] . "\n<br />";
+        } else {
+            echo "<strong>you need a data directory path!</strong>\n<br />";
+        }
+        
+        if ($an_index[3] != '') {
+            echo "docinfo = " . $an_index[3] . "\n<br />";
+        }
+        
+        if ($an_index[4] != '') {
+            echo "morphology = " . $an_index[4] . "\n<br />";
+        }
+        
+        if ($an_index[5] != '') {
+            echo "index_sp = " . $an_index[5] . "\n<br />";
+        }
+        
+        if ($an_index[7] != '') {
+            echo "html_strip = " . $an_index[7] . "\n<br />";
+        }
+        
+        if ($an_index[14] != '') {
+            echo "html_index_attrs = " . $an_index[14] . "\n<br />";
+        }
+        
+        if ($an_index[6] != '') {
+            echo "index_zones = " . $an_index[6] . "\n<br />";
+        }
+        
+        if ($an_index[8] != '') {
+            echo "min_stemming_len = " . $an_index[8] . "\n<br />";
+        }
+        
+        if ($an_index[9] != '') {
+            echo "stopwords = " . $an_index[9] . "\n<br />";
+        }
+        
+        if ($an_index[10] != '') {
+            echo "wordforms = " . $an_index[10] . "\n<br />";
+        }
+        
+        if ($an_index[11] != '') {
+            echo "embedded_limit = " . $an_index[11] . "\n<br />";
+        }
+        
+        if ($an_index[12] != '') {
+            echo "exceptions = " . $an_index[12] . "\n<br />";
+        }
+        
+        echo "}\n<br />\n<br />";
+    }
+}
+
+
+//-----------------------------------|
+//---------- SOURCE SETTINGS ------- |
+//-----------------------------------|
+
+
+//source form information concatenated into a big string separated by ##.. can't remember why i did this instead
+//of just using an associative array... but, here it is. it works.
 function source_to_string()
 {
     #0   
@@ -229,7 +386,7 @@ function source_to_string()
     }
     
     
-    //if session source is not set, say 'its and array'.
+    //if session source is not set, say 'its an array'.
     if (!isset($_SESSION["source"])) {
         $_SESSION["source"] = array();
     }
@@ -237,115 +394,7 @@ function source_to_string()
     return $f_source_string;
 }
 
-//for use before print_blahblah();
-function open_output()
-{
-    echo <<<HERE
-<div class="row">
-<div class="col-md-4">
-HERE;
-}
-
-//for use after print_blahblah();
-function close_output()
-{
-    echo <<<HERE
-</div>
-</div>
-HERE;
-}
-
-//give this session['index_type']. it will print a form for that kind of index's options. links to docs.
-function print_index_form($index_type)
-{
-    if ($index_type == 'plain') {
-        echo <<<HERE
-	<div class="col-md-4" style="background-color:#FAFAFA">
-		<h3>make an index</h3>
-		<p class='help-block'>If you chose to make a scripted configuration, go ahead and do your
-			magic in these fields below. Use environment variables, do things with PHP, etc..</p>
-		<h4 style="margin-top:50px">Required options:</h4>
-		<form role='form' name='index' action='searchd_options.php' method='post'>
-			<div class='form-group'>
-					<label for='index_name'><a href='http://sphinxsearch.com/docs/current.html#confgroup-index'>
-					Name this Index (mandatory)</a></label><br />
-					<p class='help-block'>Inherit options from other indexes! Just add
-					a ':' followed by the name of the index to inherit from.</p>
-					<input type='text' name='index_name' placeholder='test_index'>
-					
-			</div>
-			<div class='form-group'>
-					<input type='hidden' name='index_type' value="$index_type">
-			</div>
-			<div class='form-group'>
-					<label for='index_source_name'><a href='http://sphinxsearch.com/docs/current.html#conf-sql-host'>Choose Source Name (mandatory)</a></label><br />
-					<input type='text' name='index_source_name' placeholder='src1'>
-			</div>
-			<div class='form-group'>
-					<label for='index_path'><a href='http://sphinxsearch.com/docs/current.html#conf-path'>Set index data directory (mandatory)</a></label><br />
-					<input type='text' name='index_path' placeholder='/var/data/test'>
-			</div>
-			<div class='form-group'>
-					<label for='docinfo'><a href='http://sphinxsearch.com/docs/current.html#conf-docinfo'>How to store Attributes</a></label><br />
-					<p class='help-block'>This defines how attributes will be stored on disk and RAM. "none" means that there will be no attributes. Sphinx will use 'none' if you don't set any attributes. "inline" means that attributes will be stored in the .spd file, along with the document ID lists. "extern" means that the docinfo (attributes) will be stored separately (externally) from document ID lists, in a special .spa file. </p>
-					<input type='text' name='docinfo' placeholder='none, extern, or inline'>
-			</div>
-			<div class='form-group'>
-					<label for='morphology'><a href='http://sphinxsearch.com/docs/current.html#conf-morphology'>Morphology Preprocessors</a></label><br />
-					<p class='help-block'> These can used, while indexing, to replace different forms of the same word with their normalized form. For instance, The English stemmer will normalize both "dogs" and "dog" to "dog", making search results for both searches the same. Sphinx supports lemmatizers, stemmers, and phonetic algorithms. </p>
-					<textarea type='text' name='morphology' placeholder='Comma separated list. Like this: stem_en, libstemmer_sv' style="width:300px!important"></textarea>
-			</div>
-			<div class='form-group'>
-					<label for='index_sp'><a href='http://sphinxsearch.com/docs/current.html#conf-index-sp'>Index Sentence and Paragraph Boundaries</a></label><br />
-					<p class='help-block'>This directive enables sentence and paragraph boundary indexing. It's required for the SENTENCE and PARAGRAPH operators to work. Sentence boundary detection is based on plain text analysis, so you only need to set index_sp = 1 to enable it. Paragraph detection is however based on HTML markup, and happens in the HTML stripper. So to index paragraph locations you also need to enable the stripper by specifying html_strip = 1. Both types of boundaries are detected based on a few built-in rules which you can learn more about by following the link on this section's title. </p>
-					<input type='text' name='index_sp' placeholder='1 or 0. 0 is default.'>
-			</div>
-			<div class='form-group'>
-					<label for='html_strip'><a href='http://sphinxsearch.com/docs/current.html#conf-html-strip'>HTML Stripper (other options need this..)</a></label><br />
-					<p class='help-block'>Whether to strip HTML markup from incoming full-text data. HTML tags are removed, their contents are left intact by default. You can choose to keep and index attributes of the tags (e.g., HREF attribute in an A tag, or ALT in an IMG one) with the next option ('html_index_attrs').</p> 
-					<input type='text' name='html_strip' placeholder='1 or 0. 0 is default.'>
-			</div>
-			<div class='form-group'>
-					<label for='html_index_attrs'><a href='http://sphinxsearch.com/docs/current.html#conf-html-index-attrs'>HTML/XML tags to index</a></label><br />
-					<p class='help-block'>Specifies HTML markup attributes whose contents should be retained and indexed even though other HTML markup is stripped. The format is per-tag enumeration of indexable attributes, as shown in the example below. </p>
-					<textarea type='text' name='html_index_attrs' placeholder='A comma separated list of in-field HTML/XML tags to index. Like this: h*, th, title. Requires html_strip = 1!' style="width:300px!important"></textarea>
-			</div>
-			<div class='form-group'>
-					<label for='index_zones'><a href='http://sphinxsearch.com/docs/current.html#conf-index-zones'>Index HTML/XML zones (tags)</a></label><br />
-					<p class='help-block'>Zones can be formally defined as follows. Everything between an opening and a matching closing tag is called a span, and the aggregate of all spans sharing the same tag name is a zone. For instance, everything between the occurrences of H1 and /H1 in the document field belongs to the H1 zone. In short, use this to enable the ZONE search operator!</p>
-					<textarea type='text' name='index_zones' placeholder='A comma separated list of in-field HTML/XML tags to index. Like this: h*, th, title. Requires html_strip = 1!' style="width:300px!important"></textarea>
-			</div>
-			<div class='form-group'>
-					<label for='min_stemming_len'><a href='http://sphinxsearch.com/docs/current.html#conf-min-stemming-len'>Minimum Stemming Length</a></label><br />
-					<input type='text' name='min_stemming_len' placeholder='4'">
-			</div>
-			<div class='form-group'>
-					<label for='stopwords'><a href='http://sphinxsearch.com/docs/current.html#conf-stopwords'>Stopwords Files</a></label><br />
-					<textarea type='text' name='stopwords' placeholder='"/usr/local/sphinx/data/stopwords.txt" or "stopwords-ru.txt stopwords-en.txt"' style="width:300px!important"></textarea>
-			</div>
-			<div class='form-group'>
-					<label for='wordforms'><a href='http://sphinxsearch.com/docs/current.html#conf-wordforms'>Wordforms Dictionary</a></label><br />
-					<input type='text' name='wordforms' placeholder='/usr/local/sphinx/data/wordforms.txt' style="width:300px!important">
-			</div>
-			<div class='form-group'>
-					<label for='embedded_limit'><a href='http://sphinxsearch.com/docs/current.html#conf-embedded-limit'>Embedded File Size Limit</a></label><br />
-					<input type='text' name='embedded_limit' placeholder='32K'">
-			</div>
-			<div class='form-group'>
-					<label for='exceptions'><a href='http://sphinxsearch.com/docs/current.html#conf-exceptions'>Exceptions File Path</a></label><br />
-					<input type='text' name='exceptions' placeholder='/usr/local/sphinx/data/exceptions.txt' style="width:300px!important">
-			</div>
-		
-			<div class='form-group'>
-				<input type='submit' value='Submit'>
-			</div>
-		</form>
-	</div>
-HERE;
-    }
-}
-
-//this will print that big ugly source options form.. and links to docs! reformat this!!
+//this will print the source options form, which will change depending on the source type.
 function print_source_form($source_type)
 {
     
@@ -358,11 +407,11 @@ function print_source_form($source_type)
 		<label for="source_name"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-host">Source Name (mandatory)</a></label><br />
 		<p class='help-block'>Inherit options from other sources! Just add
 			a ':' followed by the name of the source to inherit from.</p>
-		<input type="text" name="source_name" placeholder="src1"></textarea>
+		<input type="text" name="source_name" placeholder="src1 or src2:src1"></textarea>
 	</div>
 HERE;
     
-    if ($source_type !== 'xmlpipe2') {
+    if ($source_type !== 'xmlpipe2' && $source_type !== 'tsvpipe') {
         echo <<<HERE
 	<div class="form-group">
 		<label for="sql_host"><a href="http://sphinxsearch.com/docs/current.html#conf-sql-host">Host (mandatory)</a></label><br />
@@ -465,7 +514,8 @@ HERE;
 echo <<<HERE
 			<div class="form-group">
 				<label for="attributes"><a href="http://sphinxsearch.com/docs/current.html#attributes">Attributes</a> <br /></label><br />
-				<p class='help-block'>**Note that for xml and tsv source types, you'll have to explicitly declare the full text field (with: "xmlpipe_attr_field" or "tsvpipe_attr_field") in addition to its attributes.</p>
+				<p class='help-block'>**Note that for xml and tsv source types, you'll have to use 'tsvpipe_attr' or 'xmlpipe_attr' instead of 'sql_attr',
+				and you have to explicitly declare the full text field (with: "xmlpipe_attr_field" or "tsvpipe_attr_field") in addition to its attributes.</p>
 				<p class='help-block'>Also, be aware that you can configure xmlpipe within the stream itself. Take a look at
 				<a href='http://sphinxsearch.com/docs/current.html#ex-xmlpipe2-document'>this nice example</a>.</p>
 				<p class='help-block'>And, be sure that the first column of tsvpipe is a unique document id-- and remember to separate each field/attribute with a comma.</p> 
@@ -477,6 +527,7 @@ HERE;
         echo ' 
 				<div class="form-group">	
 					<label for="xmlpipe_command"><a href="http://sphinxsearch.com/docs/current.html#conf-xmlpipe-command">xml_command</a></label><br />
+					<p class="help-block">Are you thinking, "what does cat mean"? It means that we will be reading this file. Go <a href="http://www.linfo.org/cat.html">here</a> to learn more.</p>
 					<input type="text" name="xmlpipe_command" placeholder="cat /home/sphinx/test.xml"> 
 				</div>
 				<div class="form-group">	
@@ -487,6 +538,16 @@ HERE;
 	';
     }
     
+    if ($source_type == 'tsvpipe') {
+echo '
+				<div class="form-group">	
+					<label for="tsvpipe_command"><a href="http://sphinxsearch.com/docs/current.html#tsvpipe">tsvpipe_command</a></label><br />
+					<p class="help-block">Are you thinking, "what does cat mean"? Well, here it means that we will be reading this file. Go <a href="http://www.linfo.org/cat.html">here</a> to learn more.</p>
+					<input type="text" name="tsvpipe_command" placeholder="cat /home/sphinx/test.tsv"> 
+				</div>
+							
+';
+				}
     echo <<<HERE
 		<div class="form-group">
 			<input type="submit" value="Submit">
@@ -494,85 +555,6 @@ HERE;
 	</form>
 HERE;
     
-}
-
-//print all the indexes by giving this function $_SESSION['index']. if mandatory options are missing, tell the user!
-//this way, they can choose to not enter any info, then they'll have a reminder to switch it later on.
-function print_index($all_indexes)
-{
-    
-    foreach ($all_indexes as $index) {
-        $an_index = explode("##", $index);
-        
-        if ($an_index[0] != '') {
-            echo "index " . $an_index[0] . "\n<br />{ \n<br />";
-        } else {
-            echo "<strong>you need a source name!</strong><br />";
-        }
-        
-        if ($an_index[13] != '') {
-            echo "type = " . $an_index[13] . "\n<br />";
-        } else {
-            echo "<strong>you need an index type!</strong><br />";
-        }
-        
-        if ($an_index[1] != '') {
-            echo "source = " . $an_index[1] . "\n<br />";
-        } else {
-            echo "<strong>you need a source name!</strong>\n<br />";
-        }
-        if ($an_index[2] != '') {
-            echo "path = " . $an_index[2] . "\n<br />";
-        } else {
-            echo "<strong>you need a data directory path!</strong>\n<br />";
-        }
-        
-        if ($an_index[3] != '') {
-            echo "docinfo = " . $an_index[3] . "\n<br />";
-        }
-        
-        if ($an_index[4] != '') {
-            echo "morphology = " . $an_index[4] . "\n<br />";
-        }
-        
-        if ($an_index[5] != '') {
-            echo "index_sp = " . $an_index[5] . "\n<br />";
-        }
-        
-        if ($an_index[7] != '') {
-            echo "html_strip = " . $an_index[7] . "\n<br />";
-        }
-        
-        if ($an_index[14] != '') {
-            echo "html_index_attrs = " . $an_index[14] . "\n<br />";
-        }
-        
-        if ($an_index[6] != '') {
-            echo "index_zones = " . $an_index[6] . "\n<br />";
-        }
-        
-        if ($an_index[8] != '') {
-            echo "min_stemming_len = " . $an_index[8] . "\n<br />";
-        }
-        
-        if ($an_index[9] != '') {
-            echo "stopwords = " . $an_index[9] . "\n<br />";
-        }
-        
-        if ($an_index[10] != '') {
-            echo "wordforms = " . $an_index[10] . "\n<br />";
-        }
-        
-        if ($an_index[11] != '') {
-            echo "embedded_limit = " . $an_index[11] . "\n<br />";
-        }
-        
-        if ($an_index[12] != '') {
-            echo "exceptions = " . $an_index[12] . "\n<br />";
-        }
-        
-        echo "}\n<br />\n<br />";
-    }
 }
 
 //give this function session['source'] array and it will print all source blocks
@@ -691,6 +673,32 @@ function print_source($sources)
     }
 }
 
+
+//----------------------------------------------------|
+//---------------- SEARCHD SETTINGS ------------------|
+//----------------------------------------------------|
+
+
+//this will take searchd form information and return a concatenation seperated by ## (which will later be exploded)
+function searchd_to_string()
+{
+    
+    if (isset($_POST['listen'])) {
+        $f_searchd_string = $_POST['listen'] . "##";
+    }
+    if (isset($_POST['log'])) {
+        $f_searchd_string .= $_POST['log'] . "##";
+    }
+    if (isset($_POST['query_log'])) {
+        $f_searchd_string .= $_POST['query_log'] . "##";
+    }
+    if (isset($_POST['pid'])) {
+        $f_searchd_string .= $_POST['pid'] . "##";
+    }
+    
+    return $f_searchd_string;
+}
+
 //searchd only takes one config block, so its not an array. when this function is run, the old settings are lost.
 //give this function session['searchd']
 function print_searchd($searchd_string)
@@ -754,7 +762,13 @@ function print_searchd_form()
 HERE;
 }
 
-//html for usual header
+
+//-------------------------------------------------|
+//----------HTML FOR VARIOUS KINDS OF PAGES -------|
+//-------------------------------------------------|
+
+
+//usual header
 function print_header()
 {
     echo <<<HERE
@@ -775,6 +789,18 @@ function print_header()
 </head>
 
 <body>
+<img src="configtut.png" style="
+ border: none!important;
+ overflow: auto!important;
+ outline: none!important;
+ -webkit-box-shadow: none!important;
+ -moz-box-shadow: none!important;
+ box-shadow: none!important;
+ position: fixed!important;
+ bottom: 50px !important;
+ opacity: .4!important;
+ right: 5px!important">
+
 <div class="navbar navbar-default navbar-fixed-top" role="navigation" style="height:75px">
    <div class="container">
      <div class="navbar-header">
@@ -845,6 +871,18 @@ function print_final_header()
 </head>
 
 <body>
+
+<img src="configtut.png" style="
+ border: none!important;
+ overflow: auto!important;
+ outline: none!important;
+ -webkit-box-shadow: none!important;
+ -moz-box-shadow: none!important;
+ box-shadow: none!important;
+ position: fixed!important;
+ bottom: 50px !important;
+ opacity: .4!important;
+ right: 5px!important">
 <div class="navbar navbar-default navbar-fixed-top" role="navigation" style="height:75px">
    <div class="container">
      <div class="navbar-header">
@@ -903,8 +941,8 @@ function print_home_header()
 <link href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet'>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
-
 </head>
+
 <style>
 .navbar-default {
     background-color: #FFF;
@@ -912,6 +950,18 @@ function print_home_header()
 }
 </style>
 <body>
+<img src="configtut.png" style="
+ border: none!important;
+ overflow: auto!important;
+ outline: none!important;
+ -webkit-box-shadow: none!important;
+ -moz-box-shadow: none!important;
+ box-shadow: none!important;
+ position: fixed!important;
+ bottom: 50px !important;
+ opacity: .4!important;
+ right: 5px!important">
+ 
 <div class="navbar navbar-default navbar-fixed-top" role="navigation" style="height:75px">
    <div class="container">
      <div class="navbar-header">
