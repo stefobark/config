@@ -11,71 +11,69 @@ function index_to_string($index_type)
 {
     #0
     if (isset($_POST["index_name"])) {
-        $f_index_string = $_POST["index_name"] . "##";
+        $f_index_string["index_name"] = $_POST["index_name"];
     }
     #1
     if (isset($_POST["index_source_name"])) {
-        $f_index_string .= $_POST["index_source_name"] . "##";
+        $f_index_string["index_source_name"] = $_POST["index_source_name"];
     }
     #2
     if (isset($_POST["index_path"])) {
-        $f_index_string .= $_POST["index_path"] . "##";
+        $f_index_string["index_path"] = $_POST["index_path"];
     }
     #3
     if (isset($_POST["docinfo"])) {
-        $f_index_string .= $_POST["docinfo"] . "##";
+        $f_index_string["docinfo"] = $_POST["docinfo"];
     }
     #4
     if (isset($_POST["morphology"])) {
-        $f_index_string .= $_POST["morphology"] . "##";
+        $f_index_string["morphology"] = $_POST["morphology"];
     }
     #5
     if (isset($_POST["index_sp"])) {
-        $f_index_string .= $_POST["index_sp"] . "##";
+        $f_index_string["index_sp"] = $_POST["index_sp"];
     }
     #6
     if (isset($_POST["index_zones"])) {
-        $f_index_string .= $_POST["index_zones"] . "##";
+        $f_index_string["index_zones"] = $_POST["index_zones"];
     }
     #7
     if (isset($_POST["html_strip"])) {
-        $f_index_string .= $_POST["html_strip"] . "##";
+        $f_index_string["html_strip"] = $_POST["html_strip"];
     }
     #8
     if (isset($_POST["min_stemming_len"])) {
-        $f_index_string .= $_POST["min_stemming_len"] . "##";
+        $f_index_string["min_stemming_len"] = $_POST["min_stemming_len"];
     }
     #9
     if (isset($_POST["stopwords"])) {
-        $f_index_string .= $_POST["stopwords"] . "##";
+        $f_index_string["stopwords"] = $_POST["stopwords"];
     }
     #10
     if (isset($_POST["wordforms"])) {
-        $f_index_string .= $_POST["wordforms"] . "##";
+        $f_index_string["wordforms"] = $_POST["wordforms"];
     }
     #11
     if (isset($_POST["embedded_limit"])) {
-        $f_index_string .= $_POST["embedded_limit"] . "##";
+        $f_index_string["embedded_limit"] = $_POST["embedded_limit"];
     }
     #12
     if (isset($_POST["exceptions"])) {
-        $f_index_string .= $_POST["exceptions"] . "##";
+        $f_index_string["exceptions"] = $_POST["exceptions"];
     }
     #13
     if (isset($index_type)) {
-        $f_index_string .= $_SESSION['index_type'] . "##";
+        $f_index_string["index_type"] = $_SESSION['index_type'];
     }
     #14
     if (isset($_POST["html_index_attrs"])) {
-        $f_index_string .= $_POST["html_index_attrs"] . "##";
+        $f_index_string["html_index_attrs"] = $_POST["html_index_attrs"];
     }
     
     
     if (!isset($_SESSION['index'])) {
         $_SESSION['index'] = array();
     }
-    
-    $f_index_string .= $index_type . "##";
     
     return $f_index_string;
 }
@@ -173,75 +171,75 @@ HERE;
 //this way, they can choose to not enter any info, then they'll have a reminder to switch it later on.
 function print_index($all_indexes)
 {
-    
+    var_dump($all_indexes);
     foreach ($all_indexes as $index) {
-        $an_index = explode("##", $index);
+        //$an_index = explode("##", $index);
         
-        if ($an_index[0] != '') {
-            echo "index " . $an_index[0] . "\n<br />{ \n<br />";
+        if ($index["index_name"] != '') {
+            echo "index " . $index["index_name"] . "\n<br />{ \n<br />";
         } else {
             echo "<strong>you need a source name!</strong><br />";
         }
         
-        if ($an_index[13] != '') {
-            echo "type = " . $an_index[13] . "\n<br />";
+        if ($index["index_type"] != '') {
+            echo "type = " . $index["index_type"] . "\n<br />";
         } else {
             echo "<strong>you need an index type!</strong><br />";
         }
         
-        if ($an_index[1] != '') {
-            echo "source = " . $an_index[1] . "\n<br />";
+        if ($index["index_source_name"] != '') {
+            echo "source = " . $index['index_source_name'] . "\n<br />";
         } else {
             echo "<strong>you need a source name!</strong>\n<br />";
         }
-        if ($an_index[2] != '') {
-            echo "path = " . $an_index[2] . "\n<br />";
+        if ($index["index_path"] != '') {
+            echo "path = " . $index["index_path"] . "\n<br />";
         } else {
             echo "<strong>you need a data directory path!</strong>\n<br />";
         }
         
-        if ($an_index[3] != '') {
-            echo "docinfo = " . $an_index[3] . "\n<br />";
+        if ($index["docinfo"] != '') {
+            echo "docinfo = " . $index["docinfo"] . "\n<br />";
         }
         
-        if ($an_index[4] != '') {
-            echo "morphology = " . $an_index[4] . "\n<br />";
+        if ($index["morphology"] != '') {
+            echo "morphology = " . $index["morphology"] . "\n<br />";
         }
         
-        if ($an_index[5] != '') {
-            echo "index_sp = " . $an_index[5] . "\n<br />";
+        if ($index["index_sp"] != '') {
+            echo "index_sp = " . $index["index_sp"] . "\n<br />";
         }
         
-        if ($an_index[7] != '') {
-            echo "html_strip = " . $an_index[7] . "\n<br />";
+        if ($index["html_strip"] != '') {
+            echo "html_strip = " . $index["html_strip"] . "\n<br />";
         }
         
-        if ($an_index[14] != '') {
-            echo "html_index_attrs = " . $an_index[14] . "\n<br />";
+        if ($index["html_index_attrs"] != '') {
+            echo "html_index_attrs = " . $index["html_index_attrs"] . "\n<br />";
         }
         
-        if ($an_index[6] != '') {
-            echo "index_zones = " . $an_index[6] . "\n<br />";
+        if ($index["index_zones"] != '') {
+            echo "index_zones = " . $index["index_zones"] . "\n<br />";
         }
         
-        if ($an_index[8] != '') {
-            echo "min_stemming_len = " . $an_index[8] . "\n<br />";
+        if ($index["min_stemming_len"] != '') {
+            echo "min_stemming_len = " . $index["min_stemming_len"] . "\n<br />";
         }
         
-        if ($an_index[9] != '') {
-            echo "stopwords = " . $an_index[9] . "\n<br />";
+        if ($index["stopwords"] != '') {
+            echo "stopwords = " . $index["stopwords"] . "\n<br />";
         }
         
-        if ($an_index[10] != '') {
-            echo "wordforms = " . $an_index[10] . "\n<br />";
+        if ($index["wordforms"] != '') {
+            echo "wordforms = " . $index["wordforms"] . "\n<br />";
         }
         
-        if ($an_index[11] != '') {
-            echo "embedded_limit = " . $an_index[11] . "\n<br />";
+        if ($index["embedded_limit"] != '') {
+            echo "embedded_limit = " . $index["embedded_limit"] . "\n<br />";
         }
         
-        if ($an_index[12] != '') {
-            echo "exceptions = " . $an_index[12] . "\n<br />";
+        if ($index["exceptions"] != '') {
+            echo "exceptions = " . $index["exceptions"] . "\n<br />";
         }
         
         echo "}\n<br />\n<br />";
