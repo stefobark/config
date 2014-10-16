@@ -1,13 +1,11 @@
 ####the idea####
 
-I want to help people who are just getting started with Sphinx. So, here are a bunch of forms that collect configuration options and stuff them in session variables. 
-
-It might be a bit messy (and unfinished), but right now, you can make a sphinx configuration file for various kinds of plain indexes. You can define multiple sources and multiple indexes and then one config block to define searchd settings. I'm adding descriptions from the documentation and trying to remind people of inheriting (from other indexes/sources) and scripting (use environment variables, php, etc...).
+I want to help people who are just getting started with Sphinx. So, I'm learning about PHP and building this Sphinx configuration tutorial. Check it out!
 
 There are links to the Sphinx documentation on the input field titles. So, if you don't know what the options do, and if the descriptions are confusing, follow the links. If the documentation is confusing, check our [blog](http://sphinxsearch.com/blog/), [forum](http://sphinxsearch.com/forum/), tweet at me (@sphinxsearch or @steven_barker), or send a [note](http://sphinxsearch.com/about/contact/#contacts).
 
 ####in action####
-go [here](http://stevenjbarker.comoj.com) to see. Otherwise, grab these files and run them from your own machine. Either way, in the end, after answering a few questions, you'll get some text to copy and paste. Give it some name that ends with '.conf'.
+Go [here](http://stevenjbarker.comoj.com) to see what it looks like (I just put it up with some free hosting). Otherwise, grab these files and run them from your own machine. Either way, in the end, after answering a few questions, you'll get some text to copy and paste. Just give it a name that ends with '.conf' and use it to run indexer (unless you're using realtime indexes... then you don't need to think about indexer) and start searchd.
 
 ####want to help?####
 I'm new to all this stuff. So, please do tell me if you see a better way of doing things.
