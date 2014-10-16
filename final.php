@@ -7,9 +7,10 @@ $scripted = $_SESSION['scripted'];
 echo "
 		<div class='container' style='margin-top:100px'>
 			<div class='row'>
-			<p class='text-center'>
-			<img src='bluesphinx.png' id='copy-button' class='text-center' style='margin-top:25px; margin-bottom:25px!important'><br />
-			<button id='copy-button'>copy to clipboard</button><br /></p></div>";
+				<p class='text-center'>
+				<img src='bluesphinx.png' id='copy-button' class='text-center' style='margin-top:25px; margin-bottom:25px!important'><br />
+				<button id='copy-button'>copy to clipboard</button><br /></p>
+			</div>";
 
 echo <<<HERE
 <script type="text/javascript">
@@ -22,13 +23,15 @@ $("button#copy-button").zclip({
 </script>
 HERE;
 
-open_output();
-echo "<div id='copy'>";
+echo "<div class='row'>
+			<div class='col-md-8'>
+				<div id='copy'>";
+
 
 if(strpos($scripted,'bash') !== false){
 		echo "$scripted <br /><br />\n";
 		}
-print_source($_SESSION['source'], $_SESSION['type']);
+print_source($_SESSION['source'], $_SESSION['source_type']);
 print_index($_SESSION['index']);
 print_searchd($_SESSION['searchd']);
 
