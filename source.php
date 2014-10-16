@@ -3,6 +3,10 @@ session_start();
 require_once('functions.php');
 print_home_header();
 
+//grab if they choose to use env variables
+if(isset($_SESSION['scripted'])){
+	$_SESSION['scripted'] = "#!" . $_GET['scripted'] . "<br />\n printf " . '"';
+}
 echo <<<HERE
 <div class="container" style='margin-top:100px!important'>
 	<div class="row">
