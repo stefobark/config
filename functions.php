@@ -5,77 +5,151 @@
 //----------------------------|
 
 
-//take index form info, concatenate separated by ##. because there will be many, if we haven't already,
-//set session['index'] to array.
-function index_to_string($index_type)
+// add index form info to this array and return it
+function process_index($index_type)
 {
-    #0
-    if (isset($_POST["index_name"])) {
-        $f_index_string["index_name"] = $_POST["index_name"];
+    
+    if ($index_type == 'plain') {
+        
+        if (!isset($_SESSION['index'])) {
+            $_SESSION['index'] = array();
+        }
+        
+        if (isset($_POST["index_name"])) {
+            $f_index["index_name"] = $_POST["index_name"];
+        }
+        
+        if (isset($_POST["index_source_name"])) {
+            $f_index["index_source_name"] = $_POST["index_source_name"];
+        }
+        
+        if (isset($_POST["index_path"])) {
+            $f_index["index_path"] = $_POST["index_path"];
+        }
+        
+        if (isset($_POST["docinfo"])) {
+            $f_index["docinfo"] = $_POST["docinfo"];
+        }
+        
+        if (isset($_POST["morphology"])) {
+            $f_index["morphology"] = $_POST["morphology"];
+        }
+        
+        if (isset($_POST["index_sp"])) {
+            $f_index["index_sp"] = $_POST["index_sp"];
+        }
+        
+        if (isset($_POST["index_zones"])) {
+            $f_index["index_zones"] = $_POST["index_zones"];
+        }
+        
+        if (isset($_POST["html_strip"])) {
+            $f_index["html_strip"] = $_POST["html_strip"];
+        }
+        
+        if (isset($_POST["min_stemming_len"])) {
+            $f_index["min_stemming_len"] = $_POST["min_stemming_len"];
+        }
+        
+        if (isset($_POST["stopwords"])) {
+            $f_index["stopwords"] = $_POST["stopwords"];
+        }
+        
+        if (isset($_POST["wordforms"])) {
+            $f_index["wordforms"] = $_POST["wordforms"];
+        }
+        
+        if (isset($_POST["embedded_limit"])) {
+            $f_index["embedded_limit"] = $_POST["embedded_limit"];
+        }
+        
+        if (isset($_POST["exceptions"])) {
+            $f_index["exceptions"] = $_POST["exceptions"];
+        }
+        
+        if (isset($index_type)) {
+            $f_index["index_type"] = $_SESSION['index_type'];
+        }
+        
+        if (isset($_POST["html_index_attrs"])) {
+            $f_index["html_index_attrs"] = $_POST["html_index_attrs"];
+        }
+        
+        return $f_index;
     }
-    #1
-    if (isset($_POST["index_source_name"])) {
-        $f_index_string["index_source_name"] = $_POST["index_source_name"];
-    }
-    #2
-    if (isset($_POST["index_path"])) {
-        $f_index_string["index_path"] = $_POST["index_path"];
-    }
-    #3
-    if (isset($_POST["docinfo"])) {
-        $f_index_string["docinfo"] = $_POST["docinfo"];
-    }
-    #4
-    if (isset($_POST["morphology"])) {
-        $f_index_string["morphology"] = $_POST["morphology"];
-    }
-    #5
-    if (isset($_POST["index_sp"])) {
-        $f_index_string["index_sp"] = $_POST["index_sp"];
-    }
-    #6
-    if (isset($_POST["index_zones"])) {
-        $f_index_string["index_zones"] = $_POST["index_zones"];
-    }
-    #7
-    if (isset($_POST["html_strip"])) {
-        $f_index_string["html_strip"] = $_POST["html_strip"];
-    }
-    #8
-    if (isset($_POST["min_stemming_len"])) {
-        $f_index_string["min_stemming_len"] = $_POST["min_stemming_len"];
-    }
-    #9
-    if (isset($_POST["stopwords"])) {
-        $f_index_string["stopwords"] = $_POST["stopwords"];
-    }
-    #10
-    if (isset($_POST["wordforms"])) {
-        $f_index_string["wordforms"] = $_POST["wordforms"];
-    }
-    #11
-    if (isset($_POST["embedded_limit"])) {
-        $f_index_string["embedded_limit"] = $_POST["embedded_limit"];
-    }
-    #12
-    if (isset($_POST["exceptions"])) {
-        $f_index_string["exceptions"] = $_POST["exceptions"];
-    }
-    #13
-    if (isset($index_type)) {
-        $f_index_string["index_type"] = $_SESSION['index_type'];
-    }
-    #14
-    if (isset($_POST["html_index_attrs"])) {
-        $f_index_string["html_index_attrs"] = $_POST["html_index_attrs"];
+    if ($index_type == 'rt') {
+        
+        if (!isset($_SESSION['index'])) {
+            $_SESSION['index'] = array();
+        }
+        
+        if (isset($_POST["index_name"])) {
+            $f_index["index_name"] = $_POST["index_name"];
+        }
+        
+        if (isset($_POST["index_path"])) {
+            $f_index["index_path"] = $_POST["index_path"];
+        }
+        
+        if (isset($_POST["rt_field"])) {
+            $f_index["rt_field"] = $_POST["rt_field"];
+        }
+        
+        if (isset($_POST["rt_attr"])) {
+            $f_index["rt_attr"] = $_POST["rt_attr"];
+        }
+        
+        if (isset($_POST["docinfo"])) {
+            $f_index["docinfo"] = $_POST["docinfo"];
+        }
+        
+        if (isset($_POST["morphology"])) {
+            $f_index["morphology"] = $_POST["morphology"];
+        }
+        
+        if (isset($_POST["index_sp"])) {
+            $f_index["index_sp"] = $_POST["index_sp"];
+        }
+        
+        if (isset($_POST["index_zones"])) {
+            $f_index["index_zones"] = $_POST["index_zones"];
+        }
+        
+        if (isset($_POST["html_strip"])) {
+            $f_index["html_strip"] = $_POST["html_strip"];
+        }
+        
+        if (isset($_POST["min_stemming_len"])) {
+            $f_index["min_stemming_len"] = $_POST["min_stemming_len"];
+        }
+        
+        if (isset($_POST["stopwords"])) {
+            $f_index["stopwords"] = $_POST["stopwords"];
+        }
+        
+        if (isset($_POST["wordforms"])) {
+            $f_index["wordforms"] = $_POST["wordforms"];
+        }
+        
+        if (isset($_POST["embedded_limit"])) {
+            $f_index["embedded_limit"] = $_POST["embedded_limit"];
+        }
+        
+        if (isset($_POST["exceptions"])) {
+            $f_index["exceptions"] = $_POST["exceptions"];
+        }
+        
+        if (isset($index_type)) {
+            $f_index["index_type"] = $_SESSION['index_type'];
+        }
+        
+        if (isset($_POST["html_index_attrs"])) {
+            $f_index["html_index_attrs"] = $_POST["html_index_attrs"];
+        }
+        
+        return $f_index;
     }
     
-    
-    if (!isset($_SESSION['index'])) {
-        $_SESSION['index'] = array();
-    }
-    
-    return $f_index_string;
 }
 
 //give this session['index_type']. it will print a form for that kind of index's options. links to docs.
@@ -165,84 +239,208 @@ function print_index_form($index_type)
 	</div>
 HERE;
     }
+    
+    if ($index_type == 'rt') {
+        echo <<<HERE
+	<div class="col-md-4" style="background-color:#FAFAFA">
+		<h3>make an index</h3>
+		<p class='help-block'>If you chose to make a scripted configuration, use environment variables.</p>
+		<h4 style="margin-top:50px">Required options:</h4>
+		<form role='form' name='index' action='searchd_options.php' method='post'>
+			<div class='form-group'>
+				<label for='index_name'><a href='http://sphinxsearch.com/docs/current.html#confgroup-index'>
+				Name this Index (mandatory)</a></label><br />
+				<p class='help-block'>Inherit options from other indexes! Just add
+				a ':' followed by the name of the index to inherit from.</p>
+				<input type='text' name='index_name' placeholder='test_index'>					
+			</div>
+			<div class='form-group'>
+				<input type='hidden' name='index_type' value="$index_type">
+			</div>
+			<div class='form-group'>
+				<label for='index_path'><a href='http://sphinxsearch.com/docs/current.html#conf-path'>Set index data directory (mandatory)</a></label><br />
+				<input type='text' name='index_path' placeholder='/var/data/test'>
+			</div>
+			<div class='form-group'>
+				<label for='rt_field'><a href='http://sphinxsearch.com/docs/current.html#conf-rt-field'>Full-text field declaration (mandatory)</a></label><br />
+				<p class='help-block'>Full-text fields to be indexed are declared using rt_field directive. List all fields separated by a comma. The names must be unique. The order is preserved; and so field values in INSERT statements without an explicit list of inserted columns will have to be in the same order as configured.</p>
+				<textarea type='text' name='rt_field' placeholder='rt_field = some_field, rt_field = some_other_field, etc..' style="width:300px!important"></textarea>
+			</div>
+			<div class='form-group'>
+				<label for='rt_attr'><a href='http://sphinxsearch.com/docs/current.html#conf-rt-attr-uint'>RT attributes</a></label><br />
+				<p class='help-block'>List all attributes (rt_attr_...) here, separated by a comma. Possible attributes types include: 
+				<ul>
+					<li><a href="http://sphinxsearch.com/docs/current.html#conf-rt-attr-uint">rt_attr_uint (unsigned integer)</a></li>
+					<li><a href="http://sphinxsearch.com/docs/current.html#conf-rt-attr-bool">rt_attr_bool (boolean)</a></li>
+					<li><a href="http://sphinxsearch.com/docs/current.html#conf-rt-attr-bigint">rt_attr_bigint (big integer)</a></li>
+					<li><a href="http://sphinxsearch.com/docs/current.html#conf-rt-attr-float">rt_attr_float (floating point)</a></li> 
+					<li><a href="http://sphinxsearch.com/docs/current.html#conf-rt-attr-multi">rt_attr_multi (multi value attribute)</a></li> 
+					<li><a href="http://sphinxsearch.com/docs/current.html#conf-rt-attr-multi-64">rt_attr_multi_64</a></li>
+					<li><a href="http://sphinxsearch.com/docs/current.html#conf-rt-attr-timestamp">rt_attr_timestamp (unix timestamp)</a></li> 
+					<li><a href="http://sphinxsearch.com/docs/current.html#conf-rt-attr-string">rt_attr_string (string)</a></li> 
+					<li><a href="http://sphinxsearch.com/docs/current.html#conf-rt-attr-json">rt_attr_json (JSON)</a></li>
+				</ul></p>				
+				<textarea type='text' name='rt_attr' placeholder='rt_attr_uint = unsigned, rt_attr_json = json, etc..' style="width:300px!important"></textarea>
+			</div>
+			<div class='form-group'>
+					<label for='docinfo'><a href='http://sphinxsearch.com/docs/current.html#conf-docinfo'>How to store Attributes</a></label><br />
+					<p class='help-block'>This defines how attributes will be stored on disk and RAM. "none" means that there will be no attributes. Sphinx will use 'none' if you don't set any attributes. "inline" means that attributes will be stored in the .spd file, along with the document ID lists. "extern" means that the docinfo (attributes) will be stored separately (externally) from document ID lists, in a special .spa file. </p>
+					<input type='text' name='docinfo' placeholder='none, extern, or inline'>
+			</div>
+			<div class='form-group'>
+					<label for='morphology'><a href='http://sphinxsearch.com/docs/current.html#conf-morphology'>Morphology Preprocessors</a></label><br />
+					<p class='help-block'> These can used, while indexing, to replace different forms of the same word with their normalized form. For instance, The English stemmer will normalize both "dogs" and "dog" to "dog", making search results for both searches the same. Sphinx supports lemmatizers, stemmers, and phonetic algorithms. </p>
+					<textarea type='text' name='morphology' placeholder='Comma separated list. Like this: stem_en, libstemmer_sv' style="width:300px!important"></textarea>
+			</div>
+			<div class='form-group'>
+					<label for='index_sp'><a href='http://sphinxsearch.com/docs/current.html#conf-index-sp'>Index Sentence and Paragraph Boundaries</a></label><br />
+					<p class='help-block'>This directive enables sentence and paragraph boundary indexing. It's required for the SENTENCE and PARAGRAPH operators to work. Sentence boundary detection is based on plain text analysis, so you only need to set index_sp = 1 to enable it. Paragraph detection is however based on HTML markup, and happens in the HTML stripper. So to index paragraph locations you also need to enable the stripper by specifying html_strip = 1. Both types of boundaries are detected based on a few built-in rules which you can learn more about by following the link on this section's title. </p>
+					<input type='text' name='index_sp' placeholder='1 or 0. 0 is default.'>
+			</div>
+			<div class='form-group'>
+					<label for='html_strip'><a href='http://sphinxsearch.com/docs/current.html#conf-html-strip'>HTML Stripper (other options need this..)</a></label><br />
+					<p class='help-block'>Whether to strip HTML markup from incoming full-text data. HTML tags are removed, their contents are left intact by default. You can choose to keep and index attributes of the tags (e.g., HREF attribute in an A tag, or ALT in an IMG one) with the next option ('html_index_attrs').</p> 
+					<input type='text' name='html_strip' placeholder='1 or 0. 0 is default.'>
+			</div>
+			<div class='form-group'>
+					<label for='html_index_attrs'><a href='http://sphinxsearch.com/docs/current.html#conf-html-index-attrs'>HTML/XML tags to index</a></label><br />
+					<p class='help-block'>Specifies HTML markup attributes whose contents should be retained and indexed even though other HTML markup is stripped. The format is per-tag enumeration of indexable attributes, as shown in the example below. </p>
+					<textarea type='text' name='html_index_attrs' placeholder='A comma separated list of in-field HTML/XML tags to index. Like this: h*, th, title. Requires html_strip = 1!' style="width:300px!important"></textarea>
+			</div>
+			<div class='form-group'>
+					<label for='index_zones'><a href='http://sphinxsearch.com/docs/current.html#conf-index-zones'>Index HTML/XML zones (tags)</a></label><br />
+					<p class='help-block'>Zones can be formally defined as follows. Everything between an opening and a matching closing tag is called a span, and the aggregate of all spans sharing the same tag name is a zone. For instance, everything between the occurrences of H1 and /H1 in the document field belongs to the H1 zone. In short, use this to enable the ZONE search operator!</p>
+					<textarea type='text' name='index_zones' placeholder='A comma separated list of in-field HTML/XML tags to index. Like this: h*, th, title. Requires html_strip = 1!' style="width:300px!important"></textarea>
+			</div>
+			<div class='form-group'>
+					<label for='min_stemming_len'><a href='http://sphinxsearch.com/docs/current.html#conf-min-stemming-len'>Minimum Stemming Length</a></label><br />
+					<input type='text' name='min_stemming_len' placeholder='4'">
+			</div>
+			<div class='form-group'>
+					<label for='stopwords'><a href='http://sphinxsearch.com/docs/current.html#conf-stopwords'>Stopwords Files</a></label><br />
+					<textarea type='text' name='stopwords' placeholder='"/usr/local/sphinx/data/stopwords.txt" or "stopwords-ru.txt stopwords-en.txt"' style="width:300px!important"></textarea>
+			</div>
+			<div class='form-group'>
+					<label for='wordforms'><a href='http://sphinxsearch.com/docs/current.html#conf-wordforms'>Wordforms Dictionary</a></label><br />
+					<input type='text' name='wordforms' placeholder='/usr/local/sphinx/data/wordforms.txt' style="width:300px!important">
+			</div>
+			<div class='form-group'>
+					<label for='embedded_limit'><a href='http://sphinxsearch.com/docs/current.html#conf-embedded-limit'>Embedded File Size Limit</a></label><br />
+					<input type='text' name='embedded_limit' placeholder='32K'">
+			</div>
+			<div class='form-group'>
+					<label for='exceptions'><a href='http://sphinxsearch.com/docs/current.html#conf-exceptions'>Exceptions File Path</a></label><br />
+					<input type='text' name='exceptions' placeholder='/usr/local/sphinx/data/exceptions.txt' style="width:300px!important">
+			</div>
+			<div class='form-group'>
+				<input type='submit' value='Submit'>
+			</div>
+		</form>
+	</div>	
+					
+HERE;
+    }
 }
 
 //print all the indexes by giving this function $_SESSION['index']. if mandatory options are missing, tell the user!
 //this way, they can choose to not enter any info, then they'll have a reminder to switch it later on.
 function print_index($all_indexes)
 {
-    var_dump($all_indexes);
     foreach ($all_indexes as $index) {
         //$an_index = explode("##", $index);
         
-        if ($index["index_name"] != '') {
+        if (!empty($index["index_name"])) {
             echo "index " . $index["index_name"] . "\n<br />{ \n<br />";
         } else {
             echo "<strong>you need a source name!</strong><br />";
         }
         
-        if ($index["index_type"] != '') {
+        if (!empty($index["index_type"])) {
             echo "type = " . $index["index_type"] . "\n<br />";
         } else {
             echo "<strong>you need an index type!</strong><br />";
         }
         
-        if ($index["index_source_name"] != '') {
-            echo "source = " . $index['index_source_name'] . "\n<br />";
-        } else {
-            echo "<strong>you need a source name!</strong>\n<br />";
-        }
-        if ($index["index_path"] != '') {
-            echo "path = " . $index["index_path"] . "\n<br />";
-        } else {
-            echo "<strong>you need a data directory path!</strong>\n<br />";
+        if ($index["index_type"] == 'plain') {
+            
+            if (!empty($index["index_source_name"])) {
+                echo "source = " . $index['index_source_name'] . "\n<br />";
+            } else {
+                echo "<strong>#you didn't enter a source name</strong>\n<br />";
+            }
         }
         
-        if ($index["docinfo"] != '') {
-            echo "docinfo = " . $index["docinfo"] . "\n<br />";
+        if ($index["index_type"] == 'rt') {
+            
+            if (!empty($index["rt_field"])) {
+                $explode_fields = explode(',', $index["rt_field"]);
+                foreach ($explode_fields as $field) {
+                    echo $field . "\n<br />";
+                }
+            } else {
+                echo "<strong>#you didn't enter any fields</strong>\n<br />";
+            }
+            
+            if (!empty($index["rt_attr"])) {
+                $explode_it = explode(',', $index["rt_attr"]);
+                foreach ($explode_it as $attr) {
+                    echo $attr . "\n<br />";
+                }
+            }
+            
+            
+            if (!empty($index["index_path"])) {
+                echo "path = " . $index["index_path"] . "\n<br />";
+            } else {
+                echo "<strong>you need a data directory path!</strong>\n<br />";
+            }
+            
+            if (!empty($index["docinfo"])) {
+                echo "docinfo = " . $index["docinfo"] . "\n<br />";
+            }
+            
+            if (!empty($index["morphology"])) {
+                echo "morphology = " . $index["morphology"] . "\n<br />";
+            }
+            
+            if (!empty($index["index_sp"])) {
+                echo "index_sp = " . $index["index_sp"] . "\n<br />";
+            }
+            
+            if (!empty($index["html_strip"])) {
+                echo "html_strip = " . $index["html_strip"] . "\n<br />";
+            }
+            
+            if (!empty($index["html_index_attrs"])) {
+                echo "html_index_attrs = " . $index["html_index_attrs"] . "\n<br />";
+            }
+            
+            if (!empty($index["index_zones"])) {
+                echo "index_zones = " . $index["index_zones"] . "\n<br />";
+            }
+            
+            if (!empty($index["min_stemming_len"])) {
+                echo "min_stemming_len = " . $index["min_stemming_len"] . "\n<br />";
+            }
+            
+            if (!empty($index["stopwords"])) {
+                echo "stopwords = " . $index["stopwords"] . "\n<br />";
+            }
+            
+            if (!empty($index["wordforms"])) {
+                echo "wordforms = " . $index["wordforms"] . "\n<br />";
+            }
+            
+            if (!empty($index["embedded_limit"])) {
+                echo "embedded_limit = " . $index["embedded_limit"] . "\n<br />";
+            }
+            
+            if (!empty($index["exceptions"])) {
+                echo "exceptions = " . $index["exceptions"] . "\n<br />";
+            }
+            
+            echo "}\n<br />\n<br />";
         }
-        
-        if ($index["morphology"] != '') {
-            echo "morphology = " . $index["morphology"] . "\n<br />";
-        }
-        
-        if ($index["index_sp"] != '') {
-            echo "index_sp = " . $index["index_sp"] . "\n<br />";
-        }
-        
-        if ($index["html_strip"] != '') {
-            echo "html_strip = " . $index["html_strip"] . "\n<br />";
-        }
-        
-        if ($index["html_index_attrs"] != '') {
-            echo "html_index_attrs = " . $index["html_index_attrs"] . "\n<br />";
-        }
-        
-        if ($index["index_zones"] != '') {
-            echo "index_zones = " . $index["index_zones"] . "\n<br />";
-        }
-        
-        if ($index["min_stemming_len"] != '') {
-            echo "min_stemming_len = " . $index["min_stemming_len"] . "\n<br />";
-        }
-        
-        if ($index["stopwords"] != '') {
-            echo "stopwords = " . $index["stopwords"] . "\n<br />";
-        }
-        
-        if ($index["wordforms"] != '') {
-            echo "wordforms = " . $index["wordforms"] . "\n<br />";
-        }
-        
-        if ($index["embedded_limit"] != '') {
-            echo "embedded_limit = " . $index["embedded_limit"] . "\n<br />";
-        }
-        
-        if ($index["exceptions"] != '') {
-            echo "exceptions = " . $index["exceptions"] . "\n<br />";
-        }
-        
-        echo "}\n<br />\n<br />";
     }
 }
 
@@ -252,139 +450,97 @@ function print_index($all_indexes)
 //-----------------------------------|
 
 
-//source form information concatenated into a big string separated by ##.. can't remember why i did this instead
-//of just using an associative array... but, here it is. it works.
-function source_to_string()
+//get source form info into an array and return it
+function process_source()
 {
-    #0   
+    
     if (!empty($_POST['source_name'])) {
-        $f_source_string = $_POST['source_name'] . "##";
-    } else {
-        $f_source_string = "*##";
+        $f_source_string['source_name'] = $_POST['source_name'];
     }
-    #1    
+    
+    
     if (!empty($_POST['sql_host'])) {
-        $f_source_string .= $_POST['sql_host'] . "##";
-    } else {
-        $f_source_string .= "*##";
+        $f_source_string['sql_host'] = $_POST['sql_host'];
     }
-    #2    
+    
     if (!empty($_POST['sql_port'])) {
-        $f_source_string .= $_POST['sql_port'] . "##";
-    } else {
-        $f_source_string .= "*##";
+        $f_source_string['sql_port'] = $_POST['sql_port'];
     }
-    #3    
+    
     if (!empty($_POST['sql_user'])) {
-        $f_source_string .= $_POST['sql_user'] . "##";
-    } else {
-        $f_source_string .= "*##";
+        $f_source_string['sql_user'] = $_POST['sql_user'];
     }
-    #4    
+    
     if (!empty($_POST['sql_pass'])) {
-        $f_source_string .= $_POST['sql_pass'] . "##";
-    } else {
-        $f_source_string .= "*##";
+        $f_source_string['sql_pass'] = $_POST['sql_pass'];
     }
-    #5    
+    
     if (!empty($_POST['sql_db'])) {
-        $f_source_string .= $_POST['sql_db'] . "##";
-    } else {
-        $f_source_string .= "*##";
+        $f_source_string['sql_db'] = $_POST['sql_db'];
     }
-    #6    
+    
     if (!empty($_POST['sql_sock'])) {
-        $f_source_string .= $_POST['sql_sock'] . "##";
-    } else {
-        $f_source_string .= "*##";
+        $f_source_string['sql_sock'] = $_POST['sql_sock'];
     }
-    #7    
+    
     if (!empty($_POST['mysql_connect_flags'])) {
-        $f_source_string .= $_POST['mysql_connect_flags'] . "##";
-    } else {
-        $f_source_string .= "*##";
+        $f_source_string['mysql_connect_flags'] = $_POST['mysql_connect_flags'];
     }
-    #8    
+    
     if (!empty($_POST['mysql_ssl_cert'])) {
-        $f_source_string .= $_POST['mysql_ssl_cert'] . "##";
-    } else {
-        $f_source_string .= "*##";
+        $f_source_string['mysql_ssl_cert'] = $_POST['mysql_ssl_cert'];
     }
-    #9   
+    
     if (!empty($_POST['mysql_ssl_key'])) {
-        $f_source_string .= $_POST['mysql_ssl_key'] . "##";
-    } else {
-        $f_source_string .= "*##";
+        $f_source_string['mysql_ssl_key'] = $_POST['mysql_ssl_key'];
     }
-    #10    
+    
     if (!empty($_POST['mysql_ssl_ca'])) {
-        $f_source_string .= $_POST['mysql_ssl_ca'] . "##";
-    } else {
-        $f_source_string .= "*##";
+        $f_source_string['mysql_ssl_ca'] = $_POST['mysql_ssl_ca'];
     }
-    #11    
+    
     if (!empty($_POST['attributes'])) {
-        $f_source_string .= $_POST['attributes'] . "##";
-    } else {
-        $f_source_string .= "*##";
+        $f_source_string['attributes'] = $_POST['attributes'];
     }
-    #12    
+    
     if (!empty($_POST['sql_query'])) {
-        $f_source_string .= $_POST['sql_query'] . "##";
-    } else {
-        $f_source_string .= "*##";
+        $f_source_string['sql_query'] = $_POST['sql_query'];
     }
-    #13    
+    
     if (!empty($_POST['sql_joined_field'])) {
-        $f_source_string .= $_POST['sql_joined_field'] . "##";
-    } else {
-        $f_source_string .= "*##";
+        $f_source_string['sql_joined_field'] = $_POST['sql_joined_field'];
     }
-    #14    
+    
     if (!empty($_POST['sql_query_range'])) {
-        $f_source_string .= $_POST['sql_query_range'] . "##";
-    } else {
-        $f_source_string .= "*##";
+        $f_source_string['sql_query_range'] = $_POST['sql_query_range'];
     }
-    #15    
+    
     if (!empty($_POST['mssql_winauth'])) {
-        $f_source_string .= $_POST['mssql_winauth'] . "##";
-    } else {
-        $f_source_string .= "*##";
+        $f_source_string['mssql_winauth'] = $_POST['mssql_winauth'];
     }
-    #16    
+    
     if (!empty($_POST['sql_column_buffers'])) {
-        $f_source_string .= $_POST['sql_column_buffers'] . "##";
-    } else {
-        $f_source_string .= "*##";
+        $f_source_string['sql_column_buffers'] = $_POST['sql_column_buffers'];
     }
-    #17    
+    
     if (!empty($_POST['odbc_dsn'])) {
-        $f_source_string .= $_POST['odbc_dsn'] . "##";
-    } else {
-        $f_source_string .= "*##";
+        $f_source_string['odbc_dsn'] = $_POST['odbc_dsn'];
     }
-    #18    
+    
     if (!empty($_POST['source_type'])) {
-        $f_source_string .= $_POST['source_type'] . "##";
-    } else {
-        $f_source_string .= "*##";
+        $f_source_string['source_type'] = $_POST['source_type'];
     }
-    #19    
+    
     if (!empty($_POST['xmlpipe_command'])) {
-        $f_source_string .= $_POST['xmlpipe_command'] . "##";
-    } else {
-        $f_source_string .= "*##";
+        $f_source_string['xmlpipe_command'] = $_POST['xmlpipe_command'];
     }
-    #20    
+    
     if (!empty($_POST['xmlpipe_fixup_utf8'])) {
-        $f_source_string .= $_POST['xmlpipe_fixup_utf8'] . "##";
-    } else {
-        $f_source_string .= "*##";
+        $f_source_string['xmlpipe_fixup_utf8'] = $_POST['xmlpipe_fixup_utf8'];
     }
     
     
-    //if session source is not set, say 'its an array'.
+    //if session source is not set, say 'its an array'. WHY DID I DO THIS?
     if (!isset($_SESSION["source"])) {
         $_SESSION["source"] = array();
     }
@@ -509,7 +665,7 @@ HERE;
 			
 HERE;
     }
-echo <<<HERE
+    echo <<<HERE
 			<div class="form-group">
 				<label for="attributes"><a href="http://sphinxsearch.com/docs/current.html#attributes">Attributes</a> <br /></label><br />
 				<p class='help-block'>**Note that for xml and tsv source types, you'll have to use 'tsvpipe_attr' or 'xmlpipe_attr' instead of 'sql_attr',
@@ -520,7 +676,7 @@ echo <<<HERE
 				<textarea name="attributes" rows="4" placeholder="for sql type: sql_attr_uint=something, for xml type: xmlpipe_field_string, for tsv type: tsvpipe_attr_json" style="width:300px!important"></textarea>
 			</div>
 HERE;
-
+    
     if ($source_type == 'xmlpipe2') {
         echo ' 
 				<div class="form-group">	
@@ -537,7 +693,7 @@ HERE;
     }
     
     if ($source_type == 'tsvpipe') {
-echo '
+        echo '
 				<div class="form-group">	
 					<label for="tsvpipe_command"><a href="http://sphinxsearch.com/docs/current.html#tsvpipe">tsvpipe_command</a></label><br />
 					<p class="help-block">Are you thinking, "what does cat mean"? Well, here it means that we will be reading this file. Go <a href="http://www.linfo.org/cat.html">here</a> to learn more.</p>
@@ -545,7 +701,7 @@ echo '
 				</div>
 							
 ';
-				}
+    }
     echo <<<HERE
 		<div class="form-group">
 			<input type="submit" value="Submit">
@@ -560,107 +716,105 @@ HERE;
 function print_source($sources)
 {
     
-    //for each of the source strings, split it into an array on '##'
-    foreach ($sources as $row) {
-        $options = explode("##", $row);
+    foreach ($sources as $source) {
         
-        echo "source " . $options[0] . "\n<br /> { \n<br />";
+        echo "source " . $source['source_name'] . "\n<br /> { \n<br />";
         
-        echo "type = " . $options[18] . "\n<br />";
+        echo "type = " . $source['source_type'] . "\n<br />";
         
-        if ($options[18] == 'xmlpipe2') {
-            if ($options[19] !== '*') {
-                echo "xmlpipe_command = " . $options[19] . "\n<br />";
+        if ($source['source_type'] == 'xmlpipe2') {
+            if (!empty($source['xmlpipe_command'])) {
+                echo "xmlpipe_command = " . $source['xmlpipe_command'] . "\n<br />";
             } else {
                 echo "<strong>you need to tell Sphinx where that xml is!</strong>\n<br />";
             }
-            if ($options[20] !== '*') {
-                echo "xmlpipe_fixup_utf8 = " . $options[20] . "\n<br />";
+            if ($source['xmlpipe_command'] !== '') {
+                echo "xmlpipe_fixup_utf8 = " . $source['xmlpipe_command'] . "\n<br />";
             }
         }
         
-        if ($options[18] == 'mysql' || $options[18] == 'pgsql' || $options[18] == 'mssql' || $options[18] == 'odbc') {
-            if ($options[1] !== '*') {
-                echo "sql_host = " . $options[1] . "\n<br />";
+        if ($source['source_type'] == 'mysql' || $source['source_type'] == 'pgsql' || $source['source_type'] == 'mssql' || $source['source_type'] == 'odbc') {
+            if (!empty($source['sql_host'])) {
+                echo "sql_host = " . $source['sql_host'] . "\n<br />";
             } else {
                 echo "<strong>you need sql_host!</strong>\n<br />";
             }
             
-            if ($options[2] !== '*') {
-                echo "sql_port = " . $options[2] . "\n<br />";
+            if (!empty($source['sql_port'])) {
+                echo "sql_port = " . $source['sql_port'] . "\n<br />";
             } else {
                 echo "<strong>you need sql_port!</strong>\n<br />";
             }
             
-            if ($options[3] !== '*') {
-                echo "sql_user = " . $options[3] . "\n<br />";
+            if (!empty($source['sql_user'])) {
+                echo "sql_user = " . $source['sql_user'] . "\n<br />";
             } else {
                 echo "<strong>you need sql_user!</strong>\n<br />";
             }
             
-            if ($options[4] !== '*') {
-                echo "sql_pass = " . $options[4] . "\n<br />";
+            if (!empty($source['sql_pass'])) {
+                echo "sql_pass = " . $source['sql_pass'] . "\n<br />";
             } else {
                 echo "sql_pass = \n<br />";
             }
             
-            if ($options[5] !== '*') {
-                echo "sql_db = " . $options[5] . "\n<br />";
+            if (!empty($source['sql_db'])) {
+                echo "sql_db = " . $source['sql_db'] . "\n<br />";
             } else {
                 echo "<strong>you need db name!</strong>\n<br />";
             }
             
-            if ($options[6] !== '*') {
-                echo "sql_sock = " . $options[6] . "\n<br />";
+            if (!empty($source['sql_sock'])) {
+                echo "sql_sock = " . $source['sql_sock'] . "\n<br />";
             }
             
-            if ($options[7] !== '*') {
-                echo "mysql_connect_flags = " . $options[7] . "\n<br />";
+            if (!empty($source['mysql_connect_flags'])) {
+                echo "mysql_connect_flags = " . $source['mysql_connect_flags'] . "\n<br />";
             }
             
-            if ($options[8] !== '*') {
-                echo "mysql_ssl_cert = " . $options[8] . "\n<br />";
+            if (!empty($source['mysql_ssl_cert'])) {
+                echo "mysql_ssl_cert = " . $source['mysql_ssl_cert'] . "\n<br />";
             }
             
-            if ($options[9] !== '*') {
-                echo "mysql_ssl_key = " . $options[9] . "\n<br />";
+            if (!empty($source['mysql_ssl_key'])) {
+                echo "mysql_ssl_key = " . $source['mysql_ssl_key'] . "\n<br />";
             }
             
-            if ($options[10] !== '*') {
-                echo "mysql_ssl_ca = " . $options[10] . "\n<br />";
+            if (!empty($source['mysql_ssl_ca'])) {
+                echo "mysql_ssl_ca = " . $source['mysql_ssl_ca'] . "\n<br />";
             }
             
-            if ($options[12] !== '*') {
-                echo "sql_query = " . $options[12] . "\n<br />";
+            if (!empty($source['sql_query'])) {
+                echo "sql_query = " . $source['sql_query'] . "\n<br />";
             } else {
                 echo "<strong>you need the main query!</strong>\n<br />";
             }
             
-            if ($options[14] !== '*') {
-                echo "sql_query_range = " . $options[14] . "\n<br />";
+            if (!empty($source['sql_query_range'])) {
+                echo "sql_query_range = " . $source['sql_query_range'] . "\n<br />";
             }
             
-            if ($options[13] !== '*') {
-                echo "sql_joined_field = " . $options[13] . "\n<br />";
+            if (!empty($source['sql_joined_field'])) {
+                echo "sql_joined_field = " . $source['sql_joined_field'] . "\n<br />";
             }
             
-            if ($options[15] !== '*') {
-                echo "mssql_winauth = " . $options[15] . "\n<br />";
+            if (!empty($source['mssql_winauth'])) {
+                echo "mssql_winauth = " . $source['mssql_winauth'] . "\n<br />";
             }
             
-            if ($options[16] !== '*') {
-                echo "sql_column_buffers = " . $options[16] . "\n<br />";
+            if (!empty($source['sql_column_buffers'])) {
+                echo "sql_column_buffers = " . $source['sql_column_buffers'] . "\n<br />";
             }
             
-            if ($options[17] !== '*') {
-                echo "odbc_dsn = " . $options[17] . "\n<br />";
+            if (!empty($source['odbc_dsn'])) {
+                echo "odbc_dsn = " . $source['odbc_dsn'] . "\n<br />";
             }
         }
         
-        if ($options[11] !== '*') {
+        if (!empty($source['attributes'])) {
             //now, inside this loop, take the attributes string and split it by ','
-            $final_attributes = explode(",", $options[11]);
-            foreach ($final_attributes as $attr) {
+            $attrs = explode(',', $source['attributes']);
+            foreach ($attrs as $attr) {
                 echo $attr . "\n<br />";
             }
             //end if
@@ -671,27 +825,26 @@ function print_source($sources)
     }
 }
 
-
 //----------------------------------------------------|
 //---------------- SEARCHD SETTINGS ------------------|
 //----------------------------------------------------|
 
 
-//this will take searchd form information and return a concatenation seperated by ## (which will later be exploded)
-function searchd_to_string()
+//this will take searchd form information and return an array
+function process_searchd()
 {
     
     if (isset($_POST['listen'])) {
-        $f_searchd_string = $_POST['listen'] . "##";
+        $f_searchd_string['listen'] = $_POST['listen'];
     }
     if (isset($_POST['log'])) {
-        $f_searchd_string .= $_POST['log'] . "##";
+        $f_searchd_string['log'] = $_POST['log'];
     }
     if (isset($_POST['query_log'])) {
-        $f_searchd_string .= $_POST['query_log'] . "##";
+        $f_searchd_string['query_log'] = $_POST['query_log'];
     }
     if (isset($_POST['pid'])) {
-        $f_searchd_string .= $_POST['pid'] . "##";
+        $f_searchd_string['pid'] = $_POST['pid'];
     }
     
     return $f_searchd_string;
@@ -699,31 +852,31 @@ function searchd_to_string()
 
 //searchd only takes one config block, so its not an array. when this function is run, the old settings are lost.
 //give this function session['searchd']
-function print_searchd($searchd_string)
+function print_searchd($searchd)
 {
     
-    $searchd_options = explode("##", $searchd_string);
+    
     echo "searchd<br /> { \n<br />";
-    if ($searchd_options[0] != '') {
-        $final_listen = explode(",", $searchd_options[0]);
+    if (!empty($searchd['listen'])) {
+        $final_listen = explode(",", $searchd['listen']);
         foreach ($final_listen as $list) {
             echo "listen = " . $list . "\n<br />";
         }
     } else {
         echo "<strong>you need to tell sphinx where and how to listen!</strong>\n<br />";
     }
-    if ($searchd_options[1] != '') {
-        echo "log = " . $searchd_options[1] . "\n<br />";
+    if (!empty($searchd['log'])) {
+        echo "log = " . $searchd['log'] . "\n<br />";
     } else {
         echo "<strong>you need to tell sphinx where to put searchd log files!</strong>\n<br />";
     }
-    if ($searchd_options[2] != '') {
-        echo "query_log = " . $searchd_options[2] . "\n<br />";
+    if (!empty($searchd['query_log'])) {
+        echo "query_log = " . $searchd['query_log'] . "\n<br />";
     } else {
         echo "<strong>you need to tell sphinx where and how to listen!</strong>\n<br />";
     }
-    if ($searchd_options[3] != '') {
-        echo "pid_file = " . $searchd_options[3] . "\n<br />";
+    if (!empty($searchd['pid'])) {
+        echo "pid_file = " . $searchd['pid'] . "\n<br />";
     } else {
         echo "<strong>you need to tell sphinx where to put the PID file!</strong>\n<br />";
     }
@@ -806,7 +959,8 @@ function print_header()
      </div>
      <div class="navbar-collapse">
        <ul class="nav navbar-nav navbar-right" style="margin-top:15px;">
-         <li><a href="index.php">Start</a></li>
+         <li><a href="index.php">New Index</a></li>
+         <li><a href="index.php?clear=yes">Clear everything</a></li>
         	<li class="dropdown">
 				 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
 					  Sources 
@@ -820,17 +974,6 @@ function print_header()
 					  <li><a href="plainconfig.php?source_type=xmlpipe2">Add XML Source</a></li>
 					  <li><a href="plainconfig.php?source_type=tsvpipe">Add TSV Source</a></li>
 					  <li><a href="plainconfig.php?source_type=odbc">Add ODBC Source</a></li>
-				 </ul>
-			</li>
-			<li class="dropdown">
-				 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-					  Indexes 
-					  <span class="caret"></span>
-				 </a>
-				 <!--if they click these links, it will send them to index or source and specify 'PostgreSQL' type-->
-				 <ul class="dropdown-menu" role="menu">
-					  <li><a href="index_options.php?index_type=plain">Regular Index</a></li>
-					  
 				 </ul>
 			</li>
 				<li><a href="searchd_options.php">(re)Set Searchd Options</a></li>
