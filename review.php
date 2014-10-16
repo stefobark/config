@@ -1,22 +1,22 @@
 <?php
-ini_set('display_startup_errors',1);
-ini_set('display_errors',1);
+ini_set('display_startup_errors', 1);
+ini_set('display_errors', 1);
 error_reporting(-1);
 session_start();
 require_once('functions.php');
 print_header();
 
-if(!isset($_SESSION["index"])){
-$_SESSION["index"] = array();
+if (!isset($_SESSION["index"])) {
+    $_SESSION["index"] = array();
 }
 
-$searchd = process_searchd();
+$searchd             = process_searchd();
 $_SESSION['searchd'] = $searchd;
 
 //contain this and make a row for all searchd config blocks..
 echo "<div class='container' style='margin-top:100px!important'>";
-	
-	echo "<div class='button'>
+
+echo "<div class='button'>
 				<div class='row'>
 					<div class='col-md-5'></div>
 					<div class='col-md-1'>
@@ -35,17 +35,17 @@ echo "<div class='container' style='margin-top:100px!important'>";
 				</div>
 			</div>
 			<div class='col-md-2'></div>
-			<div class='col-md-3'>";	
+			<div class='col-md-3'>";
 
 echo "
 			<h3>searchd:</h3>";
 
 print_searchd($_SESSION['searchd']);
 
-	echo "</div>
+echo "</div>
 			<div class='col-md-3'>
 			<h3>indexes</h3>";
-			
+
 print_index($_SESSION['index']);
 
 
