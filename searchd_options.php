@@ -7,9 +7,9 @@ require_once('functions.php');
 print_header();
 
 if(isset($_POST["index_name"])){
-$index_string = index_to_string($_SESSION['index_type']); 
+$index = process_index($_SESSION['index_type']); 
 
-$_SESSION['index'][] = $index_string;
+$_SESSION['index'][] = $index;
 }
 //haven't finished indexer options... cause none of them are mandatory.. we'll just go with defaults for now.
 echo <<<HERE
@@ -45,13 +45,15 @@ echo "</div>
 		<h3>Your Sources:</h3>
 			";
 
-print_source($_SESSION['source']);
+if(!empty($_SESSION['source'])){
+	print_source($_SESSION['source']);
+}
 
 echo <<<HERE
 		<h5>
 			<a href='plainconfig.php'>
 				<span class='glyphicon glyphicon-plus-sign'></span>
-				&nbsp;add another source&nbsp;
+				&nbsp;add a source&nbsp;
 				<span class='glyphicon glyphicon-plus-sign'></span>
 			</a>
 		</h5>
