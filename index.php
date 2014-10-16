@@ -3,9 +3,12 @@ session_start();
 require_once('functions.php');
 print_home_header();
 
-if(!isset($_GET['scripted'])){
-	if(!isset($_POST['index_type'])){
-		echo <<<HERE
+if ($_GET['clear'] == 'yes') {
+    session_unset();
+}
+
+if (!isset($_POST['index_type'])) {
+    echo <<<HERE
 		<div class="container" style='margin-top:100px!important'>
 			<div class="row">
 				<div class="col-md-4"></div>
@@ -41,19 +44,28 @@ if(!isset($_GET['scripted'])){
 			</div>
 		</div>
 HERE;
-	} 
-	else
-	{
-		$_SESSION['index_type'] = $_POST['index_type'];
-		$choice = $_SESSION['index_type'];
-		echo <<<HERE
+} else {
+    $_SESSION['index_type'] = $_POST['index_type'];
+    $type                   = $_SESSION['index_type'];
+    if ($_SESSION['index_type'] == 'rt') {
+        echo "
+		<div class='container' style='margin-top:100px!important'>
+			<div class='row'>
+				<div class='col-md-6'>
+					<p class='help-block'>Let's build this $type index</p>
+					<a href='index_options.php'><button type='button' class='btn btn-success'>Go!</button></a>
+";
+    }
+    
+    if ($_SESSION['index_type'] == 'plain') {
+        echo <<<HERE
 		<div class="container" style='margin-top:100px!important'>
 			<div class="row">
 				<div class="col-md-6">
 					<h2>Environment Variables?</h2><br />
 					<div class='btn-group btn-group-justified text-center'>
-							<a href="index.php?scripted=/bin/bash"><button type='button' class='btn btn-info'>BASH</button></a>
-							<a href='index.php?scripted=no'><button type='button' class='btn btn-warning'>Or, just build a regular configuration.</button></a>
+							<a href="source.php?scripted=/bin/bash"><button type='button' class='btn btn-info'>BASH</button></a>
+							<a href='source.php'><button type='button' class='btn btn-warning'>Or, just build a regular configuration.</button></a>
 						</p>
 					</div>
 				</div>
@@ -101,20 +113,7 @@ HERE;
 					instead, but you get the idea.
 		</div>
 HERE;
-		}
-	} 
-else if($_SESSION['index_type'] == 'plain'){
-	$_SESSION['scripted'] = "#!" . $_GET['scripted'] . "<br />\n printf " . '"';
-	$script = $_SESSION['scripted'];
-	$choice = $_SESSION['index_type'];
-	echo <<<HERE
-	<div class="container" style='margin-top:100px!important'>
-			<div class="row">
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
-	<h2>Perfect.</h2>
-	<p class='help-block'>Let's build this $choice index</p>
-	<a href='source.php'><button type='button' class='btn btn-success'>Go!</button></a>
-HERE;
+    }
+    
 }
 ?>
