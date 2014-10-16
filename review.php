@@ -10,8 +10,8 @@ if(!isset($_SESSION["index"])){
 $_SESSION["index"] = array();
 }
 
-$searchd_string =& searchd_to_string();
-$_SESSION['searchd'] = $searchd_string;
+$searchd = process_searchd();
+$_SESSION['searchd'] = $searchd;
 
 //contain this and make a row for all searchd config blocks..
 echo "<div class='container' style='margin-top:100px!important'>";
@@ -40,7 +40,7 @@ echo "<div class='container' style='margin-top:100px!important'>";
 echo "
 			<h3>searchd:</h3>";
 
-print_searchd($searchd_string);
+print_searchd($_SESSION['searchd']);
 
 	echo "</div>
 			<div class='col-md-3'>
