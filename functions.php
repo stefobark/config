@@ -244,7 +244,7 @@ HERE;
         echo <<<HERE
 	<div class="col-md-4" style="background-color:#FAFAFA">
 		<h3>make an index</h3>
-		<p class='help-block'>If you chose to make a scripted configuration, use environment variables.</p>
+		<p class='help-block'>RealTime indexes are great! Just push data in, update it, search it-- awesome!</p>
 		<h4 style="margin-top:50px">Required options:</h4>
 		<form role='form' name='index' action='searchd_options.php' method='post'>
 			<div class='form-group'>
@@ -379,6 +379,7 @@ function print_index($all_indexes)
                 }
             } else {
                 echo "<strong>#you didn't enter any fields</strong>\n<br />";
+            	}
             }
             
             if (!empty($index["rt_attr"])) {
@@ -442,7 +443,6 @@ function print_index($all_indexes)
             echo "}\n<br />\n<br />";
         }
     }
-}
 
 
 //-----------------------------------|
