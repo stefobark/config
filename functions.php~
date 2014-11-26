@@ -233,7 +233,6 @@ function print_index_form($index_type)
 			</div>
 			<div class='form-group'>
 					<label for='exceptions'><a href='http://sphinxsearch.com/docs/current.html#conf-exceptions'>Exceptions File Path</a></label><br />
-					<p class="help-block">Exceptions allow to map one or more tokens (including tokens with characters that would normally be excluded) to a single keyword. They are similar to wordforms in that they also perform mapping, but have a number of important differences.</p>
 					<input type='text' name='exceptions' placeholder='/usr/local/sphinx/data/exceptions.txt' style="width:300px!important">
 			</div>
 		
@@ -324,22 +323,18 @@ HERE;
 			</div>
 			<div class='form-group'>
 					<label for='stopwords'><a href='http://sphinxsearch.com/docs/current.html#conf-stopwords'>Stopwords Files</a></label><br />
-										<p class="help-block">Stopwords are the words that will not be indexed. Typically you'd put most frequent words in the stopwords list because they do not add much value to search results but consume a lot of resources to process.</p>
 					<textarea type='text' name='stopwords' placeholder='"/usr/local/sphinx/data/stopwords.txt" or "stopwords-ru.txt stopwords-en.txt"' style="width:300px!important"></textarea>
 			</div>
 			<div class='form-group'>
 					<label for='wordforms'><a href='http://sphinxsearch.com/docs/current.html#conf-wordforms'>Wordforms Dictionary</a></label><br />
-					<p class='help-block'>Word forms are applied after tokenizing the incoming text by charset_table rules. They essentially let you replace one word with another. Normally, that would be used to bring different word forms to a single normal form (eg. to normalize all the variants such as "walks", "walked", "walking" to the normal form "walk"). It can also be used to implement stemming exceptions, because stemming is not applied to words found in the forms list.</p>
 					<input type='text' name='wordforms' placeholder='/usr/local/sphinx/data/wordforms.txt' style="width:300px!important">
 			</div>
 			<div class='form-group'>
 					<label for='embedded_limit'><a href='http://sphinxsearch.com/docs/current.html#conf-embedded-limit'>Embedded File Size Limit</a></label><br />
-					<p class="help-block">Before 2.1.1-beta, the contents of exceptions, wordforms, or stopwords files were always kept in the files. Only the file names were stored into the index. Starting with 2.1.1-beta, indexer can either save the file name, or embed the file contents directly into the index. Files sized under embedded_limit get stored into the index. For bigger files, only the file names are stored. This also simplifies moving index files to a different machine; you may get by just copying a single file.</p>
 					<input type='text' name='embedded_limit' placeholder='32K'">
 			</div>
 			<div class='form-group'>
 					<label for='exceptions'><a href='http://sphinxsearch.com/docs/current.html#conf-exceptions'>Exceptions File Path</a></label><br />
-					<p class="help-block">Exceptions allow to map one or more tokens (including tokens with characters that would normally be excluded) to a single keyword. They are similar to wordforms in that they also perform mapping, but have a number of important differences.</p>
 					<input type='text' name='exceptions' placeholder='/usr/local/sphinx/data/exceptions.txt' style="width:300px!important">
 			</div>
 			<div class='form-group'>

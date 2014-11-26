@@ -53,7 +53,7 @@ HERE;
 ";
     }
     
-    if ($_SESSION['index_type'] !== 'rt') {
+    if ($_SESSION['index_type'] == 'plain') {
         echo <<<HERE
 		<div class="container" style='margin-top:100px!important'>
 			<div class="row">

@@ -25,7 +25,10 @@ echo <<<HERE
 			<p class="help-block" style="text-indent:15px">
 				Email me at steve at sphinxsearch dot com.</p>
 			<p class="help-block" style="text-indent:15px">	 
-				If you want to see some of the other things I'm exploring, go read my <a href="http://sphinxish.blogspot.com">personal blog</a>. Want Sphinx news and some tutorials? Go to the <a href="http://sphinxsearch.com/blog">fulltext diary</a>.
+				If you want to see some of the 
+				other things I'm exploring, go read my <a href="http://sphinxish.blogspot.com">personal blog</a>.</p>
+			
+				Want Sphinx news and some tutorials? Go to the <a href="http://sphinxsearch.com/blog">fulltext diary</a>.</p>
 			</p>
 		</div>
 	</div>
