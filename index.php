@@ -11,21 +11,13 @@ if (!isset($_POST['index_type'])) {
     echo <<<HERE
 		<div class="container" style='margin-top:100px!important'>
 			<div class="row">
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
-					<p class='help-block'>
-						Enter information into the following fields to build a Sphinx configuration file. Read the descriptions and follow links to the Sphinx docs to 
-						learn more about each of the options.
-					</p>
-					<p class='help-block'>
-						And, before you get started, you might want to read <a href="http://sphinxsearch.com/blog/2013/11/05/sphinx-configuration-features-and-tricks/">
-						this nice blog post</a> about some of the neat
-						things you can do with a Sphinx configuration file.
-					</p>
-				</div>
-			</div>
-			<div class="row">
-					<div class="col-md-4"></div>
+				<div class="col-md-3">
+						<p class="help-block"><span class='glyphicon glyphicon-exclamation-sign'></span>&nbsp;&nbsp;<strong>Plain indexes</strong> (or, "batch indexes") are generated with "indexer"-- documents are indexed in batches.</p>
+						<p class="help-block"><span class='glyphicon glyphicon-exclamation-sign'></span>&nbsp;&nbsp;With <strong>real time indexes</strong>, indexer is not involved. You just push documents into the index and they are immediately availble for searching.</p>
+						<p class="help-block"><span class='glyphicon glyphicon-exclamation-sign'></span>&nbsp;&nbsp;<strong>Template indexes</strong> don't actually hold data-- they're used as "templates", to hold index settings (useful for snippets and a few other things).</p>
+						<p class="help-block"><span class='glyphicon glyphicon-exclamation-sign'></span>&nbsp;&nbsp;The <strong>distributed index</strong> type is really just a map that points to other instances of searchd. Your application can query this distributed index to search all the different Sphinx nodes.</p>
+					</div>
+					<div class="col-md-1"></div>
 					<div class="col-md-3">
 						<h4>Choose your index type:</h4>
 						<form name="type" action="index.php" method="post">
@@ -43,7 +35,7 @@ HERE;
 } else {
     $_SESSION['index_type'] = $_POST['index_type'];
     $type                   = $_SESSION['index_type'];
-    if ($_SESSION['index_type'] == 'rt') {
+    if ($_SESSION['index_type'] !== 'plain') {
         echo "
 		<div class='container' style='margin-top:100px!important'>
 			<div class='row'>
@@ -53,12 +45,12 @@ HERE;
 ";
     }
     
-    if ($_SESSION['index_type'] !== 'rt') {
+    if ($_SESSION['index_type'] == 'plain') {
         echo <<<HERE
 		<div class="container" style='margin-top:100px!important'>
 			<div class="row">
-				<div class="col-md-6">
-					<h2>Environment Variables?</h2><br />
+				<div class="col-md-12">
+					<h4 class="text-center">Environment Variables?</h4><br />
 					<div class='btn-group btn-group-justified text-center'>
 							<a href="source.php?scripted=/bin/bash"><button type='button' class='btn btn-info'>Yes</button></a>
 							<a href='source.php'><button type='button' class='btn btn-warning'>No</button></a>
@@ -67,19 +59,15 @@ HERE;
 				</div>
 			</div>
 			<div class="row">
-				
-				<div class="col-md-1"><span class='glyphicon glyphicon-exclamation-sign' style='font-size:50px!important'></span>
-				</div>
-				<div class="col-md-8"><br />
-					You can pass the parameters through the environment variables right when you run indexer or searchd. <br />
-					<br />
-					Passing host, user, password, db, and port in the source section:
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					Using environment variables to pass host, user, password, db, and port in the source section:
 					<br />
 				</div>
 			</div>
 			<div class="row">
-			<div class="col-md-1"></div>
-				<div class="col-md-11"><br />
+			<div class="col-md-3"></div>
+				<div class="col-md-6"><br />
 					<code>
 					#!/bin/bash<br />
 					printf "<br />

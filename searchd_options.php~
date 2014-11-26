@@ -19,6 +19,7 @@ echo <<<HERE
 
 HERE;
 
+var_dump($_POST);
 print_searchd_form();
 
 

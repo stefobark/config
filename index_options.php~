@@ -23,6 +23,7 @@ if (isset($_POST['source_name'])) {
 echo "
 <div class='container' style='margin-top:75px'>
 <div class='row'>";
+var_dump($_SESSION["index_type"]);
 //did they come here from the 'add ... index' dropdown? if so, set the session variable 'type'
 if (isset($_GET["index_type"])) {
     $_SESSION["index_type"] = $_GET["index_type"];
